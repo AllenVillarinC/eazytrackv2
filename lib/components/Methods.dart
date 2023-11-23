@@ -43,6 +43,15 @@ String calculateEazyBudget() {
   return '\$ ${budget.toStringAsFixed(2)}';
 }
 
+String calculateBudgetDifference() {
+  double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
+  double miscellaneous = double.tryParse(rent.text) ?? 0.0;
+  double paymentAmount = double.tryParse(payment.text) ?? 0.0;
+  double budget = (monthlyExpenses * 0.5) + (miscellaneous * 0.3);
+  double difference = budget - paymentAmount;
+  return '\$ ${difference.toStringAsFixed(2)}';
+}
+
 double calculatePercentBar() {
   double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
   double miscellaneous = double.tryParse(rent.text) ?? 0.0;
@@ -50,7 +59,7 @@ double calculatePercentBar() {
   double budget = (monthlyExpenses * 0.5) + (miscellaneous * 0.3);
   double difference = budget - paymentAmount;
   double percentageTaken = difference / budget;
-  return 1 - percentageTaken;
+  return (1 - percentageTaken) * 270;
 }
 
 Column userInformationForm(BuildContext context) {

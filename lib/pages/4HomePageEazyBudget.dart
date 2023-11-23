@@ -202,7 +202,7 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                                 ),
                                 Container(
                                   height: 15,
-                                  width: 150,
+                                  width: 0,
                                   decoration: BoxDecoration(
                                     gradient: const SweepGradient(
                                       colors: [

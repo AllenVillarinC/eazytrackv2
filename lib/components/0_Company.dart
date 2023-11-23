@@ -12,7 +12,7 @@ class CompanyName extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w800,
-          fontSize: 50 * screenScaling(context),
+          fontSize: 40 * screenScaling(context),
           color: const Color(0xffC0FF99),
         ),
       ),
@@ -21,7 +21,7 @@ class CompanyName extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w800,
-          fontSize: 50 * screenScaling(context),
+          fontSize: 40 * screenScaling(context),
           color: const Color(0xffC3A9FF),
         ),
       ),

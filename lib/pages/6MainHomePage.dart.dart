@@ -143,7 +143,7 @@ class _MainHomePage extends State<MainHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SmallTextWidget(
-                                text: calculateEazyBudget(),
+                                text: calculateBudgetDifference(),
                                 fontWeight: FontWeight.bold,
                                 textColor: 0xffffffff,
                                 fontsize: 25),
@@ -205,7 +205,7 @@ class _MainHomePage extends State<MainHomePage> {
                                 ),
                                 Container(
                                   height: 15,
-                                  width: 270 * calculatePercentBar(),
+                                  width: calculatePercentBar(),
                                   decoration: BoxDecoration(
                                     gradient: const SweepGradient(
                                       colors: [
@@ -257,7 +257,7 @@ class _MainHomePage extends State<MainHomePage> {
                           ),
                           const SizedBox(height: 15),
                           SmallTextWidget(
-                            text: calculateEazyBudget(),
+                            text: '\$ ${payment.text}',
                             fontWeight: FontWeight.bold,
                             textColor: 0xffffffff,
                             fontsize: 25,
@@ -319,7 +319,7 @@ class _MainHomePage extends State<MainHomePage> {
                         text: 'Payment amount:',
                         fontWeight: FontWeight.normal,
                         textColor: 0xffffffff,
-                        fontsize: 20),
+                        fontsize: 18),
                     SmallTextWidget(
                         text: '\$ ${payment.text}',
                         fontWeight: FontWeight.bold,
@@ -335,7 +335,7 @@ class _MainHomePage extends State<MainHomePage> {
                         text: 'Payment due:',
                         fontWeight: FontWeight.normal,
                         textColor: 0xffffffff,
-                        fontsize: 20),
+                        fontsize: 18),
                     Text(
                       '${paymentDay.text} / ${paymentMonth.text} / ${paymentYear.text}',
                       style: const TextStyle(
