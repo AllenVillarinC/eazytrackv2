@@ -1,7 +1,6 @@
 import 'package:eazytrackv2/components/PurpleLongButton.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import '../components/0_Company.dart';
 import '../components/GreenLongButton.dart';
 import '../components/T_SmallText.dart';
@@ -16,7 +15,6 @@ class OpeningPage extends StatefulWidget {
 }
 
 class _OpeningPageState extends State<OpeningPage> {
-  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {

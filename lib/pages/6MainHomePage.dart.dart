@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/components/0_Company.dart';
 import 'package:eazytrackv2/components/1_ScreenScale.dart';
@@ -81,7 +79,7 @@ class _MainHomePage extends State<MainHomePage> {
                           child: AnimatedTextKit(
                             animatedTexts: [
                               TyperAnimatedText(
-                                'Below is your EazyBudget. The amount that you should spend every month based on your monthly income.',
+                                'You are all set up!',
                                 textStyle: TextStyle(
                                     color: const Color(0xffffffff),
                                     fontSize: 15 * screenScaling(context),
@@ -90,16 +88,7 @@ class _MainHomePage extends State<MainHomePage> {
                                 speed: const Duration(milliseconds: 30),
                               ),
                               TyperAnimatedText(
-                                'Again, if there is a change of income, an increase or a decrease, you can generate your new EazyBudget anytime by pressing the "Generate New EazyBudget" button.',
-                                textStyle: TextStyle(
-                                    color: const Color(0xffffffff),
-                                    fontSize: 15 * screenScaling(context),
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Poppins'),
-                                speed: const Duration(milliseconds: 30),
-                              ),
-                              TyperAnimatedText(
-                                'Whenever you are ready, press the "Add payment" button and we can proceed to the second step.',
+                                'If you want to view your details or the reports I have based on your spending, press the "View Details" or the "Reports button" for more information.',
                                 textStyle: TextStyle(
                                     color: const Color(0xffffffff),
                                     fontSize: 15 * screenScaling(context),
@@ -145,7 +134,7 @@ class _MainHomePage extends State<MainHomePage> {
                             SmallTextWidget(
                                 text: calculateBudgetDifference(),
                                 fontWeight: FontWeight.bold,
-                                textColor: 0xffffffff,
+                                textColor: 0xffc9ff99,
                                 fontsize: 25),
                             Container(
                               width: 270 * screenScaling(context),
@@ -259,7 +248,7 @@ class _MainHomePage extends State<MainHomePage> {
                           SmallTextWidget(
                             text: '\$ ${payment.text}',
                             fontWeight: FontWeight.bold,
-                            textColor: 0xffffffff,
+                            textColor: 0xffc9ff99,
                             fontsize: 25,
                           ),
                           const SizedBox(height: 15),

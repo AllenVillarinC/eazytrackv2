@@ -1,4 +1,3 @@
-import 'package:eazytrackv2/pages/3EazybudgetInputAndValues.dart';
 import 'package:eazytrackv2/pages/user_reports_page.dart';
 import 'package:eazytrackv2/pages/view_details_page.dart';
 import 'package:flutter/material.dart';
@@ -333,9 +332,7 @@ Column systemGenerateEazyBudget(BuildContext context) {
         ],
       ),
       const SizedBox(height: 15),
-      const GreenLongButton(
-          text: "Generate new EazyBudget",
-          sendUserTo: GeneratedEazyBudgetValues())
+      
     ],
   );
 }

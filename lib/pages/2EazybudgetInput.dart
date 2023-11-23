@@ -1,11 +1,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/components/0_Company.dart';
 import 'package:eazytrackv2/components/1_ScreenScale.dart';
-import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
+import 'package:eazytrackv2/components/Methods.dart';
+import 'package:eazytrackv2/components/PurpleLongButton.dart';
 import 'package:eazytrackv2/components/T_SmallText.dart';
 import 'package:eazytrackv2/components/UI_SmallUserInput.dart';
-import 'package:eazytrackv2/pages/3EazybudgetInputAndValues.dart';
+import 'package:eazytrackv2/pages/4HomePageEazyBudget.dart';
 import 'package:eazytrackv2/pages/P_EditProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
@@ -18,21 +19,20 @@ class GenerateEazyBudget extends StatefulWidget {
 }
 
 class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
+  bool isVisibleContinueButton = false;
+  bool isVisiblecalculations = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xff151515),
-        appBar: AppBar(
-          backgroundColor: const Color(0xff151515),
-          elevation: 0,
-        ),
         body: SingleChildScrollView(
           child: Center(
             child: SizedBox(
               width: 430 * screenScaling(context),
               child: Column(
                 children: [
+                  const SizedBox(height: 60),
                   const CompanyName(),
                   const SizedBox(height: 15),
                   Column(
@@ -84,7 +84,7 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                                 child: AnimatedTextKit(
                                   animatedTexts: [
                                     TyperAnimatedText(
-                                      'To get started, I will need your monthly income. Don\'t worry, it does not have to be the exact amount.',
+                                      'Here are the amounts of how you should manage your monthly income.',
                                       textStyle: TextStyle(
                                           color: const Color(0xffffffff),
                                           fontSize: 15 * screenScaling(context),
@@ -93,7 +93,7 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                                       speed: const Duration(milliseconds: 30),
                                     ),
                                     TyperAnimatedText(
-                                      'If there are any changes of income, maybe an increase or a decrease, you can easily set a new EazyBudget anytime.',
+                                      'If you made a mistake, just type in your income again and I will generate new amounts for you.',
                                       textStyle: TextStyle(
                                           color: const Color(0xffffffff),
                                           fontSize: 15 * screenScaling(context),
@@ -102,7 +102,7 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                                       speed: const Duration(milliseconds: 30),
                                     ),
                                     TyperAnimatedText(
-                                      'Go ahead, and type in your income.',
+                                      'Whenever you are ready, press the "Continue" button.',
                                       textStyle: TextStyle(
                                           color: const Color(0xffffffff),
                                           fontSize: 15 * screenScaling(context),
@@ -112,7 +112,7 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                                     ),
                                   ],
                                   totalRepeatCount: 1,
-                                  pause: const Duration(milliseconds: 2500),
+                                  pause: const Duration(milliseconds: 2000),
                                 ),
                               ),
                             ],
@@ -155,11 +155,136 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                     ],
                   ),
                   const SizedBox(height: 15),
-                  const GreenLongButton(
-                    text: 'Generate Eazybudget',
-                    sendUserTo: GeneratedEazyBudgetValues(),
+                  Visibility(
+                    visible: isVisiblecalculations,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SmallTextWidget(
+                                text: 'Monthly expenses:',
+                                fontWeight: FontWeight.normal,
+                                textColor: 0xffffffff,
+                                fontsize: 20),
+                            Row(
+                              children: [
+                                const SmallTextWidget(
+                                    text: '\$',
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 20),
+                                const SizedBox(width: 5),
+                                SmallTextWidget(
+                                    text: calculateMonthlyExpenses(),
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 20),
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SmallTextWidget(
+                                text: 'Miscellaneous:',
+                                fontWeight: FontWeight.normal,
+                                textColor: 0xffffffff,
+                                fontsize: 20),
+                            Row(
+                              children: [
+                                const SmallTextWidget(
+                                    text: '\$',
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 20),
+                                const SizedBox(width: 5),
+                                SmallTextWidget(
+                                    text: calculateMiscellaneous(),
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 20),
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SmallTextWidget(
+                                text: 'Savings:',
+                                fontWeight: FontWeight.normal,
+                                textColor: 0xffffffff,
+                                fontsize: 20),
+                            Row(
+                              children: [
+                                const SmallTextWidget(
+                                    text: '\$',
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 20),
+                                const SizedBox(width: 5),
+                                SmallTextWidget(
+                                    text: calculateSavings(),
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 20),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 15),
+                  Container(
+                    decoration: BoxDecoration(
+                        gradient: const SweepGradient(
+                          colors: [Color(0xff1f2c25), Color(0xffc9ff99)],
+                          stops: [0.2, 0.75],
+                          center: Alignment.topRight,
+                        ),
+                        borderRadius: BorderRadius.circular(15)),
+                    width: 430 * screenScaling(context),
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          calculateMonthlyExpenses();
+                          calculateMiscellaneous();
+                          calculateSavings();
+                          isVisibleContinueButton = true;
+                          isVisiblecalculations = true;
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Center(
+                        child: SmallTextWidget(
+                          text: 'Generate Eazybudget',
+                          fontWeight: FontWeight.w600,
+                          textColor: 0xffffffff,
+                          fontsize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  Visibility(
+                    visible: isVisibleContinueButton,
+                    child: const PurpleLongButton(
+                      text: 'Continue',
+                      sendUserTo: HomePageEazyBudget(),
+                    ),
+                  ),
                 ],
               ),
             ),
