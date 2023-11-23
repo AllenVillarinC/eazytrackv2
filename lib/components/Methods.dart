@@ -1,9 +1,10 @@
-import 'package:eazytrackv2/pages/generated_eazybudget_values_page.dart';
+import 'package:eazytrackv2/pages/3EazybudgetInputAndValues.dart';
+import 'package:eazytrackv2/pages/user_reports_page.dart';
+import 'package:eazytrackv2/pages/view_details_page.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/P_EazyBudgetDetailsPage.dart';
+import 'package:rive/rive.dart';
 import '1_ScreenScale.dart';
-import 'B_LongButton.dart';
+import 'GreenLongButton.dart';
 import 'Controllers.dart';
 import 'T_BigText.dart';
 import 'T_SmallText.dart';
@@ -58,7 +59,7 @@ Column userInformationForm(BuildContext context) {
         regExp: r'[a-zA-Z]',
       ),
       SizedBox(
-        width: 350 * screenScaling(context),
+        width: 430 * screenScaling(context),
         child: Column(
           children: [
             const Align(
@@ -72,7 +73,7 @@ Column userInformationForm(BuildContext context) {
             ),
             const SizedBox(height: 5),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SmallUserInput(
                   hintLabel: 'MM',
@@ -113,6 +114,12 @@ Column userInformationForm(BuildContext context) {
                   regExp: r'[0-9]',
                   controllerName: dobYear,
                 ),
+                const SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: RiveAnimation.asset(
+                      'assets/rive/2063-4080-flutter-puzzle-hack-project.riv'),
+                )
               ],
             ),
           ],
@@ -126,7 +133,7 @@ Column userInformationForm(BuildContext context) {
         regExp: r'[a-zA-Z0-9 ,-]',
       ),
       SizedBox(
-        width: 350 * screenScaling(context),
+        width: 430 * screenScaling(context),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -182,7 +189,7 @@ Column userInformationForm(BuildContext context) {
       ),
       const SizedBox(height: 15),
       SizedBox(
-        width: 350 * screenScaling(context),
+        width: 430 * screenScaling(context),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -215,7 +222,7 @@ Column userInformationForm(BuildContext context) {
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: SmallTextWidget(
-                      text: 'Province',
+                      text: 'Postal code',
                       fontWeight: FontWeight.normal,
                       textColor: 0xffffffff,
                       fontsize: 18,
@@ -223,10 +230,10 @@ Column userInformationForm(BuildContext context) {
                   ),
                   const SizedBox(height: 5),
                   SmallUserInput(
-                      hintLabel: 'Province',
+                      hintLabel: 'Postal Code',
                       textFieldSize: 180 * screenScaling(context),
                       totalCharacters: 20,
-                      regExp: r'[a-zA-Z]',
+                      regExp: r'^[a-zA-Z0-9 ]*$',
                       controllerName: postalcode),
                 ],
               ),
@@ -238,14 +245,6 @@ Column userInformationForm(BuildContext context) {
     ],
   );
 }
-
-// SmallUserInput(
-//                     hintLabel: 'Postal Code',
-//                     textFieldSize: 180 * screenScaling(context),
-//                     totalCharacters: 7,
-//                     regExp: r'^[a-zA-Z0-9 ]*$',
-//                     controllerName: postalcode,
-//                   )
 
 Column systemGenerateEazyBudget(BuildContext context) {
   return Column(
@@ -315,12 +314,9 @@ Column systemGenerateEazyBudget(BuildContext context) {
         ],
       ),
       const SizedBox(height: 15),
-      const LongButton(
-          text: 'Generate EazyBudget',
-          buttonColor: 0xffc9ff99,
-          textColor: 0xff000000,
-          sendUserTo: GeneratedEazyBudgetValues(),
-          buttonBorderColor: 0xff000000)
+      const GreenLongButton(
+          text: "Generate new EazyBudget",
+          sendUserTo: GeneratedEazyBudgetValues())
     ],
   );
 }
@@ -363,21 +359,10 @@ Column userEazyBudgetReport(BuildContext context) {
       ),
       const SizedBox(height: 15),
       Image.asset('assets/images/moneybag.png'),
-      const LongButton(
-        buttonColor: 0xff1f2c25,
-        text: 'View details',
-        textColor: 0xffffffff,
-        sendUserTo: EazyBudgetDetails(),
-        buttonBorderColor: 0xffffffff,
-      ),
+      const GreenLongButton(
+          text: 'View details', sendUserTo: ViewDetailsPage()),
       const SizedBox(height: 15),
-      const LongButton(
-        buttonColor: 0xff1f2c25,
-        text: 'View report',
-        textColor: 0xffffffff,
-        sendUserTo: EazyBudgetDetails(),
-        buttonBorderColor: 0xffffffff,
-      ),
+      const GreenLongButton(text: 'Reports', sendUserTo: UserReportsPage()),
       const SizedBox(height: 15),
     ],
   );

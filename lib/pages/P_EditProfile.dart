@@ -1,8 +1,6 @@
-import 'package:eazytrackv2/components/B_LongButton.dart';
-
-import 'package:eazytrackv2/pages/P_LinkAccount.dart';
+import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/P_OpeningPage.dart';
-import 'package:eazytrackv2/pages/home_page_newuser.dart';
+import 'package:eazytrackv2/pages/1HomePage.dart';
 import 'package:flutter/material.dart';
 
 import '../components/0_Company.dart';
@@ -519,26 +517,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     color: Colors.white,
                   ),
                   const SizedBox(height: 15),
-                  const LongButton(
-                      text: 'Link account',
-                      buttonColor: 0xffC0FF99,
-                      textColor: 0xff000000,
-                      sendUserTo: LinkAccountPage(),
-                      buttonBorderColor: 0xff000000),
                   const SizedBox(height: 15),
-                  const LongButton(
-                      text: 'Edit/Add Card',
-                      buttonColor: 0xffC0FF99,
-                      textColor: 0xff000000,
-                      sendUserTo: OpeningPage(),
-                      buttonBorderColor: 0xff000000),
-                  const SizedBox(height: 15),
-                  const LongButton(
-                      text: 'Log out',
-                      buttonColor: 0xff1f2c25,
-                      textColor: 0xffffffff,
-                      sendUserTo: OpeningPage(),
-                      buttonBorderColor: 0xffffffff),
+                  const GreenLongButton(
+                      text: 'Log out', sendUserTo: OpeningPage()),
                   const SizedBox(height: 20)
                 ],
               ),

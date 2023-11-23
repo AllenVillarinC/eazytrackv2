@@ -2,24 +2,25 @@ import 'dart:math';
 
 import 'package:eazytrackv2/components/0_Company.dart';
 import 'package:eazytrackv2/components/1_ScreenScale.dart';
-import 'package:eazytrackv2/components/B_LongButton.dart';
+import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/Methods.dart';
 import 'package:eazytrackv2/components/T_BigText.dart';
 import 'package:eazytrackv2/components/T_SmallText.dart';
 import 'package:eazytrackv2/pages/P_EditProfile.dart';
-import 'package:eazytrackv2/pages/P_OpeningPage.dart';
-import 'package:eazytrackv2/pages/generate_eazybudget_page.dart';
+import 'package:eazytrackv2/pages/2EazybudgetInput.dart';
+import 'package:eazytrackv2/pages/user_reports_page.dart';
+import 'package:eazytrackv2/pages/view_details_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePageEazyBudget extends StatefulWidget {
-  const HomePageEazyBudget({super.key});
+class MainHomePage extends StatefulWidget {
+  const MainHomePage({super.key});
 
   @override
-  State<HomePageEazyBudget> createState() => _HomePageEazyBudget();
+  State<MainHomePage> createState() => _MainHomePage();
 }
 
-class _HomePageEazyBudget extends State<HomePageEazyBudget> {
+class _MainHomePage extends State<MainHomePage> {
   List<String> imagePaths = [
     'assets/images/Allura UI Windows.png',
     'assets/images/Brazuca Planning.png',
@@ -69,7 +70,7 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                             border: Border.all(color: Colors.white),
                             borderRadius: BorderRadius.circular(20)),
                         height: 70,
-                        width: 368 * screenScaling(context),
+                        width: 430 * screenScaling(context),
                         child: Row(
                           children: [
                             Padding(
@@ -113,7 +114,7 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                         alignment: Alignment.centerLeft,
                         child: BigTextWidget(
                           text: 'Your remaining EazyBudget:',
-                          weight: FontWeight.w200,
+                          weight: FontWeight.bold,
                           fontsize: 25,
                         )),
                     const SizedBox(height: 15),
@@ -128,8 +129,8 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                                 textColor: 0xffffffff,
                                 fontsize: 25),
                             SizedBox(
-                              width: 220,
-                              height: 25,
+                              width: 250 * screenScaling(context),
+                              height: 30,
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(
@@ -198,7 +199,7 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                                 textColor: 0xffffffff,
                                 fontsize: 25)
                           ],
-                        )
+                        ),
                       ],
                     ),
                     const SizedBox(height: 15),
@@ -215,58 +216,135 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                     const Align(
                       alignment: Alignment.centerLeft,
                       child: BigTextWidget(
-                        text: 'Total payment/s:',
-                        weight: FontWeight.w200,
+                        text: 'Total payment:',
+                        weight: FontWeight.bold,
                         fontsize: 25,
                       ),
                     ),
                     const SizedBox(height: 15),
-                    const LongButton(
-                      buttonColor: 0xffc9ff99,
-                      text: 'Add payment/s',
-                      textColor: 0xff000000,
-                      sendUserTo: OpeningPage(), // Change later
-                      buttonBorderColor: 0xff000000,
-                    ),
-                    const SizedBox(height: 15),
-                    Container(
-                        height: 1,
-                        width: 200,
-                        decoration:
-                            const BoxDecoration(color: Color(0xffffffff))),
-                    const SizedBox(height: 15),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const Align(
-                        alignment: Alignment.centerLeft,
-                        child: BigTextWidget(
-                          text: 'Payment/s and due dates:',
-                          weight: FontWeight.w200,
-                          fontsize: 25,
-                        )),
-                    const SizedBox(height: 15),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        SmallTextWidget(
+                            text: calculateEazyBudget(),
+                            fontWeight: FontWeight.bold,
+                            textColor: 0xffffffff,
+                            fontsize: 25),
                         SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: Image.asset('assets/images/Vector.png'),
-                        ),
-                        const SizedBox(width: 5),
-                        const Expanded(
-                          child: SmallTextWidget(
-                              text:
-                                  'Add payment/s for Eazybudget to analyze andremind you when payment id due',
-                              fontWeight: FontWeight.normal,
-                              textColor: 0xffffffff,
-                              fontsize: 16),
+                          width: 160 * screenScaling(context),
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const GenerateEazyBudget()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xffc9ff99),
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: const BorderSide(
+                                  color: Color(0xff000000),
+                                  width: 0.5,
+                                ),
+                              ),
+                            ),
+                            child: const SmallTextWidget(
+                                text: 'Add payment',
+                                fontWeight: FontWeight.bold,
+                                textColor: 0xff000000,
+                                fontsize: 15),
+                          ),
                         ),
                       ],
                     ),
+                    const SizedBox(height: 15),
+                    const GreenLongButton(
+                      text: 'View Details',
+                      sendUserTo: ViewDetailsPage(),
+                    ),
+                    const SizedBox(height: 15),
+                    const GreenLongButton(
+                        text: 'Report', sendUserTo: UserReportsPage())
                   ],
-                )
+                ),
+                const SizedBox(height: 15),
+                Container(
+                    height: 1,
+                    width: 200,
+                    decoration: const BoxDecoration(color: Color(0xffffffff))),
+                const SizedBox(height: 15),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: BigTextWidget(
+                      text: 'Payment details:',
+                      weight: FontWeight.bold,
+                      fontsize: 25),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        height: 1,
+                        width: 70,
+                        decoration:
+                            const BoxDecoration(color: Color(0xffffffff))),
+                    SmallTextWidget(
+                        text: paymentTitle.text,
+                        fontWeight: FontWeight.bold,
+                        textColor: 0xffc9ff99,
+                        fontsize: 20),
+                    Container(
+                        height: 1,
+                        width: 70,
+                        decoration:
+                            const BoxDecoration(color: Color(0xffffffff))),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SmallTextWidget(
+                        text: 'Payment amount:',
+                        fontWeight: FontWeight.normal,
+                        textColor: 0xffffffff,
+                        fontsize: 20),
+                    SmallTextWidget(
+                        text: '\$ ${payment.text}',
+                        fontWeight: FontWeight.bold,
+                        textColor: 0xffc9ff99,
+                        fontsize: 20),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SmallTextWidget(
+                        text: 'Payment due:',
+                        fontWeight: FontWeight.normal,
+                        textColor: 0xffffffff,
+                        fontsize: 20),
+                    SmallTextWidget(
+                        text:
+                            '${paymentDay.text} / ${paymentMonth.text} / ${paymentYear.text}',
+                        fontWeight: FontWeight.bold,
+                        textColor: 0xffc9ff99,
+                        fontsize: 20),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                SmallTextWidget(
+                    text: 'Remind me ${pickedDay.text} prior to due date',
+                    fontWeight: FontWeight.normal,
+                    textColor: 0xffffffff,
+                    fontsize: 20)
               ],
             ),
           ),

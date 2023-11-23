@@ -19,7 +19,7 @@ class SmallTextWidget extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
-          fontFamily: 'Inter',
+          fontFamily: 'Poppins',
           fontWeight: fontWeight,
           fontSize: fontsize * screenScaling(context),
           color: Color(textColor)),

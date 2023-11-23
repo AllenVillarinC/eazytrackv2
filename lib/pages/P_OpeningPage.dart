@@ -1,8 +1,9 @@
+import 'package:eazytrackv2/components/PurpleLongButton.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../components/0_Company.dart';
-import '../components/B_LongButton.dart';
+import '../components/GreenLongButton.dart';
 import '../components/T_SmallText.dart';
 import 'P_CreateAccountPage.dart';
 import 'P_SignInPage.dart';
@@ -35,21 +36,11 @@ class _OpeningPageState extends State<OpeningPage> {
                       textColor: 0xffffffff,
                       fontsize: 16),
                   const SizedBox(height: 50),
-                  const LongButton(
-                    buttonColor: 0xffC0FF99,
-                    text: 'Sign In',
-                    textColor: 0xff000000,
-                    sendUserTo: SigninPage(),
-                    buttonBorderColor: 0xffC0FF99,
-                  ),
+                  const GreenLongButton(
+                      text: 'Sign in', sendUserTo: SigninPage()),
                   const SizedBox(height: 20),
-                  const LongButton(
-                    buttonColor: 0xff1f2c25,
-                    text: 'Create account',
-                    textColor: 0xffffffff,
-                    sendUserTo: CreateAccountPage(),
-                    buttonBorderColor: 0xffffffff,
-                  ),
+                  const PurpleLongButton(
+                      text: 'Create account', sendUserTo: CreateAccountPage())
                 ],
               ),
             ),

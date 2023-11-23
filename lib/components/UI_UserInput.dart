@@ -23,7 +23,7 @@ class _UserInputState extends State<UserInput> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 350 * screenScaling(context),
+      width: 430 * screenScaling(context),
       child: Column(
         children: [
           Align(

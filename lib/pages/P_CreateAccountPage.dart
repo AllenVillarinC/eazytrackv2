@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/0_Company.dart';
 import '../components/1_ScreenScale.dart';
-import '../components/B_LongButton.dart';
+import '../components/GreenLongButton.dart';
 import '../components/Controllers.dart';
 import '../components/T_BigText.dart';
 import '../components/T_SmallText.dart';
@@ -59,13 +59,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 controllerName: confirmpassword,
               ),
               const SizedBox(height: 15),
-              const LongButton(
-                text: 'Create account',
-                textColor: 0xff000000,
-                buttonColor: 0xffC0FF99,
-                sendUserTo: AccountSetupPage(),
-                buttonBorderColor: 0xffC0FF99,
-              ),
+              const GreenLongButton(
+                  text: 'Create account', sendUserTo: AccountSetupPage()),
               const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

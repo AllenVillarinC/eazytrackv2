@@ -1,9 +1,8 @@
-import 'package:eazytrackv2/pages/home_page_newuser.dart';
+import 'package:eazytrackv2/pages/6MainHomePage.dart.dart';
 import 'package:flutter/material.dart';
-
 import '../components/0_Company.dart';
 import '../components/1_ScreenScale.dart';
-import '../components/B_LongButton.dart';
+import '../components/GreenLongButton.dart';
 import '../components/Controllers.dart';
 import '../components/T_BigText.dart';
 import '../components/T_SmallText.dart';
@@ -83,7 +82,8 @@ class _SigninPageState extends State<SigninPage> {
                             const SmallTextWidget(
                                 text: 'Remember me',
                                 fontWeight: FontWeight.normal,
-                                textColor: 0xffffffff,fontsize: 16),
+                                textColor: 0xffffffff,
+                                fontsize: 16),
                           ]),
                       Align(
                         alignment: Alignment.centerRight,
@@ -94,28 +94,24 @@ class _SigninPageState extends State<SigninPage> {
                           child: const SmallTextWidget(
                               text: 'Forgot password?',
                               fontWeight: FontWeight.bold,
-                              textColor: 0xffC0FF99,fontsize: 16),
+                              textColor: 0xffC0FF99,
+                              fontsize: 16),
                         ),
                       ),
                     ]),
               ),
               const SizedBox(height: 15),
-              const LongButton(
-                buttonColor: 0xffC0FF99,
-                text: 'Sign In',
-                textColor: 0xff000000,
-                sendUserTo: HomePageNewUser(),
-                buttonBorderColor: 0xffC0FF99,
-              ),
+              const GreenLongButton(
+                  text: 'Sign in', sendUserTo: MainHomePage()),
               const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SmallTextWidget(
-                    text: "Don't have an account?",
-                    fontWeight: FontWeight.normal,
-                    textColor: 0xffffffff,fontsize: 16
-                  ),
+                      text: "Don't have an account?",
+                      fontWeight: FontWeight.normal,
+                      textColor: 0xffffffff,
+                      fontsize: 16),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -125,10 +121,10 @@ class _SigninPageState extends State<SigninPage> {
                       );
                     },
                     child: const SmallTextWidget(
-                      text: 'Sign up',
-                      fontWeight: FontWeight.bold,
-                      textColor: 0xffC0FF99,fontsize: 16
-                    ),
+                        text: 'Sign up',
+                        fontWeight: FontWeight.bold,
+                        textColor: 0xffC0FF99,
+                        fontsize: 16),
                   ),
                 ],
               ),

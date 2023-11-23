@@ -28,3 +28,10 @@ TextEditingController cardVerificationCode = TextEditingController();
 TextEditingController emailaddress = TextEditingController();
 TextEditingController password = TextEditingController();
 TextEditingController confirmpassword = TextEditingController();
+TextEditingController paymentTitle = TextEditingController();
+TextEditingController payment = TextEditingController();
+TextEditingController paymentMonth = TextEditingController();
+TextEditingController paymentDay = TextEditingController();
+TextEditingController paymentYear = TextEditingController();
+TextEditingController pickedDay = TextEditingController();
+
