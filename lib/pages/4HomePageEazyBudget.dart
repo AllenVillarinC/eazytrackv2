@@ -168,7 +168,7 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
-                                  elevation: 2,
+                                  elevation: 5,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
                                     side: const BorderSide(

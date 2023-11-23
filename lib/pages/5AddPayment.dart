@@ -408,7 +408,7 @@ class _AddPaymentPageState extends State<AddPaymentPage> {
                             isVisible3 = false;
                             isVisible2 = false;
                             isVisible1 = true;
-                            pickedDay.text = '1 days';
+                            pickedDay.text = '1 day';
                           });
                         },
                         style: ElevatedButton.styleFrom(

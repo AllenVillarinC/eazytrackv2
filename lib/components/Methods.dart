@@ -43,6 +43,16 @@ String calculateEazyBudget() {
   return '\$ ${budget.toStringAsFixed(2)}';
 }
 
+double calculatePercentBar() {
+  double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
+  double miscellaneous = double.tryParse(rent.text) ?? 0.0;
+  double paymentAmount = double.tryParse(payment.text) ?? 0.0;
+  double budget = (monthlyExpenses * 0.5) + (miscellaneous * 0.3);
+  double difference = budget - paymentAmount;
+  double percentageTaken = difference / budget;
+  return 1 - percentageTaken;
+}
+
 Column userInformationForm(BuildContext context) {
   return Column(
     children: [
@@ -232,8 +242,8 @@ Column userInformationForm(BuildContext context) {
                   SmallUserInput(
                       hintLabel: 'Postal Code',
                       textFieldSize: 180 * screenScaling(context),
-                      totalCharacters: 20,
-                      regExp: r'^[a-zA-Z0-9 ]*$',
+                      totalCharacters: 8,
+                      regExp: r'^[A-Z0-9 ]+',
                       controllerName: postalcode),
                 ],
               ),
