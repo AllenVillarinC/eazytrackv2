@@ -127,12 +127,13 @@ class _HomePageEazyBudget extends State<HomePageEazyBudget> {
                 Column(
                   children: [
                     const Align(
-                        alignment: Alignment.centerLeft,
-                        child: BigTextWidget(
-                          text: 'Your remaining EazyBudget:',
-                          weight: FontWeight.w600,
-                          fontsize: 25,
-                        )),
+                      alignment: Alignment.centerLeft,
+                      child: BigTextWidget(
+                        text: 'Your remaining EazyBudget:',
+                        weight: FontWeight.w600,
+                        fontsize: 25,
+                      ),
+                    ),
                     const SizedBox(height: 15),
                     Column(
                       children: [

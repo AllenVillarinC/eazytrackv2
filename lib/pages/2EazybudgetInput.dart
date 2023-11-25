@@ -151,7 +151,7 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                               regExp: r'[0-9.]+',
                               controllerName: rent),
                         ],
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -233,7 +233,7 @@ class _GenerateEazyBudgetState extends State<GenerateEazyBudget> {
                                     textColor: 0xffffffff,
                                     fontsize: 20),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ],

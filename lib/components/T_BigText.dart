@@ -26,7 +26,3 @@ class BigTextWidget extends StatelessWidget {
     );
   }
 }
-
-// this is a reusable widget
-// when called, it requires the text, size, and fontweight
-// helps keep code clean

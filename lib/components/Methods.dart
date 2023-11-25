@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/pages/user_reports_page.dart';
 import 'package:eazytrackv2/pages/view_details_page.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,8 @@ double calculatePercentBar() {
   return (1 - percentageTaken) * 270;
 }
 
+
+
 Column userInformationForm(BuildContext context) {
   return Column(
     children: [
@@ -75,73 +78,6 @@ Column userInformationForm(BuildContext context) {
         hiddenLabel: 'Last Name',
         controllerName: lname,
         regExp: r'[a-zA-Z]',
-      ),
-      SizedBox(
-        width: 430 * screenScaling(context),
-        child: Column(
-          children: [
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: SmallTextWidget(
-                text: 'Date of Birth',
-                fontWeight: FontWeight.normal,
-                textColor: 0xffffffff,
-                fontsize: 18,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SmallUserInput(
-                  hintLabel: 'MM',
-                  textFieldSize: 60,
-                  totalCharacters: 2,
-                  regExp: r'[0-9]',
-                  controllerName: dobMonth,
-                ),
-                const SizedBox(
-                  width: 40,
-                  child: SmallTextWidget(
-                    text: '/',
-                    fontWeight: FontWeight.bold,
-                    textColor: 0xffffffff,
-                    fontsize: 18,
-                  ),
-                ),
-                SmallUserInput(
-                  hintLabel: 'DD',
-                  textFieldSize: 60,
-                  totalCharacters: 2,
-                  regExp: r'[0-9]',
-                  controllerName: dobDay,
-                ),
-                const SizedBox(
-                  width: 40,
-                  child: SmallTextWidget(
-                    text: '/',
-                    fontWeight: FontWeight.bold,
-                    textColor: 0xffffffff,
-                    fontsize: 18,
-                  ),
-                ),
-                SmallUserInput(
-                  hintLabel: 'YYYY',
-                  textFieldSize: 70,
-                  totalCharacters: 4,
-                  regExp: r'[0-9]',
-                  controllerName: dobYear,
-                ),
-                const SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: RiveAnimation.asset(
-                      'assets/rive/2063-4080-flutter-puzzle-hack-project.riv'),
-                )
-              ],
-            ),
-          ],
-        ),
       ),
       const SizedBox(height: 15),
       UserInput(
@@ -332,7 +268,6 @@ Column systemGenerateEazyBudget(BuildContext context) {
         ],
       ),
       const SizedBox(height: 15),
-      
     ],
   );
 }

@@ -199,7 +199,7 @@ class _AddPaymentPageState extends State<AddPaymentPage> {
                       ),
                       const SizedBox(height: 5),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SmallUserInput(
                             hintLabel: 'MM',
@@ -240,6 +240,12 @@ class _AddPaymentPageState extends State<AddPaymentPage> {
                             regExp: r'[0-9]',
                             controllerName: paymentYear,
                           ),
+                          SizedBox(
+                            height: 60 * screenScaling(context),
+                            width: 60 * screenScaling(context),
+                            child: const RiveAnimation.asset(
+                                'assets/rive/2063-4080-flutter-puzzle-hack-project.riv'),
+                          )
                         ],
                       ),
                     ],

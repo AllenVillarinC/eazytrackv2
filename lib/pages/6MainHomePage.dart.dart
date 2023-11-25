@@ -256,7 +256,7 @@ class _MainHomePage extends State<MainHomePage> {
                             text: 'View Details',
                             sendUserTo: ViewDetailsPage(),
                           ),
-                          const SizedBox(height: 15),
+                          const SizedBox(height: 10),
                           const GreenLongButton(
                             text: 'Report',
                             sendUserTo: UserReportsPage(),
@@ -279,7 +279,7 @@ class _MainHomePage extends State<MainHomePage> {
                       weight: FontWeight.bold,
                       fontsize: 25),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
