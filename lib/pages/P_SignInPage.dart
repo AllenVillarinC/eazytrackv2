@@ -1,4 +1,3 @@
-import 'package:eazytrackv2/pages/6MainHomePage.dart.dart';
 import 'package:flutter/material.dart';
 import '../components/0_Company.dart';
 import '../components/1_ScreenScale.dart';
@@ -101,8 +100,7 @@ class _SigninPageState extends State<SigninPage> {
                     ]),
               ),
               const SizedBox(height: 15),
-              const GreenLongButton(
-                  text: 'Sign in', sendUserTo: MainHomePage()),
+              
               const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

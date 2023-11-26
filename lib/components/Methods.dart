@@ -1,8 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/pages/user_reports_page.dart';
 import 'package:eazytrackv2/pages/view_details_page.dart';
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
 import '1_ScreenScale.dart';
 import 'GreenLongButton.dart';
 import 'Controllers.dart';
@@ -36,33 +34,35 @@ String calculateSavings() {
   return (savings * 0.2).toStringAsFixed(2);
 }
 
-String calculateEazyBudget() {
+double calculateEazyBudget() {
   double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
   double miscellaneous = double.tryParse(rent.text) ?? 0.0;
   double budget = (monthlyExpenses * 0.5) + (miscellaneous * 0.3);
-  return '\$ ${budget.toStringAsFixed(2)}';
+  return budget;
 }
 
-String calculateBudgetDifference() {
-  double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
-  double miscellaneous = double.tryParse(rent.text) ?? 0.0;
-  double paymentAmount = double.tryParse(payment.text) ?? 0.0;
-  double budget = (monthlyExpenses * 0.5) + (miscellaneous * 0.3);
-  double difference = budget - paymentAmount;
-  return '\$ ${difference.toStringAsFixed(2)}';
+double calculateDifference(double total, double function) {
+  double difference = function - total;
+  return difference;
 }
 
-double calculatePercentBar() {
+String calculateTotalExpenditure() {
+  double paymentAmountToAdd = double.tryParse(payment.text) ?? 0.0;
+  double transactionAmountToAdd =
+      double.tryParse(transactionAmount.text) ?? 0.0;
+  double total = paymentAmountToAdd + transactionAmountToAdd;
+  return '\$ ${total.toStringAsFixed(2)}';
+}
+
+double calculatePercentBar(double total) {
   double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
   double miscellaneous = double.tryParse(rent.text) ?? 0.0;
-  double paymentAmount = double.tryParse(payment.text) ?? 0.0;
+  double totalExpenditure = total;
   double budget = (monthlyExpenses * 0.5) + (miscellaneous * 0.3);
-  double difference = budget - paymentAmount;
+  double difference = budget - totalExpenditure;
   double percentageTaken = difference / budget;
   return (1 - percentageTaken) * 270;
 }
-
-
 
 Column userInformationForm(BuildContext context) {
   return Column(

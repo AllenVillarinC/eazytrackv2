@@ -1,6 +1,6 @@
 import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/P_OpeningPage.dart';
-import 'package:eazytrackv2/pages/1HomePage.dart';
+
 import 'package:flutter/material.dart';
 
 import '../components/0_Company.dart';
@@ -39,12 +39,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePageNewUser(),
-                            ),
-                          );
                         },
                         child: const SmallTextWidget(
                           text: 'Back',

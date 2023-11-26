@@ -1,0 +1,186 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  runApp(
+    AAA(),
+  );
+}
+
+List<PhotoItem> images =
+    []; //link firebase to store links and get links from there
+
+class PhotoItem {
+  String image;
+
+  PhotoItem(this.image);
+}
+
+class AAA extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<AAA> {
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController link = new TextEditingController();
+    return MaterialApp(
+      title: 'All about ANIME',
+      home: Scaffold(
+        backgroundColor: Colors.black87,
+        appBar: AppBar(
+            title: Text('All About ANIME',
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+            centerTitle: true,
+            backgroundColor: Colors.black54),
+        body: Center(
+          child: Column(children: [
+            Flexible(
+              child: Container(
+                  padding: EdgeInsets.all(15),
+                  child: Text(
+                      'A place where you can submit your favorite anime GIFs!',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white))),
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Container(
+                            child: TextField(
+                              controller: link,
+                              style: TextStyle(color: Colors.yellow.shade600),
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderSide:
+                                      BorderSide(color: Colors.yellowAccent),
+                                ),
+                                fillColor: Colors.black,
+                                filled: true,
+                                labelText: 'URL:',
+                                labelStyle:
+                                    TextStyle(color: Colors.yellowAccent[700]),
+                                hintText: 'https:',
+                                hintStyle:
+                                    TextStyle(color: Colors.yellow.shade600),
+                                suffixIcon: IconButton(
+                                  onPressed: () => link.clear(),
+                                  icon: Icon(Icons.clear, color: Colors.red),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            padding: EdgeInsets.all(30),
+                            child: ElevatedButton(
+                              child: Text(
+                                'Submit',
+                                style: TextStyle(color: Colors.yellow.shade600),
+                              ),
+                              onPressed: () => setState(
+                                () => images.insert(0, PhotoItem(link.text)),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.black,
+                                  shadowColor: Colors.yellow),
+                            ),
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 2,
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                height: 1920,
+                width: 1080,
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: images.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 1),
+                    itemBuilder: (context, index) {
+                      return new GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RouteTwo(
+                                  image: images[index].image,
+                                ),
+                              ));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(images[index].image),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+class RouteTwo extends StatelessWidget {
+  final String image;
+
+  RouteTwo({Key? key, required this.image}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black87,
+        appBar: AppBar(
+            title: Text('All About ANIME'), backgroundColor: Colors.black54),
+        body: Center(
+            child: Padding(
+          padding: EdgeInsets.all(100),
+          child: Column(
+            children: [
+              Container(
+                child: Image(
+                  image: NetworkImage(image),
+                ),
+              ),
+            ],
+          ),
+        )));
+  }
+}
+
+
+
+//on click/select, display gif with name of submitter, description, likes, and link of original gif
+
+//menu bar?
+//smoother scrolling
+//recent submissions is displayed first
+//add name of submitter
+//add like button
+
+//https://media.giphy.com/media/fTn01fiFdTd5pL60ln/giphy.gif

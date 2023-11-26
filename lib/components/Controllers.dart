@@ -35,3 +35,8 @@ TextEditingController paymentDay = TextEditingController();
 TextEditingController paymentYear = TextEditingController();
 TextEditingController pickedDay = TextEditingController();
 TextEditingController selectedDate = TextEditingController();
+TextEditingController transactionName = TextEditingController();
+TextEditingController transactionAmount = TextEditingController();
+
+List<List<String>> paymentCardList = [];
+List<List<String>> transactionList = [];

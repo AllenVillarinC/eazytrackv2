@@ -3,7 +3,6 @@ import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:flutter/material.dart';
 
 import '../components/Methods.dart';
-import '1HomePage.dart';
 
 class AccountSetupPage extends StatefulWidget {
   const AccountSetupPage({super.key});
@@ -26,8 +25,7 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
                 const SizedBox(height: 15),
                 userInformationForm(context),
                 const SizedBox(height: 15),
-                const GreenLongButton(
-                    text: 'Continue', sendUserTo: HomePageNewUser()),
+                
                 const SizedBox(height: 15),
               ],
             ),

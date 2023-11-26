@@ -3,15 +3,15 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/components/0_Company.dart';
 import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
-import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/components/Methods.dart';
 import 'package:eazytrackv2/components/T_BigText.dart';
 import 'package:eazytrackv2/components/T_SmallText.dart';
 import 'package:eazytrackv2/components/UI_SmallUserInput.dart';
 import 'package:eazytrackv2/components/UI_UserInput.dart';
+import 'package:eazytrackv2/components/paymentCards.dart';
 import 'package:eazytrackv2/components/sven.dart';
-import 'package:eazytrackv2/pages/user_reports_page.dart';
-import 'package:eazytrackv2/pages/view_details_page.dart';
+import 'package:eazytrackv2/components/transactions.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';
@@ -25,35 +25,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // bool isVisibleGenerateEazyBudgetButton = false;
-  // bool isVisibleAddPaymentButton = false;
-  // bool isVisibleFirstMessage = false;
-  // bool isVisibleGenerateEazyBudgetForm = false;
-  // bool isVisibleCalculations = false;
-  // bool isVisibleGenerateEazyBudget2 = false;
-  // bool isVisibleEazyBudgetProgressBar = false;
-  // bool isVisibleSven1 = true;
-  // bool isVisibleSven2 = false;
-  // bool isVisibleSven3 = false;
-  // bool isVisibleSven3Correction1 = false;
-  // bool isVisibleSven3Correction2 = false;
-  // bool isVisibleValueCorrection1 = false;
-  // bool isVisibleValueCorrection2 = false;
-  // bool isVisibleSven4 = false;
-  // bool isVisibleSven5 = false;
-  // bool isVisibleCompanyLogo = false;
-  // bool isVisible3 = false;
-  // bool isVisible2 = false;
-  // bool isVisible1 = false;
-  // bool isVisiblePaymentForm = false;
-  // bool isVisibleSecondMessage = false;
-  // bool isVisibleAddPaymentButtonSubmission = false;
-  // bool isVisibleConfirmDueDate = false;
-  // bool isVisibleTableCalendar = false;
-  // bool isVisibleSelectDate = true;
-  // bool isVisibleDueDate = false;
-  // bool isVisiblePercentageBar = false;
-
   bool isVisibleGenerateEazyBudgetButton = false;
   bool isVisibleAddPaymentButton = false;
   bool isVisibleFirstMessage = false;
@@ -61,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   bool isVisibleCalculations = false;
   bool isVisibleGenerateEazyBudget2 = false;
   bool isVisibleEazyBudgetProgressBar = false;
-  bool isVisibleSven1 = false;
+  bool isVisibleSven1 = true;
   bool isVisibleSven2 = false;
   bool isVisibleSven3 = false;
   bool isVisibleSven3Correction1 = false;
@@ -79,9 +50,22 @@ class _HomePageState extends State<HomePage> {
   bool isVisibleAddPaymentButtonSubmission = false;
   bool isVisibleConfirmDueDate = false;
   bool isVisibleTableCalendar = false;
-  bool isVisibleSelectDate = false;
+  bool isVisibleSelectDate = true;
   bool isVisibleDueDate = false;
   bool isVisiblePercentageBar = false;
+  bool totalExpenditureVisiblity = false;
+  bool paymentCardsListVisibility = false;
+  bool transactionsListVisiblity = false;
+  bool cardListVisibility = false;
+  bool cancelAddTransactionButtonVisibility = false;
+  bool addTransactionButtonVisibility = false;
+  bool addTransactionFormvisibility = false;
+  bool tutorialContinueVisibility = false;
+  bool continueButtonVisibility = false;
+  bool addPaymentVisiblity = false;
+  bool cancelAddPaymentVisibility = false;
+  bool generateNewEazyBudgetVisiblity = false;
+  bool cancelGenerateNewEazyBudgetVisiblity = false;
 
   Color dayButtonColor31 = const Color(0xff1f2c25);
   Color dayButtonColor32 = const Color(0xffc9ff99);
@@ -98,6 +82,11 @@ class _HomePageState extends State<HomePage> {
   double bottomLeftRight2 = 15;
   double bottomLeftRight1 = 15;
 
+  double cardsListHeight = 165;
+  double transactionListHeight = 48;
+
+  double total = 0;
+
   String message3 = 'Gotcha, I will remind you 3 days before the due date.';
   String message2 = 'Noted, I will remind you 2 days before the due date.';
   String message1 = 'Roger that, I will remind you a day before the due date.';
@@ -105,6 +94,7 @@ class _HomePageState extends State<HomePage> {
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
+
   void activateButton1() {
     setState(() {
       isVisibleGenerateEazyBudgetButton = true;
@@ -135,7 +125,6 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: SizedBox(
                 width: 430 * screenScaling(context),
-                height: 930,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,6 +149,96 @@ class _HomePageState extends State<HomePage> {
                                 delay: 500.milliseconds,
                                 duration: 500.milliseconds)
                             .fade(),
+                      ),
+                      Visibility(
+                        visible: isVisibleSven4,
+                        child: svenTutorial4(activateButton2)
+                            .animate()
+                            .shimmer(
+                                delay: 1000.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
+                      ),
+                      Visibility(
+                        visible: isVisibleSven5,
+                        child: svenTutorial5()
+                            .animate()
+                            .shimmer(
+                                delay: 1000.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Visibility(
+                            visible: isVisibleFirstMessage,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: const BigTextWidget(
+                                text: 'Your EazyBudget:',
+                                weight: FontWeight.w800,
+                                fontsize: 20,
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
+                            ),
+                          ),
+                          Visibility(
+                            visible: cancelGenerateNewEazyBudgetVisiblity,
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Container(
+                                width: 180 * screenScaling(context),
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    gradient: const SweepGradient(
+                                      colors: [
+                                        Color(0xff1f2c25),
+                                        Color(0xffc9ff99)
+                                      ],
+                                      stops: [0.2, 0.75],
+                                      center: Alignment.topRight,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      isVisibleEazyBudgetProgressBar = true;
+                                      isVisibleGenerateEazyBudgetForm = false;
+                                      tutorialContinueVisibility = true;
+                                      continueButtonVisibility = false;
+                                      isVisibleGenerateEazyBudget2 = false;
+                                      cancelGenerateNewEazyBudgetVisiblity =
+                                          false;
+                                      generateNewEazyBudgetVisiblity = true;
+                                    });
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    elevation: 5,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                      side: const BorderSide(
+                                        color: Color(0xff000000),
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                  ),
+                                  child: const SmallTextWidget(
+                                      text: 'Cancel',
+                                      fontWeight: FontWeight.normal,
+                                      textColor: 0xffffffff,
+                                      fontsize: 15),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Visibility(
                         visible: isVisibleSven2,
@@ -198,96 +277,126 @@ class _HomePageState extends State<HomePage> {
                             .fade(),
                       ),
                       Visibility(
-                        visible: isVisibleSven4,
-                        child: svenTutorial4(activateButton2)
-                            .animate()
-                            .shimmer(
-                                delay: 1000.milliseconds,
-                                duration: 500.milliseconds)
-                            .fade(),
-                      ),
-                      Visibility(
-                        visible: isVisibleSven5,
-                        child: svenTutorial5()
-                            .animate()
-                            .shimmer(
-                                delay: 1000.milliseconds,
-                                duration: 500.milliseconds)
-                            .fade(),
-                      ),
-                      const SizedBox(height: 15),
-                      Visibility(
-                        visible: isVisibleFirstMessage,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: const BigTextWidget(
-                            text: 'Your remaining EazyBudget:',
-                            weight: FontWeight.w800,
-                            fontsize: 20,
-                          )
-                              .animate()
-                              .shimmer(
-                                  delay: 500.milliseconds,
-                                  duration: 500.milliseconds)
-                              .fade(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Visibility(
-                        visible: isVisibleGenerateEazyBudgetButton,
-                        child: Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                gradient: SweepGradient(
-                                  colors: [
-                                    const Color(0xff1f2c25).withOpacity(0.8),
-                                    const Color(0xffc9ff99).withOpacity(0.8)
-                                  ],
-                                  stops: const [0.2, 0.75],
-                                  center: Alignment.topRight,
+                        visible: isVisibleEazyBudgetProgressBar,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SmallTextWidget(
+                                    text:
+                                        '\$ ${calculateDifference(total, calculateEazyBudget()).toStringAsFixed(2)}',
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffc9ff99,
+                                    fontsize: 25),
+                                Visibility(
+                                  visible: generateNewEazyBudgetVisiblity,
+                                  child: Container(
+                                    width: 270 * screenScaling(context),
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        gradient: const SweepGradient(
+                                          colors: [
+                                            Color(0xff1f2c25),
+                                            Color(0xffc9ff99)
+                                          ],
+                                          stops: [0.2, 0.75],
+                                          center: Alignment.topRight,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          isVisibleEazyBudgetProgressBar =
+                                              false;
+                                          isVisibleGenerateEazyBudgetForm =
+                                              true;
+                                          tutorialContinueVisibility = false;
+                                          continueButtonVisibility = true;
+                                          isVisibleGenerateEazyBudget2 = true;
+                                          cancelGenerateNewEazyBudgetVisiblity =
+                                              true;
+                                          generateNewEazyBudgetVisiblity =
+                                              false;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        elevation: 5,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          side: const BorderSide(
+                                            color: Color(0xff000000),
+                                            width: 0.5,
+                                          ),
+                                        ),
+                                      ),
+                                      child: const SmallTextWidget(
+                                          text: 'Generate New EazyBudget',
+                                          fontWeight: FontWeight.normal,
+                                          textColor: 0xffffffff,
+                                          fontsize: 15),
+                                    ),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(15)),
-                            width: 350 * screenScaling(context),
-                            height: 56,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    isVisibleGenerateEazyBudgetButton = false;
-                                    isVisibleGenerateEazyBudgetForm = true;
-                                    isVisibleGenerateEazyBudget2 = true;
-
-                                    isVisibleSven1 = false;
-                                    isVisibleSven2 = true;
-                                  },
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
-                                elevation: 5.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                              ),
-                              child: const Center(
-                                child: SmallTextWidget(
-                                  text: 'Generate EazyBudget',
-                                  fontWeight: FontWeight.w600,
-                                  textColor: 0xffffffff,
-                                  fontsize: 16,
-                                ),
-                              ),
+                              ],
                             ),
-                          )
-                              .animate()
-                              .scaleXY(duration: 700.milliseconds)
-                              .shimmer(delay: 1.seconds),
-                        ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Stack(
+                                  children: [
+                                    Container(
+                                      height: 15,
+                                      width: 270,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff1F2C25),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: isVisiblePercentageBar,
+                                      child: Container(
+                                        height: 15,
+                                        width: calculatePercentBar(total),
+                                        // width: calculatePercentBar(),
+                                        decoration: BoxDecoration(
+                                          gradient: const SweepGradient(
+                                            colors: [
+                                              Color(0xff1f2c25),
+                                              Color(0xffC3A9FF)
+                                            ],
+                                            stops: [0.2, 0.75],
+                                            center: Alignment.topRight,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SmallTextWidget(
+                                  text:
+                                      '\$ ${calculateEazyBudget().toStringAsFixed(2)}',
+                                  fontWeight: FontWeight.bold,
+                                  textColor: 0xffffffff,
+                                  fontsize: 25,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ).animate().fadeIn(delay: 0.5.seconds),
                       ),
                       Visibility(
                         visible: isVisibleGenerateEazyBudgetForm,
                         child: Column(
                           children: [
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -368,10 +477,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                                   .animate()
-                                  .shimmer(
-                                      delay: 500.milliseconds,
-                                      duration: 500.milliseconds)
-                                  .fade(),
+                                  .fadeIn(duration: 700.milliseconds)
+                                  .shimmer(delay: 1.seconds),
                             ),
                             Visibility(
                               visible: isVisibleCalculations,
@@ -447,7 +554,8 @@ class _HomePageState extends State<HomePage> {
                                           textColor: 0xffffffff,
                                           fontsize: 18),
                                       SmallTextWidget(
-                                          text: calculateEazyBudget(),
+                                          text:
+                                              '\$ ${calculateEazyBudget().toStringAsFixed(2)}',
                                           fontWeight: FontWeight.w300,
                                           textColor: 0xffc9ff99,
                                           fontsize: 18),
@@ -588,51 +696,108 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   const SizedBox(height: 10),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      gradient: const SweepGradient(
-                                        colors: [
-                                          Color(0xff151515),
-                                          Color(0xff1f2c25)
-                                        ],
-                                        stops: [0.25, 0.75],
-                                        center: Alignment.bottomRight,
+                                  Visibility(
+                                    visible: tutorialContinueVisibility,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: const SweepGradient(
+                                          colors: [
+                                            Color(0xff151515),
+                                            Color(0xff1f2c25)
+                                          ],
+                                          stops: [0.25, 0.75],
+                                          center: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
                                       ),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    width: 350 * screenScaling(context),
-                                    height: 56,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        setState(
-                                          () {
-                                            isVisibleCalculations = false;
-                                            isVisibleGenerateEazyBudgetForm =
-                                                false;
-                                            isVisibleFirstMessage = true;
-                                            isVisibleEazyBudgetProgressBar =
-                                                true;
-                                            isVisibleSven3Correction1 = false;
-                                            isVisibleSven3Correction2 = false;
-                                            isVisibleSven3 = false;
-                                            isVisibleSven4 = true;
-                                          },
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent,
-                                        elevation: 5.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
+                                      width: 350 * screenScaling(context),
+                                      height: 56,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          setState(
+                                            () {
+                                              isVisibleCalculations = false;
+                                              isVisibleGenerateEazyBudgetForm =
+                                                  false;
+                                              isVisibleFirstMessage = true;
+                                              isVisibleEazyBudgetProgressBar =
+                                                  true;
+                                              isVisibleSven3Correction1 = false;
+                                              isVisibleSven3Correction2 = false;
+                                              isVisibleSven3 = false;
+                                              isVisibleSven4 = true;
+                                              generateNewEazyBudgetVisiblity =
+                                                  true;
+                                            },
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 5.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                        child: const Center(
+                                          child: SmallTextWidget(
+                                            text: 'Continue',
+                                            fontWeight: FontWeight.w600,
+                                            textColor: 0xffffffff,
+                                            fontsize: 16,
+                                          ),
                                         ),
                                       ),
-                                      child: const Center(
-                                        child: SmallTextWidget(
-                                          text: 'Continue',
-                                          fontWeight: FontWeight.w600,
-                                          textColor: 0xffffffff,
-                                          fontsize: 16,
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: continueButtonVisibility,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: const SweepGradient(
+                                          colors: [
+                                            Color(0xff151515),
+                                            Color(0xff1f2c25)
+                                          ],
+                                          stops: [0.25, 0.75],
+                                          center: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      width: 350 * screenScaling(context),
+                                      height: 56,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          setState(
+                                            () {
+                                              isVisibleCalculations = false;
+                                              isVisibleGenerateEazyBudgetForm =
+                                                  false;
+                                              isVisibleFirstMessage = true;
+                                              isVisibleEazyBudgetProgressBar =
+                                                  true;
+                                              isVisibleSven3Correction1 = false;
+                                              isVisibleSven3Correction2 = false;
+                                              isVisibleSven3 = false;
+                                              continueButtonVisibility = false;
+                                            },
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 5.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                        child: const Center(
+                                          child: SmallTextWidget(
+                                            text: 'Continue',
+                                            fontWeight: FontWeight.w600,
+                                            textColor: 0xffffffff,
+                                            fontsize: 16,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -646,106 +811,61 @@ class _HomePageState extends State<HomePage> {
                                       duration: 1.25.seconds)
                                   .fadeIn(delay: 1.5.seconds),
                             ),
+                            const SizedBox(height: 10)
                           ],
                         ).animate().fadeIn(delay: 5.milliseconds),
                       ),
                       Visibility(
-                        visible: isVisibleEazyBudgetProgressBar,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SmallTextWidget(
-                                    text: calculateBudgetDifference(),
-                                    fontWeight: FontWeight.bold,
-                                    textColor: 0xffc9ff99,
-                                    fontsize: 25),
-                                Container(
-                                  width: 270 * screenScaling(context),
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      gradient: const SweepGradient(
-                                        colors: [
-                                          Color(0xff1f2c25),
-                                          Color(0xffc9ff99)
-                                        ],
-                                        stops: [0.2, 0.75],
-                                        center: Alignment.topRight,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {});
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.transparent,
-                                      elevation: 5,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        side: const BorderSide(
-                                          color: Color(0xff000000),
-                                          width: 0.5,
-                                        ),
-                                      ),
-                                    ),
-                                    child: const SmallTextWidget(
-                                        text: 'Generate New EazyBudget',
-                                        fontWeight: FontWeight.normal,
-                                        textColor: 0xffffffff,
-                                        fontsize: 15),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Stack(
-                                  children: [
-                                    Container(
-                                      height: 15,
-                                      width: 270,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff1F2C25),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                    Visibility(
-                                      visible: isVisiblePercentageBar,
-                                      child: Container(
-                                        height: 15,
-                                        width: calculatePercentBar(),
-                                        // width: calculatePercentBar(),
-                                        decoration: BoxDecoration(
-                                          gradient: const SweepGradient(
-                                            colors: [
-                                              Color(0xff1f2c25),
-                                              Color(0xffC3A9FF)
-                                            ],
-                                            stops: [0.2, 0.75],
-                                            center: Alignment.topRight,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                      ),
-                                    ),
+                        visible: isVisibleGenerateEazyBudgetButton,
+                        child: Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                gradient: SweepGradient(
+                                  colors: [
+                                    const Color(0xff1f2c25).withOpacity(0.8),
+                                    const Color(0xffc9ff99).withOpacity(0.8)
                                   ],
+                                  stops: const [0.2, 0.75],
+                                  center: Alignment.topRight,
                                 ),
-                                SmallTextWidget(
-                                  text: calculateEazyBudget(),
-                                  fontWeight: FontWeight.bold,
+                                borderRadius: BorderRadius.circular(15)),
+                            width: 350 * screenScaling(context),
+                            height: 56,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    isVisibleGenerateEazyBudgetButton = false;
+                                    isVisibleGenerateEazyBudgetForm = true;
+                                    isVisibleGenerateEazyBudget2 = true;
+                                    tutorialContinueVisibility = true;
+                                    isVisibleSven1 = false;
+                                    isVisibleSven2 = true;
+                                  },
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                elevation: 5.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                              child: const Center(
+                                child: SmallTextWidget(
+                                  text: 'Generate EazyBudget',
+                                  fontWeight: FontWeight.w600,
                                   textColor: 0xffffffff,
-                                  fontsize: 25,
+                                  fontsize: 16,
                                 ),
-                              ],
+                              ),
                             ),
-                          ],
-                        ).animate().fadeIn(delay: 0.5.seconds),
+                          )
+                              .animate()
+                              .fadeIn(duration: 700.milliseconds)
+                              .shimmer(delay: 1.seconds),
+                        ),
                       ),
-                      const SizedBox(height: 15),
                       Visibility(
                         visible: isVisibleAddPaymentButton,
                         child: Center(
@@ -768,7 +888,6 @@ class _HomePageState extends State<HomePage> {
                                   () {
                                     isVisiblePaymentForm = true;
                                     isVisibleAddPaymentButton = false;
-                                    isVisibleSecondMessage = true;
                                     isVisibleSven4 = false;
                                     isVisibleSven5 = true;
                                   },
@@ -796,32 +915,262 @@ class _HomePageState extends State<HomePage> {
                               .fadeIn(duration: 1.seconds),
                         ),
                       ),
-                      const SizedBox(height: 10),
                       Visibility(
-                        visible: isVisibleSecondMessage,
-                        child: const Align(
-                          alignment: Alignment.centerLeft,
-                          child: BigTextWidget(
-                              text: 'Payment details:',
-                              weight: FontWeight.bold,
-                              fontsize: 20),
+                        visible: totalExpenditureVisiblity,
+                        child: Column(
+                          children: [
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: BigTextWidget(
+                                  text: 'Total expenditure:',
+                                  weight: FontWeight.bold,
+                                  fontsize: 20),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: SmallTextWidget(
+                                text:
+                                    '\$ ${total.toStringAsFixed(2)}', // should return the total from the lists
+                                fontWeight: FontWeight.bold,
+                                textColor: 0xffc9ff99,
+                                fontsize: 25,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: const SweepGradient(
+                                    colors: [
+                                      Color(0xff151515),
+                                      Color(0xff1f2c25)
+                                    ],
+                                    stops: [0.25, 0.75],
+                                    center: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                width: 350 * screenScaling(context),
+                                height: 56,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(
+                                      () {},
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    elevation: 5.0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                  child: const Center(
+                                    child: SmallTextWidget(
+                                      text: 'View details',
+                                      fontWeight: FontWeight.w600,
+                                      textColor: 0xffffffff,
+                                      fontsize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: const SweepGradient(
+                                    colors: [
+                                      Color(0xff151515),
+                                      Color(0xff1f2c25)
+                                    ],
+                                    stops: [0.25, 0.75],
+                                    center: Alignment.bottomRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                width: 350 * screenScaling(context),
+                                height: 56,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    setState(
+                                      () {},
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    elevation: 5.0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                  child: const Center(
+                                    child: SmallTextWidget(
+                                      text: 'Reports',
+                                      fontWeight: FontWeight.w600,
+                                      textColor: 0xffffffff,
+                                      fontsize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                          .animate()
-                          .fadeIn(delay: 80.milliseconds)
-                          .slideY(delay: 80.milliseconds),
-                      const SizedBox(height: 10),
+                      ),
+                      Visibility(
+                        visible: paymentCardsListVisibility,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const BigTextWidget(
+                                    text: 'Payment/s details:',
+                                    weight: FontWeight.bold,
+                                    fontsize: 20),
+                                Stack(
+                                  children: [
+                                    Visibility(
+                                      visible: addPaymentVisiblity,
+                                      child: Container(
+                                        width: 180 * screenScaling(context),
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                            gradient: const SweepGradient(
+                                              colors: [
+                                                Color(0xff1f2c25),
+                                                Color(0xffc9ff99)
+                                              ],
+                                              stops: [0.2, 0.75],
+                                              center: Alignment.topRight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              cardListVisibility = false;
+                                              isVisiblePaymentForm = true;
+                                              cancelAddPaymentVisibility = true;
+                                              addPaymentVisiblity = false;
+                                            });
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            elevation: 5,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              side: const BorderSide(
+                                                color: Color(0xff000000),
+                                                width: 0.5,
+                                              ),
+                                            ),
+                                          ),
+                                          child: const SmallTextWidget(
+                                              text: 'Add payment',
+                                              fontWeight: FontWeight.normal,
+                                              textColor: 0xffffffff,
+                                              fontsize: 15),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: cancelAddPaymentVisibility,
+                                      child: Container(
+                                        width: 180 * screenScaling(context),
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                            gradient: const SweepGradient(
+                                              colors: [
+                                                Color(0xff1f2c25),
+                                                Color(0xffc9ff99)
+                                              ],
+                                              stops: [0.2, 0.75],
+                                              center: Alignment.topRight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              cardListVisibility = true;
+                                              isVisiblePaymentForm = false;
+                                              cancelAddPaymentVisibility =
+                                                  false;
+                                              addPaymentVisiblity = true;
+                                            });
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            elevation: 5,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              side: const BorderSide(
+                                                color: Color(0xff000000),
+                                                width: 0.5,
+                                              ),
+                                            ),
+                                          ),
+                                          child: const SmallTextWidget(
+                                              text: 'Cancel',
+                                              fontWeight: FontWeight.normal,
+                                              textColor: 0xffffffff,
+                                              fontsize: 15),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Visibility(
+                              visible: cardListVisibility,
+                              child: SizedBox(
+                                width: 430,
+                                height: cardsListHeight,
+                                child: ListView.builder(
+                                  itemCount: paymentCardList.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        PaymentCards(
+                                          paymentTitleString:
+                                              paymentCardList[index][0],
+                                          paymentAmountString:
+                                              paymentCardList[index][1],
+                                          paymentDueDateString:
+                                              paymentCardList[index][2],
+                                          paymentReminderString:
+                                              paymentCardList[index][3],
+                                        ),
+                                        const SizedBox(height: 5),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Visibility(
                         visible: isVisiblePaymentForm,
                         child: Column(
                           children: [
                             Column(
                               children: [
+                                const SizedBox(height: 10),
                                 UserInput(
                                     label: 'Payment title',
                                     hiddenLabel: 'Title',
                                     controllerName: paymentTitle,
-                                    regExp: r'[a-zA-Z ]+'),
+                                    regExp: r'[a-zA-Z0-9 ]'),
                                 const SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
@@ -873,99 +1222,104 @@ class _HomePageState extends State<HomePage> {
                                         fontWeight: FontWeight.normal,
                                         textColor: 0xffffffff,
                                         fontsize: 18),
-                                    Visibility(
-                                      visible: isVisibleSelectDate,
-                                      child: Container(
-                                        width: 150 * screenScaling(context),
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
-                                              colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
-                                              ],
-                                              stops: [0.2, 0.75],
-                                              center: Alignment.topRight,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              isVisibleTableCalendar = true;
-                                              isVisibleSelectDate = false;
-                                              isVisibleConfirmDueDate = true;
-                                              isVisibleDueDate = false;
-                                            });
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.transparent,
-                                            elevation: 5,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              side: const BorderSide(
-                                                color: Color(0xff000000),
-                                                width: 0.5,
+                                    Stack(
+                                      children: [
+                                        Visibility(
+                                          visible: isVisibleSelectDate,
+                                          child: Container(
+                                            width: 150 * screenScaling(context),
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                gradient: const SweepGradient(
+                                                  colors: [
+                                                    Color(0xff1f2c25),
+                                                    Color(0xffc9ff99)
+                                                  ],
+                                                  stops: [0.2, 0.75],
+                                                  center: Alignment.topRight,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  isVisibleTableCalendar = true;
+                                                  isVisibleSelectDate = false;
+                                                  isVisibleDueDate = false;
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                elevation: 5,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  side: const BorderSide(
+                                                    color: Color(0xff000000),
+                                                    width: 0.5,
+                                                  ),
+                                                ),
                                               ),
+                                              child: const SmallTextWidget(
+                                                  text: 'Select date',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15),
                                             ),
-                                          ),
-                                          child: const SmallTextWidget(
-                                              text: 'Select date',
-                                              fontWeight: FontWeight.normal,
-                                              textColor: 0xffffffff,
-                                              fontsize: 15),
+                                          ).animate().fadeIn(
+                                              duration: 500.milliseconds),
                                         ),
-                                      )
-                                          .animate()
-                                          .fadeIn(duration: 500.milliseconds),
-                                    ),
-                                    Visibility(
-                                      visible: isVisibleConfirmDueDate,
-                                      child: Container(
-                                        width: 150 * screenScaling(context),
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
-                                              colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
-                                              ],
-                                              stops: [0.2, 0.75],
-                                              center: Alignment.topRight,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              isVisibleTableCalendar = false;
-                                              isVisibleSelectDate = true;
-                                              isVisibleConfirmDueDate = false;
-                                              isVisibleDueDate = true;
-                                            });
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.transparent,
-                                            elevation: 5,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              side: const BorderSide(
-                                                color: Color(0xff000000),
-                                                width: 0.5,
+                                        Visibility(
+                                          visible: isVisibleConfirmDueDate,
+                                          child: Container(
+                                            width: 150 * screenScaling(context),
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                                gradient: const SweepGradient(
+                                                  colors: [
+                                                    Color(0xff1f2c25),
+                                                    Color(0xffc9ff99)
+                                                  ],
+                                                  stops: [0.2, 0.75],
+                                                  center: Alignment.topRight,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  isVisibleTableCalendar =
+                                                      false;
+                                                  isVisibleSelectDate = true;
+                                                  isVisibleConfirmDueDate =
+                                                      false;
+                                                  isVisibleDueDate = true;
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                elevation: 5,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  side: const BorderSide(
+                                                    color: Color(0xff000000),
+                                                    width: 0.5,
+                                                  ),
+                                                ),
                                               ),
+                                              child: const SmallTextWidget(
+                                                  text: 'Confirm',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15),
                                             ),
-                                          ),
-                                          child: const SmallTextWidget(
-                                              text: 'Confirm',
-                                              fontWeight: FontWeight.normal,
-                                              textColor: 0xffffffff,
-                                              fontsize: 15),
+                                          ).animate().fadeIn(
+                                              duration: 500.milliseconds),
                                         ),
-                                      )
-                                          .animate()
-                                          .fadeIn(duration: 500.milliseconds),
+                                      ],
                                     ),
                                     Visibility(
                                       visible: isVisibleDueDate,
@@ -1072,9 +1426,9 @@ class _HomePageState extends State<HomePage> {
                                 .animate()
                                 .fadeIn(delay: 250.milliseconds)
                                 .slideY(delay: 250.milliseconds),
-                            const SizedBox(height: 10),
                             Column(
                               children: [
+                                const SizedBox(height: 10),
                                 const Align(
                                   alignment: Alignment.centerLeft,
                                   child: SmallTextWidget(
@@ -1530,10 +1884,54 @@ class _HomePageState extends State<HomePage> {
                                     onPressed: () {
                                       setState(
                                         () {
-                                          calculatePercentBar();
                                           isVisiblePaymentForm = false;
                                           // isVisiblePaymentDetails = true;
                                           isVisiblePercentageBar = true;
+                                          List<String> newCard = [
+                                            paymentTitle.text,
+                                            payment.text,
+                                            selectedDate.text,
+                                            pickedDay.text
+                                          ];
+                                          paymentCardList.add(newCard);
+                                          totalExpenditureVisiblity = true;
+                                          paymentCardsListVisibility = true;
+                                          transactionsListVisiblity = true;
+                                          cardListVisibility = true;
+                                          total +=
+                                              double.tryParse(payment.text) ??
+                                                  0.0;
+                                          calculatePercentBar(total);
+                                          paymentTitle.text = '';
+                                          payment.text = '';
+                                          selectedDate.text = '';
+                                          pickedDay.text = '';
+                                          dayButtonColor31 =
+                                              const Color(0xff1f2c25);
+                                          dayButtonColor32 =
+                                              const Color(0xffc9ff99);
+                                          dayButtonColor21 =
+                                              const Color(0xff1f2c25);
+                                          dayButtonColor22 =
+                                              const Color(0xffc9ff99);
+                                          dayButtonColor11 =
+                                              const Color(0xff1f2c25);
+                                          dayButtonColor12 =
+                                              const Color(0xffc9ff99);
+                                          dayheight3 = 30;
+                                          dayheight2 = 30;
+                                          dayheight1 = 30;
+                                          bottomLeftRight3 = 15;
+                                          bottomLeftRight2 = 15;
+                                          bottomLeftRight1 = 15;
+                                          isVisible3 = false;
+                                          isVisible2 = false;
+                                          isVisible1 = false;
+                                          addTransactionButtonVisibility = true;
+                                          addPaymentVisiblity = true;
+                                          isVisibleAddPaymentButtonSubmission =
+                                              false;
+                                          isVisibleCompanyLogo = true;
                                         },
                                       );
                                     },
@@ -1562,314 +1960,265 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      const BigTextWidget(
-                          text: 'Total expenditure:',
-                          weight: FontWeight.bold,
-                          fontsize: 20),
-                      SmallTextWidget(
-                        text: '\$ ${payment.text}',
-                        fontWeight: FontWeight.bold,
-                        textColor: 0xffc9ff99,
-                        fontsize: 25,
-                      ),
-                      const SizedBox(height: 10),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: const SweepGradient(
-                              colors: [Color(0xff151515), Color(0xff1f2c25)],
-                              stops: [0.25, 0.75],
-                              center: Alignment.bottomRight,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          width: 350 * screenScaling(context),
-                          height: 56,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(
-                                () {},
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                            child: const Center(
-                              child: SmallTextWidget(
-                                text: 'View details',
-                                fontWeight: FontWeight.w600,
-                                textColor: 0xffffffff,
-                                fontsize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: const SweepGradient(
-                              colors: [Color(0xff151515), Color(0xff1f2c25)],
-                              stops: [0.25, 0.75],
-                              center: Alignment.bottomRight,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          width: 350 * screenScaling(context),
-                          height: 56,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              setState(
-                                () {},
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                            child: const Center(
-                              child: SmallTextWidget(
-                                text: 'Reports',
-                                fontWeight: FontWeight.w600,
-                                textColor: 0xffffffff,
-                                fontsize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const BigTextWidget(
-                              text: 'Payment/s details:',
-                              weight: FontWeight.bold,
-                              fontsize: 20),
-                          Container(
-                            width: 180 * screenScaling(context),
-                            height: 30,
-                            decoration: BoxDecoration(
-                                gradient: const SweepGradient(
-                                  colors: [
-                                    Color(0xff1f2c25),
-                                    Color(0xffc9ff99)
-                                  ],
-                                  stops: [0.2, 0.75],
-                                  center: Alignment.topRight,
-                                ),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {});
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
-                                elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                  side: const BorderSide(
-                                    color: Color(0xff000000),
-                                    width: 0.5,
-                                  ),
-                                ),
-                              ),
-                              child: const SmallTextWidget(
-                                  text: 'Add payment',
-                                  fontWeight: FontWeight.normal,
-                                  textColor: 0xffffffff,
-                                  fontsize: 15),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: SweepGradient(
-                            colors: [
-                              const Color(0xff151515).withOpacity(0.5),
-                              const Color(0xff1f2c25).withOpacity(0.5)
-                            ],
-                            stops: const [0.25, 0.75],
-                            center: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                      height: 1,
-                                      width: 70,
-                                      decoration: const BoxDecoration(
-                                          color: Color(0xffffffff))),
-                                  SmallTextWidget(
-                                      text: paymentTitle.text,
-                                      fontWeight: FontWeight.bold,
-                                      textColor: 0xffc9ff99,
-                                      fontsize: 20),
-                                  Container(
-                                      height: 1,
-                                      width: 70,
-                                      decoration: const BoxDecoration(
-                                          color: Color(0xffffffff))),
-                                ],
-                              ),
-                              const SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const SmallTextWidget(
-                                      text: 'Payment amount:',
-                                      fontWeight: FontWeight.normal,
-                                      textColor: 0xffffffff,
-                                      fontsize: 18),
-                                  SmallTextWidget(
-                                      text: '\$ ${payment.text}',
-                                      fontWeight: FontWeight.bold,
-                                      textColor: 0xffc9ff99,
-                                      fontsize: 20),
-                                ],
-                              ),
-                              const SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const SmallTextWidget(
-                                      text: 'Payment due:',
-                                      fontWeight: FontWeight.normal,
-                                      textColor: 0xffffffff,
-                                      fontsize: 18),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.calendar_today,
-                                        color: Color(0xffc9ff99),
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        selectedDate.text,
-                                        style: const TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 18,
-                                          fontStyle: FontStyle.italic,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xffc9ff99),
-                                          decoration: TextDecoration.underline,
-                                          decorationColor: Color(
-                                              0xffc9ff99), // Set the underline color
+                      Visibility(
+                        visible: transactionsListVisiblity,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const BigTextWidget(
+                                    text: 'Transaction/s:',
+                                    weight: FontWeight.bold,
+                                    fontsize: 20),
+                                Stack(
+                                  children: [
+                                    Visibility(
+                                      visible:
+                                          cancelAddTransactionButtonVisibility,
+                                      child: Container(
+                                        width: 180 * screenScaling(context),
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                            gradient: const SweepGradient(
+                                              colors: [
+                                                Color(0xff1f2c25),
+                                                Color(0xffc9ff99)
+                                              ],
+                                              stops: [0.2, 0.75],
+                                              center: Alignment.topRight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              addTransactionButtonVisibility =
+                                                  true;
+                                              cancelAddTransactionButtonVisibility =
+                                                  false;
+                                              addTransactionFormvisibility =
+                                                  false;
+                                            });
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            elevation: 5,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              side: const BorderSide(
+                                                color: Color(0xff000000),
+                                                width: 0.5,
+                                              ),
+                                            ),
+                                          ),
+                                          child: const SmallTextWidget(
+                                              text: 'Cancel',
+                                              fontWeight: FontWeight.normal,
+                                              textColor: 0xffffffff,
+                                              fontsize: 15),
                                         ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Icon(
-                                    Icons.notifications_active,
-                                    color: Color(0xffc9ff99),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    pickedDay.text,
-                                    style: const TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 18,
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xffc9ff99),
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: Color(
-                                          0xffc9ff99), // Set the underline color
                                     ),
-                                  ),
-                                ],
+                                    Visibility(
+                                      visible: addTransactionButtonVisibility,
+                                      child: Container(
+                                        width: 180 * screenScaling(context),
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                            gradient: const SweepGradient(
+                                              colors: [
+                                                Color(0xff1f2c25),
+                                                Color(0xffc9ff99)
+                                              ],
+                                              stops: [0.2, 0.75],
+                                              center: Alignment.topRight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              cancelAddTransactionButtonVisibility =
+                                                  true;
+                                              addTransactionButtonVisibility =
+                                                  false;
+                                              addTransactionFormvisibility =
+                                                  true;
+                                            });
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            elevation: 5,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              side: const BorderSide(
+                                                color: Color(0xff000000),
+                                                width: 0.5,
+                                              ),
+                                            ),
+                                          ),
+                                          child: const SmallTextWidget(
+                                              text: 'Add transaction',
+                                              fontWeight: FontWeight.normal,
+                                              textColor: 0xffffffff,
+                                              fontsize: 15),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Visibility(
+                              visible: addTransactionFormvisibility,
+                              child: SizedBox(
+                                width: 430 * screenScaling(context),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          width: 160 * screenScaling(context),
+                                          child: Column(
+                                            children: [
+                                              const Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: SmallTextWidget(
+                                                  text: 'Transaction name',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 5),
+                                              SmallUserInput(
+                                                hintLabel: 'Name',
+                                                textFieldSize: 180 *
+                                                    screenScaling(context),
+                                                totalCharacters: 20,
+                                                regExp: r'[a-zA-Z0-9 ]',
+                                                controllerName: transactionName,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 160 * screenScaling(context),
+                                          child: Column(
+                                            children: [
+                                              const Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: SmallTextWidget(
+                                                  text: 'Amount',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 5),
+                                              SmallUserInput(
+                                                  hintLabel: '9,999.99',
+                                                  textFieldSize: 150,
+                                                  totalCharacters: 10,
+                                                  regExp: r'[0-9.]+',
+                                                  controllerName:
+                                                      transactionAmount),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Center(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            gradient: const SweepGradient(
+                                              colors: [
+                                                Color(0xff1f2c25),
+                                                Color(0xffc9ff99)
+                                              ],
+                                              stops: [0.2, 0.75],
+                                              center: Alignment.topRight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        width: 350 * screenScaling(context),
+                                        height: 56,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(
+                                              () {
+                                                List<String> newTransaction = [
+                                                  transactionName.text,
+                                                  transactionAmount.text
+                                                ];
+                                                transactionList
+                                                    .add(newTransaction);
+                                                addTransactionFormvisibility =
+                                                    false;
+                                                cancelAddTransactionButtonVisibility =
+                                                    false;
+                                                addTransactionButtonVisibility =
+                                                    true;
+                                                total += double.tryParse(
+                                                        transactionAmount
+                                                            .text) ??
+                                                    0.0;
+                                                calculatePercentBar(total);
+                                              },
+                                            );
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            elevation: 5.0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: SmallTextWidget(
+                                              text: 'Add transaction',
+                                              fontWeight: FontWeight.w600,
+                                              textColor: 0xffffffff,
+                                              fontsize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                          .animate()
+                                          .shimmer(duration: 1.5.seconds)
+                                          .fadeIn(duration: 1.seconds),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              width: 430,
+                              height: transactionListHeight,
+                              child: ListView.builder(
+                                itemCount: transactionList.length,
+                                itemBuilder: (context, index) {
+                                  return Transactions(
+                                      transactionName: transactionList[index]
+                                          [0],
+                                      transactionAmount: transactionList[index]
+                                          [1]);
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const BigTextWidget(
-                              text: 'Transactions:',
-                              weight: FontWeight.bold,
-                              fontsize: 20),
-                          Container(
-                            width: 180 * screenScaling(context),
-                            height: 30,
-                            decoration: BoxDecoration(
-                                gradient: const SweepGradient(
-                                  colors: [
-                                    Color(0xff1f2c25),
-                                    Color(0xffc9ff99)
-                                  ],
-                                  stops: [0.2, 0.75],
-                                  center: Alignment.topRight,
-                                ),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {});
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
-                                elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                  side: const BorderSide(
-                                    color: Color(0xff000000),
-                                    width: 0.5,
-                                  ),
-                                ),
-                              ),
-                              child: const SmallTextWidget(
-                                  text: 'Add transaction',
-                                  fontWeight: FontWeight.normal,
-                                  textColor: 0xffffffff,
-                                  fontsize: 15),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SmallTextWidget(
-                              text: 'Walmart',
-                              fontWeight: FontWeight.normal,
-                              textColor: 0xffffffff,
-                              fontsize: 18),
-                          SmallTextWidget(
-                              text: '-\$ 10.89',
-                              fontWeight: FontWeight.normal,
-                              textColor: 0xffffffff,
-                              fontsize: 18)
-                        ],
-                      )
                     ],
                   ),
                 ),
