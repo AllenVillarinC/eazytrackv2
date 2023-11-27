@@ -85,6 +85,10 @@ bool generateNewEazyBudgetVisiblity = false;
 bool cancelGenerateNewEazyBudgetVisiblity = false;
 bool svenReportsVisiblity = false;
 bool reportsButtonVisiblity = false;
+bool viewDetailsVisiblity = false;
+bool viewDetailsButtonVisiblity = false;
+bool isVisibleSven6 = false;
+bool userButtonVisiblity = false;
 
 Color dayButtonColor31 = const Color(0xff1f2c25);
 Color dayButtonColor32 = const Color(0xffc9ff99);
@@ -116,3 +120,7 @@ double monthlyIncome = double.tryParse(rent.text) ?? 0.0;
 String message3 = 'Gotcha, I will remind you 3 days before the due date.';
 String message2 = 'Noted, I will remind you 2 days before the due date.';
 String message1 = 'Roger that, I will remind you a day before the due date.';
+
+String errorMessage = 'Complete the form';
+
+int errorColor = 0xff1f2c25;

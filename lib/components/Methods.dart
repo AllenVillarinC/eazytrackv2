@@ -76,23 +76,23 @@ int createListLength(double total) {
   double percentageTaken = difference / budget;
   double threshold = percentageTaken * 100;
 
-  if (threshold >= 0 && threshold <= 10) {
+  if (threshold >= 80 && threshold <= 90) {
     return 1;
-  } else if (threshold > 10 && threshold <= 20) {
+  } else if (threshold >= 70 && threshold <= 80) {
     return 2;
-  } else if (threshold > 20 && threshold <= 30) {
+  } else if (threshold >= 60 && threshold <= 70) {
     return 3;
-  } else if (threshold > 30 && threshold <= 40) {
+  } else if (threshold >= 50 && threshold <= 60) {
     return 4;
-  } else if (threshold > 40 && threshold <= 50) {
+  } else if (threshold >= 40 && threshold <= 50) {
     return 5;
-  } else if (threshold > 50 && threshold <= 60) {
+  } else if (threshold >= 30 && threshold <= 40) {
     return 6;
-  } else if (threshold > 60 && threshold <= 70) {
+  } else if (threshold >= 20 && threshold <= 30) {
     return 7;
-  } else if (threshold > 70 && threshold <= 80) {
+  } else if (threshold >= 10 && threshold <= 20) {
     return 8;
-  } else if (threshold > 80 && threshold <= 90) {
+  } else if (threshold >= 0 && threshold <= 10) {
     return 9;
   } else {
     return 10;

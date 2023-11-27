@@ -1,7 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/Methods.dart';
+import 'package:eazytrackv2/components/T_BigText.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
 
 List<String> tutorialMessage = [
@@ -17,6 +19,8 @@ List<String> tutorialMessage = [
   'Whenever you are ready, press the "Add Payment" below.',
   'Below is a form where you can name your payment, type in your payment, when your payment is due, and when do you want me to remind you before the due date.',
   'Once you are done filling up this form, press the "Add payment" button below to complete the setup.',
+  'You are all set up! Feel free to open details, reports, and even add more payments or extra transactions.',
+  'See you later!'
 ];
 
 List<List<String>> tips = [
@@ -89,14 +93,14 @@ Container svenTutorial1(void Function() function) {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -162,14 +166,14 @@ Container svenTutorial2() {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -234,14 +238,14 @@ Container svenTutorial3() {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -315,14 +319,14 @@ Container svenTutorial3NewBudgetValues1() {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -387,14 +391,14 @@ Container svenTutorial3NewBudgetValues2() {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -459,14 +463,14 @@ Container svenTutorial4(void Function() function) {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -541,14 +545,14 @@ Container svenTutorial5() {
       child: Row(
         children: [
           Container(
-            height: 85,
-            width: 55,
+            height: 60,
+            width: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: const ClipOval(
-              child: RiveAnimation.asset(
-                'assets/rive/3287-6917-headless-bear.riv',
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
                 fit: BoxFit.cover,
               ),
             ),
@@ -586,3 +590,176 @@ Container svenTutorial5() {
   );
 }
 
+Container svenTutorial6(void Function() function) {
+  return Container(
+    decoration: BoxDecoration(
+      gradient: SweepGradient(
+        colors: [
+          const Color(0xff151515).withOpacity(0.5),
+          const Color(0xff1f2c25).withOpacity(0.5)
+        ],
+        stops: const [0.25, 0.75],
+        center: Alignment.bottomRight,
+      ),
+      borderRadius: BorderRadius.circular(15),
+    ),
+    width: 370,
+    height: 100,
+    child: ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 60,
+            width: 60,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: ClipOval(
+              child: Lottie.asset(
+                'assets/lottie/qBMpUNvnCu.json',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: AnimatedTextKit(
+              animatedTexts: [
+                TyperAnimatedText(
+                  tutorialMessage[12],
+                  textStyle: const TextStyle(
+                      color: Color(0xffffffff),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Poppins'),
+                  speed: const Duration(milliseconds: 25),
+                ),
+                TyperAnimatedText(
+                  tutorialMessage[13],
+                  textStyle: const TextStyle(
+                      color: Color(0xffffffff),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Poppins'),
+                  speed: const Duration(milliseconds: 25),
+                ),
+              ],
+              onFinished: function,
+              totalRepeatCount: 1,
+              pause: const Duration(milliseconds: 1000),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Container sven() {
+  return Container(
+    decoration: BoxDecoration(
+      gradient: SweepGradient(
+        colors: [
+          const Color(0xff151515).withOpacity(0.5),
+          const Color(0xff1f2c25).withOpacity(0.5)
+        ],
+        stops: const [0.25, 0.75],
+        center: Alignment.bottomRight,
+      ),
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Row(
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          child: ClipOval(
+            child: Lottie.asset(
+              'assets/lottie/qBMpUNvnCu.json',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: AnimatedTextKit(
+            animatedTexts: [
+              TyperAnimatedText(
+                'Here are your details.',
+                textStyle: const TextStyle(
+                    color: Color(0xffffffff),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Poppins'),
+                speed: const Duration(milliseconds: 25),
+              ),
+            ],
+            totalRepeatCount: 1,
+            pause: const Duration(milliseconds: 1000),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Container userButton() {
+  return Container(
+    decoration: BoxDecoration(
+      gradient: SweepGradient(
+        colors: [
+          const Color(0xff151515).withOpacity(0.5),
+          const Color(0xff1f2c25).withOpacity(0.5)
+        ],
+        stops: const [0.25, 0.75],
+        center: Alignment.bottomRight,
+      ),
+      borderRadius: BorderRadius.circular(15),
+    ),
+    width: 370,
+    height: 100,
+    child: ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 85,
+            width: 55,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: const ClipOval(
+              child: RiveAnimation.asset(
+                'assets/rive/2063-4080-flutter-puzzle-hack-project.riv',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          BigTextWidget(
+              text: '${fname.text} ${lname.text}',
+              weight: FontWeight.w400,
+              fontsize: 25),
+        ],
+      ),
+    ),
+  );
+}

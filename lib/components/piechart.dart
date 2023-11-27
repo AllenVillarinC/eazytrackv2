@@ -42,6 +42,8 @@ class PieChartValues extends StatelessWidget {
                 end: const Color(0xffc9ff99),
               ).lerp(0.75),
               value: ((totalNeeds / needs) * 100) * 0.5,
+              title:
+                  '${(((totalNeeds / needs) * 100) * 0.5).toStringAsFixed(2)}%',
               radius: radius,
               titleStyle: const TextStyle(
                 fontSize: fontSize,
@@ -57,6 +59,8 @@ class PieChartValues extends StatelessWidget {
                 end: const Color(0xffc3a9ff),
               ).lerp(0.75),
               value: ((totalWants / wants) * 100) * 0.3,
+              title:
+                  '${(((totalWants / wants) * 100) * 0.3).toStringAsFixed(2)}%',
               radius: radius,
               titleStyle: const TextStyle(
                 fontSize: fontSize,
@@ -74,6 +78,8 @@ class PieChartValues extends StatelessWidget {
               value: 100 -
                   ((((totalNeeds / needs) * 100) * 0.5) +
                       (((totalWants / wants) * 100) * 0.3)),
+              title:
+                  '${(100 - ((((totalNeeds / needs) * 100) * 0.5) + (((totalWants / wants) * 100) * 0.3))).toStringAsFixed(2)}%',
               radius: radius,
               titleStyle: const TextStyle(
                 fontSize: fontSize,
