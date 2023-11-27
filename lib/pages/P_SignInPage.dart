@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/0_Company.dart';
 import '../components/1_ScreenScale.dart';
-import '../components/GreenLongButton.dart';
 import '../components/Controllers.dart';
 import '../components/T_BigText.dart';
 import '../components/T_SmallText.dart';

@@ -8,10 +8,8 @@ import 'package:eazytrackv2/components/T_BigText.dart';
 import 'package:eazytrackv2/components/T_SmallText.dart';
 import 'package:eazytrackv2/components/UI_SmallUserInput.dart';
 import 'package:eazytrackv2/components/UI_UserInput.dart';
-import 'package:eazytrackv2/components/paymentCards.dart';
+import 'package:eazytrackv2/components/piechart.dart';
 import 'package:eazytrackv2/components/sven.dart';
-import 'package:eazytrackv2/components/transactions.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:rive/rive.dart';
@@ -25,72 +23,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isVisibleGenerateEazyBudgetButton = false;
-  bool isVisibleAddPaymentButton = false;
-  bool isVisibleFirstMessage = false;
-  bool isVisibleGenerateEazyBudgetForm = false;
-  bool isVisibleCalculations = false;
-  bool isVisibleGenerateEazyBudget2 = false;
-  bool isVisibleEazyBudgetProgressBar = false;
-  bool isVisibleSven1 = true;
-  bool isVisibleSven2 = false;
-  bool isVisibleSven3 = false;
-  bool isVisibleSven3Correction1 = false;
-  bool isVisibleSven3Correction2 = false;
-  bool isVisibleValueCorrection1 = false;
-  bool isVisibleValueCorrection2 = false;
-  bool isVisibleSven4 = false;
-  bool isVisibleSven5 = false;
-  bool isVisibleCompanyLogo = false;
-  bool isVisible3 = false;
-  bool isVisible2 = false;
-  bool isVisible1 = false;
-  bool isVisiblePaymentForm = false;
-  bool isVisibleSecondMessage = false;
-  bool isVisibleAddPaymentButtonSubmission = false;
-  bool isVisibleConfirmDueDate = false;
-  bool isVisibleTableCalendar = false;
-  bool isVisibleSelectDate = true;
-  bool isVisibleDueDate = false;
-  bool isVisiblePercentageBar = false;
-  bool totalExpenditureVisiblity = false;
-  bool paymentCardsListVisibility = false;
-  bool transactionsListVisiblity = false;
-  bool cardListVisibility = false;
-  bool cancelAddTransactionButtonVisibility = false;
-  bool addTransactionButtonVisibility = false;
-  bool addTransactionFormvisibility = false;
-  bool tutorialContinueVisibility = false;
-  bool continueButtonVisibility = false;
-  bool addPaymentVisiblity = false;
-  bool cancelAddPaymentVisibility = false;
-  bool generateNewEazyBudgetVisiblity = false;
-  bool cancelGenerateNewEazyBudgetVisiblity = false;
-
-  Color dayButtonColor31 = const Color(0xff1f2c25);
-  Color dayButtonColor32 = const Color(0xffc9ff99);
-  Color dayButtonColor21 = const Color(0xff1f2c25);
-  Color dayButtonColor22 = const Color(0xffc9ff99);
-  Color dayButtonColor11 = const Color(0xff1f2c25);
-  Color dayButtonColor12 = const Color(0xffc9ff99);
-
-  double dayheight3 = 30;
-  double dayheight2 = 30;
-  double dayheight1 = 30;
-
-  double bottomLeftRight3 = 15;
-  double bottomLeftRight2 = 15;
-  double bottomLeftRight1 = 15;
-
-  double cardsListHeight = 165;
-  double transactionListHeight = 48;
-
-  double total = 0;
-
-  String message3 = 'Gotcha, I will remind you 3 days before the due date.';
-  String message2 = 'Noted, I will remind you 2 days before the due date.';
-  String message1 = 'Roger that, I will remind you a day before the due date.';
-
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -125,6 +57,7 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: SizedBox(
                 width: 430 * screenScaling(context),
+                height: MediaQuery.of(context).size.height,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,10 +156,6 @@ class _HomePageState extends State<HomePage> {
                                     elevation: 5,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
-                                      side: const BorderSide(
-                                        color: Color(0xff000000),
-                                        width: 0.5,
-                                      ),
                                     ),
                                   ),
                                   child: const SmallTextWidget(
@@ -328,10 +257,6 @@ class _HomePageState extends State<HomePage> {
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(15),
-                                          side: const BorderSide(
-                                            color: Color(0xff000000),
-                                            width: 0.5,
-                                          ),
                                         ),
                                       ),
                                       child: const SmallTextWidget(
@@ -362,7 +287,8 @@ class _HomePageState extends State<HomePage> {
                                       visible: isVisiblePercentageBar,
                                       child: Container(
                                         height: 15,
-                                        width: calculatePercentBar(total),
+                                        width: calculatePercentBar(total) *
+                                            screenScaling(context),
                                         // width: calculatePercentBar(),
                                         decoration: BoxDecoration(
                                           gradient: const SweepGradient(
@@ -383,9 +309,9 @@ class _HomePageState extends State<HomePage> {
                                 SmallTextWidget(
                                   text:
                                       '\$ ${calculateEazyBudget().toStringAsFixed(2)}',
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.normal,
                                   textColor: 0xffffffff,
-                                  fontsize: 25,
+                                  fontsize: 20,
                                 ),
                               ],
                             ),
@@ -780,6 +706,13 @@ class _HomePageState extends State<HomePage> {
                                               isVisibleSven3Correction2 = false;
                                               isVisibleSven3 = false;
                                               continueButtonVisibility = false;
+                                              cancelGenerateNewEazyBudgetVisiblity =
+                                                  false;
+                                              generateNewEazyBudgetVisiblity =
+                                                  true;
+                                              calculateMiscellaneous();
+                                              calculateMiscellaneous();
+                                              calculateSavings();
                                             },
                                           );
                                         },
@@ -866,6 +799,7 @@ class _HomePageState extends State<HomePage> {
                               .shimmer(delay: 1.seconds),
                         ),
                       ),
+                      const SizedBox(height: 10),
                       Visibility(
                         visible: isVisibleAddPaymentButton,
                         child: Center(
@@ -977,43 +911,309 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: const SweepGradient(
-                                    colors: [
-                                      Color(0xff151515),
-                                      Color(0xff1f2c25)
-                                    ],
-                                    stops: [0.25, 0.75],
-                                    center: Alignment.bottomRight,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
+                            Container(
+                              width: 430,
+                              decoration: BoxDecoration(
+                                gradient: SweepGradient(
+                                  colors: [
+                                    const Color(0xff151515).withOpacity(0.5),
+                                    const Color(0xff1f2c25).withOpacity(0.5)
+                                  ],
+                                  stops: const [0.25, 0.75],
+                                  center: Alignment.bottomRight,
                                 ),
-                                width: 350 * screenScaling(context),
-                                height: 56,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(
-                                      () {},
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    elevation: 5.0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    const Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: BigTextWidget(
+                                          text: 'Eazy PieChart',
+                                          weight: FontWeight.bold,
+                                          fontsize: 25),
+                                    ),
+                                    PieChartValues(),
+                                    SizedBox(
+                                      width: 430,
+                                      child: Row(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const SmallTextWidget(
+                                                  text: 'Expenses',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15),
+                                              Container(
+                                                height: 30,
+                                                width: 30,
+                                                decoration: BoxDecoration(
+                                                  color: ColorTween(
+                                                    begin:
+                                                        const Color(0xff151515),
+                                                    end:
+                                                        const Color(0xffc9ff99),
+                                                  ).lerp(0.75),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const SmallTextWidget(
+                                                  text: 'Miscellaneous: ',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15),
+                                              Container(
+                                                height: 30,
+                                                width: 30,
+                                                decoration: BoxDecoration(
+                                                  color: ColorTween(
+                                                    begin:
+                                                        const Color(0xff151515),
+                                                    end:
+                                                        const Color(0xffc3a9ff),
+                                                  ).lerp(0.75),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              const SmallTextWidget(
+                                                  text: 'Savings: ',
+                                                  fontWeight: FontWeight.normal,
+                                                  textColor: 0xffffffff,
+                                                  fontsize: 15),
+                                              Container(
+                                                height: 30,
+                                                width: 30,
+                                                decoration: BoxDecoration(
+                                                  color: ColorTween(
+                                                    begin:
+                                                        const Color(0xff151515),
+                                                    end:
+                                                        const Color(0xff8dffe4),
+                                                  ).lerp(0.75),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Visibility(
+                              visible: reportsButtonVisiblity,
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: const SweepGradient(
+                                      colors: [
+                                        Color(0xff151515),
+                                        Color(0xff1f2c25)
+                                      ],
+                                      stops: [0.25, 0.75],
+                                      center: Alignment.bottomRight,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  width: 350 * screenScaling(context),
+                                  height: 56,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          svenReportsVisiblity = true;
+                                          reportsButtonVisiblity = false;
+                                          listLength = createListLength(total);
+                                        },
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.transparent,
+                                      elevation: 5.0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: SmallTextWidget(
+                                        text: 'Reports',
+                                        fontWeight: FontWeight.w600,
+                                        textColor: 0xffffffff,
+                                        fontsize: 16,
+                                      ),
                                     ),
                                   ),
-                                  child: const Center(
-                                    child: SmallTextWidget(
-                                      text: 'Reports',
-                                      fontWeight: FontWeight.w600,
-                                      textColor: 0xffffffff,
-                                      fontsize: 16,
-                                    ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Visibility(
+                        visible: svenReportsVisiblity,
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: SweepGradient(
+                                  colors: [
+                                    const Color(0xff151515).withOpacity(0.5),
+                                    const Color(0xff1f2c25).withOpacity(0.5)
+                                  ],
+                                  stops: const [0.25, 0.75],
+                                  center: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      svenReportsVisiblity = false;
+                                      reportsButtonVisiblity = true;
+                                    },
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 5.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
                                 ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 85,
+                                      width: 55,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const ClipOval(
+                                        child: RiveAnimation.asset(
+                                          'assets/rive/3287-6917-headless-bear.riv',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: AnimatedTextKit(
+                                        animatedTexts: [
+                                          TyperAnimatedText(
+                                            'Based on the data I have gathered. Here are some tips to save more and prevent you from spending over your EazyBudget.',
+                                            textStyle: const TextStyle(
+                                              color: Color(0xffffffff),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'Poppins',
+                                            ),
+                                            speed: const Duration(
+                                                milliseconds: 25),
+                                          ),
+                                        ],
+                                        totalRepeatCount: 1,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: SweepGradient(
+                                  colors: [
+                                    const Color(0xff151515).withOpacity(0.5),
+                                    const Color(0xff1f2c25).withOpacity(0.5)
+                                  ],
+                                  stops: const [0.25, 0.75],
+                                  center: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              width: 430,
+                              height: 300,
+                              child: ListView.builder(
+                                itemCount: listLength,
+                                itemBuilder: (context, index) {
+                                  return SizedBox(
+                                    width: 380,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: AnimatedTextKit(
+                                                  animatedTexts: [
+                                                    TypewriterAnimatedText(
+                                                      tips[index][0],
+                                                      speed: const Duration(
+                                                          milliseconds: 20),
+                                                      textStyle: TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18 *
+                                                            screenScaling(
+                                                                context),
+                                                        color: const Color(
+                                                            0xffc9ff99),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                  totalRepeatCount: 1,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: AnimatedTextKit(
+                                                  animatedTexts: [
+                                                    TypewriterAnimatedText(
+                                                      tips[index][1],
+                                                      speed: const Duration(
+                                                          milliseconds: 10),
+                                                      textStyle: TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 15 *
+                                                            screenScaling(
+                                                                context),
+                                                        color: const Color(
+                                                            0xffffffff),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                  totalRepeatCount: 1,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ],
@@ -1064,10 +1264,6 @@ class _HomePageState extends State<HomePage> {
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              side: const BorderSide(
-                                                color: Color(0xff000000),
-                                                width: 0.5,
-                                              ),
                                             ),
                                           ),
                                           child: const SmallTextWidget(
@@ -1110,10 +1306,6 @@ class _HomePageState extends State<HomePage> {
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              side: const BorderSide(
-                                                color: Color(0xff000000),
-                                                width: 0.5,
-                                              ),
                                             ),
                                           ),
                                           child: const SmallTextWidget(
@@ -1139,15 +1331,227 @@ class _HomePageState extends State<HomePage> {
                                   itemBuilder: (context, index) {
                                     return Column(
                                       children: [
-                                        PaymentCards(
-                                          paymentTitleString:
-                                              paymentCardList[index][0],
-                                          paymentAmountString:
-                                              paymentCardList[index][1],
-                                          paymentDueDateString:
-                                              paymentCardList[index][2],
-                                          paymentReminderString:
-                                              paymentCardList[index][3],
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            gradient: SweepGradient(
+                                              colors: [
+                                                const Color(0xff151515)
+                                                    .withOpacity(0.5),
+                                                const Color(0xff1f2c25)
+                                                    .withOpacity(0.5)
+                                              ],
+                                              stops: const [0.25, 0.75],
+                                              center: Alignment.bottomRight,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          width: 380,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                cardsListHeight -= 165;
+                                                double subtractTotal =
+                                                    double.tryParse(
+                                                            paymentCardList[
+                                                                index][1]) ??
+                                                        0.0;
+                                                total -= subtractTotal;
+                                                totalNeeds -= subtractTotal;
+                                                paymentCardList.removeAt(index);
+                                              });
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              elevation: 5.0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Container(
+                                                        height: 1,
+                                                        width: 70,
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          color:
+                                                              Color(0xffffffff),
+                                                        ),
+                                                      ),
+                                                      SmallTextWidget(
+                                                          text: paymentCardList[
+                                                              index][0],
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          textColor: 0xffc9ff99,
+                                                          fontsize: 20),
+                                                      Container(
+                                                        height: 1,
+                                                        width: 70,
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          color:
+                                                              Color(0xffffffff),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 10),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const SmallTextWidget(
+                                                          text:
+                                                              'Payment amount:',
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          textColor: 0xffffffff,
+                                                          fontsize: 18),
+                                                      Row(
+                                                        children: [
+                                                          const Icon(
+                                                            Icons
+                                                                .attach_money_rounded,
+                                                            size: 18,
+                                                            color: Color(
+                                                                0xffc9ff99),
+                                                          ),
+                                                          const SizedBox(
+                                                              width: 3),
+                                                          SmallTextWidget(
+                                                              text:
+                                                                  paymentCardList[
+                                                                      index][1],
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              textColor:
+                                                                  0xffc9ff99,
+                                                              fontsize: 20),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 10),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const SmallTextWidget(
+                                                          text: 'Payment due:',
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          textColor: 0xffffffff,
+                                                          fontsize: 18),
+                                                      Row(
+                                                        children: [
+                                                          const Icon(
+                                                            Icons
+                                                                .calendar_today,
+                                                            size: 15,
+                                                            color: Colors.white,
+                                                          ),
+                                                          const SizedBox(
+                                                              width: 5),
+                                                          Text(
+                                                            paymentCardList[
+                                                                index][2],
+                                                            style:
+                                                                const TextStyle(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 18,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              color: Color(
+                                                                  0xffc9ff99),
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                              decorationColor:
+                                                                  Color(
+                                                                      0xffc9ff99), // Set the underline color
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 10),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const SmallTextWidget(
+                                                          text:
+                                                              'Tap card to remove',
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          textColor: 0xffffffff,
+                                                          fontsize: 10),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          const Icon(
+                                                            Icons
+                                                                .notifications_active,
+                                                            size: 15,
+                                                            color: Colors.white,
+                                                          ),
+                                                          const SizedBox(
+                                                              width: 5),
+                                                          Text(
+                                                            paymentCardList[
+                                                                index][3],
+                                                            style:
+                                                                const TextStyle(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 18,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                              color: Color(
+                                                                  0xffc9ff99),
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                              decorationColor:
+                                                                  Color(
+                                                                      0xffc9ff99), // Set the underline color
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                         const SizedBox(height: 5),
                                       ],
@@ -1255,10 +1659,6 @@ class _HomePageState extends State<HomePage> {
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(15),
-                                                  side: const BorderSide(
-                                                    color: Color(0xff000000),
-                                                    width: 0.5,
-                                                  ),
                                                 ),
                                               ),
                                               child: const SmallTextWidget(
@@ -1304,10 +1704,6 @@ class _HomePageState extends State<HomePage> {
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(15),
-                                                  side: const BorderSide(
-                                                    color: Color(0xff000000),
-                                                    width: 0.5,
-                                                  ),
                                                 ),
                                               ),
                                               child: const SmallTextWidget(
@@ -1901,6 +2297,9 @@ class _HomePageState extends State<HomePage> {
                                           total +=
                                               double.tryParse(payment.text) ??
                                                   0.0;
+                                          totalNeeds +=
+                                              double.tryParse(payment.text) ??
+                                                  0.0;
                                           calculatePercentBar(total);
                                           paymentTitle.text = '';
                                           payment.text = '';
@@ -1932,6 +2331,9 @@ class _HomePageState extends State<HomePage> {
                                           isVisibleAddPaymentButtonSubmission =
                                               false;
                                           isVisibleCompanyLogo = true;
+                                          cardsListHeight += 165;
+                                          cancelAddPaymentVisibility = false;
+                                          reportsButtonVisiblity = true;
                                         },
                                       );
                                     },
@@ -2008,10 +2410,6 @@ class _HomePageState extends State<HomePage> {
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              side: const BorderSide(
-                                                color: Color(0xff000000),
-                                                width: 0.5,
-                                              ),
                                             ),
                                           ),
                                           child: const SmallTextWidget(
@@ -2055,10 +2453,6 @@ class _HomePageState extends State<HomePage> {
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(15),
-                                              side: const BorderSide(
-                                                color: Color(0xff000000),
-                                                width: 0.5,
-                                              ),
                                             ),
                                           ),
                                           child: const SmallTextWidget(
@@ -2102,7 +2496,7 @@ class _HomePageState extends State<HomePage> {
                                                 hintLabel: 'Name',
                                                 textFieldSize: 180 *
                                                     screenScaling(context),
-                                                totalCharacters: 20,
+                                                totalCharacters: 12,
                                                 regExp: r'[a-zA-Z0-9 ]',
                                                 controllerName: transactionName,
                                               )
@@ -2171,7 +2565,14 @@ class _HomePageState extends State<HomePage> {
                                                         transactionAmount
                                                             .text) ??
                                                     0.0;
+                                                totalWants += double.tryParse(
+                                                        transactionAmount
+                                                            .text) ??
+                                                    0.0;
                                                 calculatePercentBar(total);
+                                                transactionListHeight += 48;
+                                                transactionName.text = '';
+                                                transactionAmount.text = '';
                                               },
                                             );
                                           },
@@ -2208,17 +2609,91 @@ class _HomePageState extends State<HomePage> {
                               child: ListView.builder(
                                 itemCount: transactionList.length,
                                 itemBuilder: (context, index) {
-                                  return Transactions(
-                                      transactionName: transactionList[index]
-                                          [0],
-                                      transactionAmount: transactionList[index]
-                                          [1]);
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      gradient: SweepGradient(
+                                        colors: [
+                                          const Color(0xff151515)
+                                              .withOpacity(0.5),
+                                          const Color(0xff1f2c25)
+                                              .withOpacity(0.5)
+                                        ],
+                                        stops: const [0.25, 0.75],
+                                        center: Alignment.bottomRight,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    width: 380,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          transactionListHeight -= 48;
+                                          double subtractTotal =
+                                              double.tryParse(
+                                                      transactionList[index]
+                                                          [1]) ??
+                                                  0.0;
+                                          total -= subtractTotal;
+                                          totalNeeds -= subtractTotal;
+                                          transactionList.removeAt(index);
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        elevation: 5.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    SmallTextWidget(
+                                                        text: transactionList[
+                                                            index][0],
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        textColor: 0xffffffff,
+                                                        fontsize: 18),
+                                                    const SmallTextWidget(
+                                                        text: 'Tap to remove',
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        textColor: 0xffffffff,
+                                                        fontsize: 10),
+                                                    SmallTextWidget(
+                                                        text:
+                                                            '\$ -${transactionList[index][1]}',
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        textColor: 0xffffffff,
+                                                        fontsize: 18)
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 5),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
                           ],
                         ),
                       ),
+                      const SizedBox(height: 50),
                     ],
                   ),
                 ),

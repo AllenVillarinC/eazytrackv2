@@ -11,7 +11,8 @@ class SmallTextWidget extends StatelessWidget {
       {super.key,
       required this.text,
       required this.fontWeight,
-      required this.textColor, required this.fontsize});
+      required this.textColor,
+      required this.fontsize});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,11 @@ class SmallTextWidget extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
-          fontFamily: 'Poppins',
-          fontWeight: fontWeight,
-          fontSize: fontsize * screenScaling(context),
-          color: Color(textColor)),
+        fontFamily: 'Poppins',
+        fontWeight: fontWeight,
+        fontSize: fontsize * screenScaling(context),
+        color: Color(textColor),
+      ),
     );
   }
 }
