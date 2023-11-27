@@ -1,9 +1,6 @@
-import 'dart:js';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/Methods.dart';
-
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 

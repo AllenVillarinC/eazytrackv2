@@ -2634,7 +2634,7 @@ class _HomePageState extends State<HomePage> {
                                                           [1]) ??
                                                   0.0;
                                           total -= subtractTotal;
-                                          totalNeeds -= subtractTotal;
+                                          totalWants -= subtractTotal;
                                           transactionList.removeAt(index);
                                         });
                                       },
