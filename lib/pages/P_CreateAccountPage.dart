@@ -41,7 +41,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               child: Container(),
             ),
             SingleChildScrollView(
-              child: SizedBox(
+              child: SizedBox(width: 430 * screenScaling(context),
                 child: Column(children: [
                   const SizedBox(height: 20),
                   const CompanyName(),

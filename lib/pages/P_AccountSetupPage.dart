@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:eazytrackv2/components/0_Company.dart';
+import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
 import 'package:flutter/material.dart';
@@ -35,15 +36,17 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
             ),
             SingleChildScrollView(
               child: Center(
-                child: Column(
-                  children: [
-                    const CompanyName(),
-                    const SizedBox(height: 10),
-                    userInformationForm(context),
-                    const SizedBox(height: 10),
-                    const GreenLongButton(
-                        text: 'Continue', sendUserTo: HomePage())
-                  ],
+                child: SizedBox(width: 430 * screenScaling(context),
+                  child: Column(
+                    children: [
+                      const CompanyName(),
+                      const SizedBox(height: 10),
+                      userInformationForm(context),
+                      const SizedBox(height: 10),
+                      const GreenLongButton(
+                          text: 'Continue', sendUserTo: HomePage())
+                    ],
+                  ),
                 ),
               ),
             ),

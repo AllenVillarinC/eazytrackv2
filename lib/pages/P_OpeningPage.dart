@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/PurpleLongButton.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -35,7 +36,7 @@ class _OpeningPageState extends State<OpeningPage> {
           ),
           Center(
             child: SingleChildScrollView(
-              child: SizedBox(
+              child: SizedBox(width: 430 * screenScaling(context),
                 child: Column(
                   children: [
                     Lottie.asset('assets/lottie/animation_lnypvfyy.json'),

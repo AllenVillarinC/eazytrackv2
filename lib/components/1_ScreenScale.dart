@@ -2,15 +2,31 @@ import 'package:flutter/material.dart';
 
 double screenScaling(BuildContext context) {
   double screenWidth = MediaQuery.of(context).size.width;
-  double sizeScale = 1;
 
-  if (screenWidth <= 360) {
-    sizeScale = 0.85;
+  if (screenWidth >= 320 && screenWidth <= 360) {
+    return 0.14;
+  } else if (screenWidth >= 360 && screenWidth <= 375) {
+    return 0.29;
+  } else if (screenWidth >= 375 && screenWidth <= 390) {
+    return 0.43;
+  } else if (screenWidth >= 390 && screenWidth <= 393) {
+    return 0.57;
+  } else if (screenWidth >= 393 && screenWidth <= 414) {
+    return 0.71;
+  } else if (screenWidth > 414 && screenWidth <= 428) {
+    return 0.86;
   } else {
-    sizeScale = 0.90;
+    return 1;
   }
-
-  return sizeScale;
 }
 
 // when creating a page, create a contianer first to identify the device's screen size
+
+// 430 1
+// 428 0.86
+// 414 0.71
+// 393 0.57
+// 390 0.43
+// 375 (both instances) 0.29
+// 360 (both instances) 0.14
+// 320

@@ -166,10 +166,12 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 const SizedBox(width: 10),
-                                BigTextWidget(
-                                    text: '${fname.text} ${lname.text}',
-                                    weight: FontWeight.w400,
-                                    fontsize: 25),
+                                Center(
+                                  child: BigTextWidget(
+                                      text: '${fname.text} ${lname.text}',
+                                      weight: FontWeight.bold,
+                                      fontsize: 30),
+                                ),
                               ],
                             ),
                           ),
