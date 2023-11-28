@@ -42,27 +42,24 @@ dependencies:
   table_calendar: ^3.0.9
   fl_chart: ^0.65.0
   flutter_pw_validator: ^1.6.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/EazyTrackLogo.png"
+  adaptive_icon_foreground: "assets/images/1024.png"
+  adaptive_icon_background: "assets/images/1024.png"
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+  
   flutter_lints: ^3.0.1
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
   assets:
@@ -72,18 +69,10 @@ flutter:
     - assets/fonts/
     
   fonts:
-    - family: Pacifico
-      fonts:
-        - asset: assets/fonts/Pacifico-Regular.ttf
     - family: Poppins
       fonts: 
         - asset: assets/fonts/Poppins/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
         - asset: assets/fonts/Poppins/Poppins-Medium.ttf
         - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
-    - family: Moul
-      fonts: 
-        - asset: assets/fonts/Moul-Regular.ttf
-    - family: Inter
-      fonts: 
-        - asset: assets/fonts/Inter-Regular.ttf
+    

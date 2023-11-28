@@ -11,7 +11,7 @@ import '../components/T_BigText.dart';
 import '../components/T_SmallText.dart';
 import '../components/UI_UserInput.dart';
 import '../components/UI_UserInputPassword.dart';
-import 'P_CreateAccountPage.dart';
+import 'CreateAccountPage.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -46,6 +46,7 @@ class _SigninPageState extends State<SigninPage> {
                   children: [
                     const SizedBox(height: 20),
                     const CompanyName(),
+                    const SizedBox(height: 10),
                     SizedBox(
                       width: 430 * screenScaling(context),
                       child: const Row(
@@ -58,7 +59,7 @@ class _SigninPageState extends State<SigninPage> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     UserInput(
                       label: 'Email address',
                       hiddenLabel: 'Your email',
@@ -71,7 +72,7 @@ class _SigninPageState extends State<SigninPage> {
                       controllerName: password,
                     ),
                     SizedBox(
-                      width: 375 * screenScaling(context),
+                      width: 430 * screenScaling(context),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -118,7 +119,8 @@ class _SigninPageState extends State<SigninPage> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const GreenLongButton(
+                        text: 'Sign in', sendUserTo: HomePage()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -144,9 +146,6 @@ class _SigninPageState extends State<SigninPage> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    const GreenLongButton(
-                        text: 'Sign in', sendUserTo: HomePage())
                   ],
                 ),
               ),

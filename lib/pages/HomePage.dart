@@ -11,7 +11,7 @@ import 'package:eazytrackv2/components/UI_UserInput.dart';
 import 'package:eazytrackv2/components/barGraph.dart';
 import 'package:eazytrackv2/components/piechart.dart';
 import 'package:eazytrackv2/components/sven.dart';
-import 'package:eazytrackv2/pages/P_EditProfile.dart';
+import 'package:eazytrackv2/pages/EditProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
@@ -75,6 +75,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 20),
                       Visibility(
                           visible: isVisibleCompanyLogo,
                           child: const CompanyName()
@@ -122,65 +123,86 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Visibility(
                         visible: userButtonVisiblity,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: SweepGradient(
-                              colors: [
-                                const Color(0xff151515).withOpacity(0.5),
-                                const Color(0xff1f2c25).withOpacity(0.5)
-                              ],
-                              stops: const [0.25, 0.75],
-                              center: Alignment.bottomRight,
+                        child: Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: SweepGradient(
+                                colors: [
+                                  const Color(0xff151515).withOpacity(0.5),
+                                  const Color(0xff1f2c25).withOpacity(0.5)
+                                ],
+                                stops: const [0.25, 0.75],
+                                center: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          width: 370,
-                          height: 100,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditProfilePage()),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              elevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
+                            width: 400 * screenScaling(context),
+                            height: 55,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditProfilePage()),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                elevation: 5.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    height: 55,
+                                    width: 55,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const ClipOval(
+                                      child: RiveAnimation.asset(
+                                        'assets/rive/2063-4080-flutter-puzzle-hack-project.riv',
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  SizedBox(
+                                    height: 55,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: BigTextWidget(
+                                            text: '${fname.text} ${lname.text}',
+                                            weight: FontWeight.bold,
+                                            fontsize: 35,
+                                          ),
+                                        ),
+                                        SmallTextWidget(
+                                            text: emailaddress.text,
+                                            fontWeight: FontWeight.normal,
+                                            textColor: 0xffffffff,
+                                            fontsize: 18)
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 85,
-                                  width: 55,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const ClipOval(
-                                    child: RiveAnimation.asset(
-                                        'assets/rive/2063-4080-flutter-puzzle-hack-project.riv'),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Center(
-                                  child: BigTextWidget(
-                                      text: '${fname.text} ${lname.text}',
-                                      weight: FontWeight.bold,
-                                      fontsize: 30),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                            .animate()
-                            .shimmer(
-                                delay: 1000.milliseconds,
-                                duration: 500.milliseconds)
-                            .fade(),
+                          )
+                              .animate()
+                              .shimmer(
+                                  delay: 1000.milliseconds,
+                                  duration: 500.milliseconds)
+                              .fade(),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Row(
@@ -193,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                               child: const BigTextWidget(
                                 text: 'Your EazyBudget:',
                                 weight: FontWeight.w800,
-                                fontsize: 20,
+                                fontsize: 25,
                               )
                                   .animate()
                                   .shimmer(
@@ -256,7 +278,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
                       Visibility(
                         visible: isVisibleSven2,
                         child: svenTutorial2()
@@ -340,6 +361,7 @@ class _HomePageState extends State<HomePage> {
                                           generateNewEazyBudgetVisiblity =
                                               false;
                                           viewDetailsVisiblity = false;
+                                          viewDetailsButtonVisiblity = true;
                                         });
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -560,6 +582,12 @@ class _HomePageState extends State<HomePage> {
                                           calculateMonthlyExpenses();
                                           calculateMiscellaneous();
                                           calculateSavings();
+                                          needs = double.tryParse(
+                                                  calculateMonthlyExpenses()) ??
+                                              0.0;
+                                          wants = double.tryParse(
+                                                  calculateMiscellaneous()) ??
+                                              0.0;
                                           errorMessage3 = false;
                                         },
                                       );
@@ -751,6 +779,13 @@ class _HomePageState extends State<HomePage> {
                                                 calculateMonthlyExpenses();
                                                 calculateMiscellaneous();
                                                 calculateSavings();
+
+                                                needs = double.tryParse(
+                                                        calculateMonthlyExpenses()) ??
+                                                    0.0;
+                                                wants = double.tryParse(
+                                                        calculateMiscellaneous()) ??
+                                                    0.0;
                                               },
                                             );
                                           }
@@ -819,6 +854,12 @@ class _HomePageState extends State<HomePage> {
                                                 calculateMonthlyExpenses();
                                                 calculateMiscellaneous();
                                                 calculateSavings();
+                                                needs = double.tryParse(
+                                                        calculateMonthlyExpenses()) ??
+                                                    0.0;
+                                                wants = double.tryParse(
+                                                        calculateMiscellaneous()) ??
+                                                    0.0;
                                               },
                                             );
                                           }
@@ -875,13 +916,13 @@ class _HomePageState extends State<HomePage> {
                                               () {
                                                 isVisibleSven3 = false;
                                                 isVisibleSven3Correction1 =
-                                                    true;
+                                                    false;
                                                 isVisibleSven3Correction2 =
                                                     false;
                                                 isVisibleValueCorrection1 =
                                                     false;
                                                 isVisibleValueCorrection2 =
-                                                    true;
+                                                    false;
                                                 errorMessage3 = false;
                                                 calculateMonthlyExpenses();
                                                 calculateMiscellaneous();
@@ -1124,7 +1165,7 @@ class _HomePageState extends State<HomePage> {
                               child: BigTextWidget(
                                   text: 'Total expenditure:',
                                   weight: FontWeight.bold,
-                                  fontsize: 20),
+                                  fontsize: 25),
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
@@ -1191,10 +1232,13 @@ class _HomePageState extends State<HomePage> {
                               visible: viewDetailsVisiblity,
                               child: Column(
                                 children: [
-                                  const BigTextWidget(
-                                      text: 'Budget details:',
-                                      weight: FontWeight.bold,
-                                      fontsize: 20),
+                                  const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: BigTextWidget(
+                                        text: 'Budget details:',
+                                        weight: FontWeight.bold,
+                                        fontsize: 20),
+                                  ),
                                   const SizedBox(height: 10),
                                   sven(),
                                   const SizedBox(height: 10),
@@ -1245,6 +1289,94 @@ class _HomePageState extends State<HomePage> {
                                                   fontsize: 25),
                                             ),
                                             BarChartValues(),
+                                            const SizedBox(height: 10),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const SmallTextWidget(
+                                                    text: 'Expenses: ',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 12),
+                                                Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: ColorTween(
+                                                      begin: const Color(
+                                                          0xff151515),
+                                                      end: const Color(
+                                                          0xff8dffe4),
+                                                    ).lerp(0.75),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 5),
+                                                const SmallTextWidget(
+                                                    text: ' & ',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 12),
+                                                const SizedBox(width: 5),
+                                                const SmallTextWidget(
+                                                    text: 'Miscellaneous: ',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 12),
+                                                Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: ColorTween(
+                                                      begin: const Color(
+                                                          0xff151515),
+                                                      end: const Color(
+                                                          0xffc3a9ff),
+                                                    ).lerp(0.75),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const SmallTextWidget(
+                                                    text:
+                                                        'Must not be under the ',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 12),
+                                                Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 5),
+                                                const SmallTextWidget(
+                                                    text: 'Line.',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 12),
+                                              ],
+                                            ),
                                             const SizedBox(height: 10),
                                             const Align(
                                               alignment: Alignment.centerLeft,
@@ -1429,6 +1561,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             const SizedBox(height: 10),
                             const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 BigTextWidget(
                                     text: 'Budget reports:',
@@ -1438,7 +1571,7 @@ class _HomePageState extends State<HomePage> {
                                     text: 'Tap Sven to close details.',
                                     fontWeight: FontWeight.bold,
                                     textColor: 0xffffffff,
-                                    fontsize: 10)
+                                    fontsize: 13)
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -1469,44 +1602,41 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 5),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 60,
-                                        width: 60,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: ClipOval(
-                                          child: Lottie.asset(
-                                            'assets/lottie/qBMpUNvnCu.json',
-                                            fit: BoxFit.cover,
-                                          ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 60,
+                                      width: 60,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: ClipOval(
+                                        child: Lottie.asset(
+                                          'assets/lottie/qBMpUNvnCu.json',
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: AnimatedTextKit(
-                                          animatedTexts: [
-                                            TyperAnimatedText(
-                                              'Here are some tips to save more and prevent you from spending over your EazyBudget.',
-                                              textStyle: const TextStyle(
-                                                color: Color(0xffffffff),
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w600,
-                                                fontFamily: 'Poppins',
-                                              ),
-                                              speed: const Duration(
-                                                  milliseconds: 25),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: AnimatedTextKit(
+                                        animatedTexts: [
+                                          TyperAnimatedText(
+                                            'Here are some tips to save more and prevent you from spending over your EazyBudget.',
+                                            textStyle: const TextStyle(
+                                              color: Color(0xffffffff),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'Poppins',
                                             ),
-                                          ],
-                                          totalRepeatCount: 1,
-                                        ),
+                                            speed: const Duration(
+                                                milliseconds: 25),
+                                          ),
+                                        ],
+                                        totalRepeatCount: 1,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -1613,7 +1743,7 @@ class _HomePageState extends State<HomePage> {
                                 const BigTextWidget(
                                     text: 'Payment/s details:',
                                     weight: FontWeight.bold,
-                                    fontsize: 20),
+                                    fontsize: 25),
                                 Stack(
                                   children: [
                                     Visibility(
@@ -1965,7 +2095,6 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(height: 5),
                                       ],
                                     );
                                   },
@@ -3074,7 +3203,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10),
                       Visibility(
                         visible: transactionsListVisiblity,
                         child: Column(
@@ -3085,7 +3213,7 @@ class _HomePageState extends State<HomePage> {
                                 const BigTextWidget(
                                     text: 'Transaction/s:',
                                     weight: FontWeight.bold,
-                                    fontsize: 20),
+                                    fontsize: 25),
                                 Stack(
                                   children: [
                                     Visibility(
@@ -3257,78 +3385,69 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     const SizedBox(height: 10),
-                                    SizedBox(
-                                      width: 430 * screenScaling(context),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          SizedBox(
-                                            child: Column(
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: SmallTextWidget(
+                                                text: 'Transaction name',
+                                                fontWeight: FontWeight.normal,
+                                                textColor: 0xffffffff,
+                                                fontsize: 15,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            SmallUserInput(
+                                              hintLabel: 'Name',
+                                              textFieldSize:
+                                                  200 * screenScaling(context),
+                                              totalCharacters: 12,
+                                              regExp: r'[a-zA-Z0-9 ]',
+                                              controllerName: transactionName,
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start, // Added to align children to the start (left) horizontally
+                                          children: [
+                                            const Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: SmallTextWidget(
+                                                text: 'Amount',
+                                                fontWeight: FontWeight.normal,
+                                                textColor: 0xffffffff,
+                                                fontsize: 15,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 5),
+                                            Row(
                                               children: [
-                                                const Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: SmallTextWidget(
-                                                    text: 'Transaction name',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    textColor: 0xffffffff,
-                                                    fontsize: 15,
-                                                  ),
+                                                const Icon(
+                                                  Icons.attach_money_rounded,
+                                                  color: Color(0xffffffff),
                                                 ),
-                                                const SizedBox(height: 5),
+                                                const SizedBox(width: 5),
                                                 SmallUserInput(
-                                                  hintLabel: 'Name',
+                                                  hintLabel: '9,999.99',
                                                   textFieldSize: 200 *
                                                       screenScaling(context),
-                                                  totalCharacters: 12,
-                                                  regExp: r'[a-zA-Z0-9 ]',
+                                                  totalCharacters: 10,
+                                                  regExp: r'[0-9.]+',
                                                   controllerName:
-                                                      transactionName,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            child: Column(
-                                              children: [
-                                                const Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: SmallTextWidget(
-                                                    text: 'Amount',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    textColor: 0xffffffff,
-                                                    fontsize: 15,
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 5),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons
-                                                          .attach_money_rounded,
-                                                      color: Color(0xffffffff),
-                                                    ),
-                                                    const SizedBox(width: 5),
-                                                    SmallUserInput(
-                                                        hintLabel: '9,999.99',
-                                                        textFieldSize: 200 *
-                                                            screenScaling(
-                                                                context),
-                                                        totalCharacters: 10,
-                                                        regExp: r'[0-9.]+',
-                                                        controllerName:
-                                                            transactionAmount),
-                                                  ],
+                                                      transactionAmount,
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(height: 10),
                                     Center(

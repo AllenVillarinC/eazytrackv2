@@ -1,3 +1,4 @@
+import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,9 @@ class BarChartValues extends StatelessWidget {
 
   BarChartGroupData generateGroupData(
     int x,
-    double pilates,
-    double quickWorkout,
-    double cycling,
+    double savings,
+    double misc,
+    double expense,
   ) {
     return BarChartGroupData(
       x: x,
@@ -31,21 +32,21 @@ class BarChartValues extends StatelessWidget {
       barRods: [
         BarChartRodData(
           fromY: 0,
-          toY: pilates,
+          toY: savings,
           color: savingsColor,
-          width: 8,
+          width: 6,
         ),
         BarChartRodData(
-          fromY: pilates + betweenSpace,
-          toY: pilates + betweenSpace + quickWorkout,
+          fromY: savings + betweenSpace,
+          toY: savings + betweenSpace + misc,
           color: miscColor,
-          width: 8,
+          width: 6,
         ),
         BarChartRodData(
-          fromY: pilates + betweenSpace + quickWorkout + betweenSpace,
-          toY: pilates + betweenSpace + quickWorkout + betweenSpace + cycling,
+          fromY: savings + betweenSpace + misc + betweenSpace,
+          toY: savings + betweenSpace + misc + betweenSpace + expense,
           color: expenseColor,
-          width: 8,
+          width: 6,
         ),
       ],
     );
@@ -103,53 +104,59 @@ class BarChartValues extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 1.5,
+            aspectRatio: 2 * screenScaling(context),
             child: BarChart(
               BarChartData(
-                alignment: BarChartAlignment.spaceBetween,
-                titlesData: FlTitlesData(
-                  leftTitles: const AxisTitles(),
-                  rightTitles: const AxisTitles(),
-                  topTitles: const AxisTitles(),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: bottomTitles,
-                      reservedSize: 20,
+                  alignment: BarChartAlignment.spaceBetween,
+                  titlesData: FlTitlesData(
+                    leftTitles: const AxisTitles(),
+                    rightTitles: const AxisTitles(),
+                    topTitles: const AxisTitles(),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        getTitlesWidget: bottomTitles,
+                        reservedSize: 20,
+                      ),
                     ),
                   ),
-                ),
-                barTouchData: BarTouchData(enabled: false),
-                borderData: FlBorderData(show: false),
-                gridData: const FlGridData(show: false),
-                barGroups: [
-                  generateGroupData(0, 20, 30, 50),
-                  generateGroupData(1, 45, 15, 40),
-                  generateGroupData(2, 60, 10, 30),
-                  generateGroupData(3, 45, 20, 35),
-                  generateGroupData(4, 65, 5, 30),
-                  generateGroupData(5, 50, 10, 40),
-                  generateGroupData(6, 50, 15, 35),
-                  generateGroupData(7, 29, 25, 46),
-                  generateGroupData(8, 46, 26, 28),
-                  generateGroupData(9, 46, 20, 34),
-                  generateGroupData(
-                      10,
-                      100 -
-                          ((((totalNeeds / needs) * 100) * 0.5) +
-                              (((totalWants / wants) * 100) * 0.3)),
-                      ((totalWants / wants) * 100) * 0.3,
-                      ((totalNeeds / needs) * 100) * 0.5),
-                  generateGroupData(11, 100, 0, 0),
-                ],
-                maxY: 100,
-              ),
+                  barTouchData: BarTouchData(enabled: false),
+                  borderData: FlBorderData(show: false),
+                  gridData: const FlGridData(show: false),
+                  barGroups: [
+                    generateGroupData(0, 20, 30, 50),
+                    generateGroupData(1, 45, 15, 40),
+                    generateGroupData(2, 60, 10, 30),
+                    generateGroupData(3, 45, 20, 35),
+                    generateGroupData(4, 65, 5, 30),
+                    generateGroupData(5, 50, 10, 40),
+                    generateGroupData(6, 50, 15, 35),
+                    generateGroupData(7, 29, 25, 46),
+                    generateGroupData(8, 46, 26, 28),
+                    generateGroupData(9, 46, 20, 34),
+                    generateGroupData(
+                        10,
+                        100 -
+                            ((((totalNeeds / needs) * 100) * 0.5) +
+                                (((totalWants / wants) * 100) * 0.3)),
+                        ((totalWants / wants) * 100) * 0.3,
+                        ((totalNeeds / needs) * 100) * 0.5),
+                    generateGroupData(11, 100, 0, 0),
+                  ],
+                  maxY: 100,
+                  extraLinesData: ExtraLinesData(horizontalLines: [
+                    HorizontalLine(
+                      y: 20,
+                      color: Colors.red,
+                      strokeWidth: 1,
+                    ),
+                  ])),
             ),
           ),
         ],

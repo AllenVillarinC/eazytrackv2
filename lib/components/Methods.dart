@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '1_ScreenScale.dart';
 import 'Controllers.dart';
@@ -111,7 +110,6 @@ Column userInformationForm(BuildContext context) {
         controllerName: lname,
         regExp: r'[a-zA-Z]',
       ),
-      const SizedBox(height: 15),
       UserInput(
         label: 'Address',
         hiddenLabel: 'Address',
@@ -137,12 +135,15 @@ Column userInformationForm(BuildContext context) {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SmallUserInput(
-                    hintLabel: 'City',
-                    textFieldSize: 180 * screenScaling(context),
-                    totalCharacters: 20,
-                    regExp: r'^[a-zA-Z0-9 ]*$',
-                    controllerName: city,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SmallUserInput(
+                      hintLabel: 'City',
+                      textFieldSize: 180 * screenScaling(context),
+                      totalCharacters: 20,
+                      regExp: r'^[a-zA-Z0-9 ]*$',
+                      controllerName: city,
+                    ),
                   )
                 ],
               ),
@@ -161,12 +162,15 @@ Column userInformationForm(BuildContext context) {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SmallUserInput(
-                      hintLabel: 'Province',
-                      textFieldSize: 180 * screenScaling(context),
-                      totalCharacters: 20,
-                      regExp: r'[a-zA-Z]',
-                      controllerName: province),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SmallUserInput(
+                        hintLabel: 'Province',
+                        textFieldSize: 180 * screenScaling(context),
+                        totalCharacters: 20,
+                        regExp: r'[a-zA-Z]',
+                        controllerName: province),
+                  ),
                 ],
               ),
             ),
@@ -192,10 +196,8 @@ Column userInformationForm(BuildContext context) {
                       fontsize: 18,
                     ),
                   ),
-                  const SizedBox(height: 5),
                   SizedBox(
-                    width: 180 * screenScaling(context),
-                    height: 50,
+                    width: 130 * screenScaling(context),
                     child: Image.asset('assets/images/flag_of_canada.png'),
                   )
                 ],
@@ -215,12 +217,15 @@ Column userInformationForm(BuildContext context) {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SmallUserInput(
-                      hintLabel: 'Postal Code',
-                      textFieldSize: 180 * screenScaling(context),
-                      totalCharacters: 8,
-                      regExp: r'^[A-Z0-9 ]+',
-                      controllerName: postalcode),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SmallUserInput(
+                        hintLabel: 'Postal Code',
+                        textFieldSize: 180 * screenScaling(context),
+                        totalCharacters: 8,
+                        regExp: r'^[A-Z0-9 ]+',
+                        controllerName: postalcode),
+                  ),
                 ],
               ),
             ),
@@ -303,4 +308,3 @@ Column systemGenerateEazyBudget(BuildContext context) {
     ],
   );
 }
-

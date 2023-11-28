@@ -1,3 +1,4 @@
+import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 
 import 'package:fl_chart/fl_chart.dart';
@@ -9,7 +10,7 @@ class PieChartValues extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.3,
+      aspectRatio: 1.5 * screenScaling(context),
       child: AspectRatio(
         aspectRatio: 1,
         child: PieChart(

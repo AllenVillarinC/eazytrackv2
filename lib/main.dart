@@ -1,4 +1,4 @@
-import 'package:eazytrackv2/pages/P_OpeningPage.dart';
+import 'package:eazytrackv2/pages/OpeningPage.dart';
 
 import 'package:flutter/material.dart';
 

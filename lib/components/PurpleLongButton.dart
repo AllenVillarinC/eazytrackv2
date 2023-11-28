@@ -43,7 +43,7 @@ class PurpleLongButton extends StatelessWidget {
             text: text,
             fontWeight: FontWeight.w600,
             textColor: 0xffffffff,
-            fontsize: 16,
+            fontsize: 20,
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
-import 'package:eazytrackv2/pages/P_EditProfile.dart';
+import 'package:eazytrackv2/pages/EditProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 

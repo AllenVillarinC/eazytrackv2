@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:eazytrackv2/components/GreenLongButton.dart';
-import 'package:eazytrackv2/pages/P_OpeningPage.dart';
+import 'package:eazytrackv2/pages/HomePage.dart';
+import 'package:eazytrackv2/pages/OpeningPage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rive/rive.dart';
 
 import '../components/0_Company.dart';
 import '../components/1_ScreenScale.dart';
@@ -51,12 +53,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage()),
+                            );
+                          },
                           child: const SmallTextWidget(
                             text: 'Back',
                             fontWeight: FontWeight.bold,
                             textColor: 0xffC0ff99,
-                            fontsize: 16,
+                            fontsize: 25,
                           ),
                         ),
                       ),
@@ -67,18 +75,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             height: 60,
                             width: 60,
                             decoration: const BoxDecoration(
-                              color: Color(0xffc4c4c4),
+                              color: Colors.transparent,
                               shape: BoxShape.circle, // Use a circular shape
                             ),
-                            child: Image.asset('assets/images/UserPicture.png'),
+                            child: const RiveAnimation.asset(
+                                'assets/rive/2063-4080-flutter-puzzle-hack-project.riv'),
                           ),
                           const SizedBox(width: 10),
                           Text(
                             '${fname.text} ${lname.text}',
                             style: const TextStyle(
-                                fontSize: 30,
-                                fontFamily: 'Poppins',
-                                color: Color(0xffffffff)),
+                              fontSize: 30,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffffffff),
+                            ),
                           ),
                         ],
                       ),
@@ -92,10 +103,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const BigTextWidget(
-                            text: 'Profile:',
-                            weight: FontWeight.w800,
-                            fontsize: 25,
+                          const Text(
+                            'Profile details:',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffc9ff99),
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -106,15 +121,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                     decoration: const BoxDecoration(
-                                      color: Color(0xff111111),
-                                      border: Border(
-                                        top: BorderSide(color: Colors.white),
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
                                       ),
                                     ),
-                                    height: 900 * screenScaling(context),
+                                    width: 430,
+                                    height: 800 * screenScaling(context),
                                     child: SingleChildScrollView(
                                       child: Column(
                                         children: [
+                                          const SizedBox(height: 15),
+                                          const BigTextWidget(
+                                            text: 'Profile details',
+                                            weight: FontWeight.bold,
+                                            fontsize: 25,
+                                          ),
                                           const SizedBox(height: 15),
                                           userInformationForm(context),
                                           SizedBox(
@@ -143,12 +166,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                 ),
                                               ),
                                               child: const Center(
-                                                  child: SmallTextWidget(
-                                                text: 'Save changes',
-                                                fontWeight: FontWeight.bold,
-                                                textColor: 0xff000000,
-                                                fontsize: 16,
-                                              )),
+                                                child: SmallTextWidget(
+                                                  text: 'Save changes',
+                                                  fontWeight: FontWeight.bold,
+                                                  textColor: 0xff000000,
+                                                  fontsize: 16,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(height: 20),
@@ -160,10 +184,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               );
                             },
                             child: const SmallTextWidget(
-                                text: 'Edit',
-                                fontWeight: FontWeight.normal,
+                                text: 'Edit Profile',
+                                fontWeight: FontWeight.bold,
                                 textColor: 0xffC0FF99,
-                                fontsize: 16),
+                                fontsize: 18),
                           )
                         ],
                       ),
@@ -178,7 +202,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: fname.text,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffc9ff99,
                               fontsize: 16)
                         ],
@@ -194,7 +218,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: lname.text,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffc9ff99,
                               fontsize: 16)
                         ],
@@ -225,10 +249,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const BigTextWidget(
-                            text: 'Privacy and safety:',
-                            weight: FontWeight.bold,
-                            fontsize: 25,
+                          const Text(
+                            'Privacy and safety:',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffc9ff99),
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -239,15 +267,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 builder: (BuildContext context) {
                                   return Container(
                                     decoration: const BoxDecoration(
-                                      color: Color(0xff111111),
-                                      border: Border(
-                                        top: BorderSide(color: Colors.white),
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
                                       ),
                                     ),
-                                    height: 500 * screenScaling(context),
+                                    height: 600 * screenScaling(context),
+                                    width: 430,
                                     child: SingleChildScrollView(
                                       child: Column(
                                         children: [
+                                          const SizedBox(height: 15),
+                                          const BigTextWidget(
+                                            text: 'Privacy and safety',
+                                            weight: FontWeight.bold,
+                                            fontsize: 25,
+                                          ),
                                           const SizedBox(height: 15),
                                           UserInput(
                                             label: 'Email address',
@@ -308,10 +344,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               );
                             },
                             child: const SmallTextWidget(
-                                text: 'Edit',
-                                fontWeight: FontWeight.normal,
+                                text: 'Edit Security',
+                                fontWeight: FontWeight.bold,
                                 textColor: 0xffC0FF99,
-                                fontsize: 16),
+                                fontsize: 18),
                           ),
                         ],
                       ),
@@ -326,7 +362,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: emailaddress.text,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffc9ff99,
                               fontsize: 16)
                         ],
@@ -342,7 +378,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: phonenumber.text,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffc9ff99,
                               fontsize: 16),
                         ],
@@ -358,12 +394,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: '*' * password.text.length,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffc9ff99,
                               fontsize: 16)
                         ],
                       ),
-                      const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -385,11 +420,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15),
                       Container(
                         height: 1,
                         width: 200,
                         color: Colors.white,
+                      ),
+                      const SizedBox(height: 15),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Development team:',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffc9ff99),
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 15),
                       const Row(
@@ -402,7 +449,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: 'Arora, Stuti',
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffC0FF99,
                               fontsize: 16)
                         ],
@@ -417,8 +464,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               textColor: 0xffffffff,
                               fontsize: 16),
                           SmallTextWidget(
-                              text: 'Villarin, Stuti',
-                              fontWeight: FontWeight.bold,
+                              text: 'Villarin, Allen',
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffC0FF99,
                               fontsize: 16)
                         ],
@@ -434,7 +481,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: 'Narula, Ira',
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffC0FF99,
                               fontsize: 16)
                         ],
@@ -450,7 +497,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fontsize: 16),
                           SmallTextWidget(
                               text: 'Gravito, Johnathan',
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               textColor: 0xffC0FF99,
                               fontsize: 16)
                         ],
@@ -461,7 +508,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         width: 200,
                         color: Colors.white,
                       ),
-                      const SizedBox(height: 15),
                       const SizedBox(height: 15),
                       const GreenLongButton(
                           text: 'Log out', sendUserTo: OpeningPage()),

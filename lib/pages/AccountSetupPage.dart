@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:eazytrackv2/components/0_Company.dart';
 import 'package:eazytrackv2/components/1_ScreenScale.dart';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
+import 'package:eazytrackv2/components/T_BigText.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -36,15 +37,28 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
             ),
             SingleChildScrollView(
               child: Center(
-                child: SizedBox(width: 430 * screenScaling(context),
+                child: SizedBox(
+                  width: 430 * screenScaling(context),
                   child: Column(
                     children: [
+                      const SizedBox(height: 20),
                       const CompanyName(),
                       const SizedBox(height: 10),
-                      userInformationForm(context),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: BigTextWidget(
+                          text: 'Let\'s get to know you.',
+                          weight: FontWeight.w800,
+                          fontsize: 25,
+                        ),
+                      ),
                       const SizedBox(height: 10),
+                      userInformationForm(context),
                       const GreenLongButton(
-                          text: 'Continue', sendUserTo: HomePage())
+                        text: 'Continue',
+                        sendUserTo: HomePage(),
+                      ),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
