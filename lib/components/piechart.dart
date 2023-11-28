@@ -32,7 +32,7 @@ class PieChartValues extends StatelessWidget {
       (i) {
         const fontSize = 16.0;
         const radius = 100.0;
-        const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+        const shadows = [Shadow(color: Colors.white, blurRadius: 2)];
 
         switch (i) {
           case 0:

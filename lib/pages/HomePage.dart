@@ -55,9 +55,11 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: Stack(
           children: [
-            const SizedBox(
-              child: RiveAnimation.asset(
-                  'assets/rive/4720-9543-background-effect.riv',
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Lottie.asset(
+                  'assets/lottie/Animation - 1701142774656.json',
                   fit: BoxFit.cover),
             ),
             BackdropFilter(
@@ -77,8 +79,10 @@ class _HomePageState extends State<HomePage> {
                           visible: isVisibleCompanyLogo,
                           child: const CompanyName()
                               .animate()
-                              .fadeIn(duration: 1.5.seconds)
-                              .shimmer(duration: 1.5.seconds)),
+                              .shimmer(
+                                  delay: 500.milliseconds,
+                                  duration: 500.milliseconds)
+                              .fade()),
                       const SizedBox(height: 10),
                       Visibility(
                         visible: isVisibleSven1,
@@ -204,12 +208,13 @@ class _HomePageState extends State<HomePage> {
                                 width: 180 * screenScaling(context),
                                 height: 30,
                                 decoration: BoxDecoration(
-                                    gradient: const SweepGradient(
+                                    gradient: SweepGradient(
                                       colors: [
-                                        Color(0xff1f2c25),
-                                        Color(0xffc9ff99)
+                                        const Color(0xff1f2c25)
+                                            .withOpacity(0.8),
+                                        const Color(0xffc9ff99).withOpacity(0.8)
                                       ],
-                                      stops: [0.2, 0.75],
+                                      stops: const [0.2, 0.75],
                                       center: Alignment.topRight,
                                     ),
                                     borderRadius: BorderRadius.circular(15)),
@@ -239,7 +244,12 @@ class _HomePageState extends State<HomePage> {
                                       textColor: 0xffffffff,
                                       fontsize: 15),
                                 ),
-                              ),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                           ),
                         ],
@@ -259,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                         child: svenTutorial3()
                             .animate()
                             .shimmer(
-                                delay: 1000.milliseconds,
+                                delay: 500.milliseconds,
                                 duration: 500.milliseconds)
                             .fade(),
                       ),
@@ -268,7 +278,7 @@ class _HomePageState extends State<HomePage> {
                         child: svenTutorial3NewBudgetValues1()
                             .animate()
                             .shimmer(
-                                delay: 700.milliseconds,
+                                delay: 500.milliseconds,
                                 duration: 500.milliseconds)
                             .fade(),
                       ),
@@ -277,7 +287,7 @@ class _HomePageState extends State<HomePage> {
                         child: svenTutorial3NewBudgetValues2()
                             .animate()
                             .shimmer(
-                                delay: 700.milliseconds,
+                                delay: 500.milliseconds,
                                 duration: 500.milliseconds)
                             .fade(),
                       ),
@@ -301,12 +311,14 @@ class _HomePageState extends State<HomePage> {
                                     width: 270 * screenScaling(context),
                                     height: 30,
                                     decoration: BoxDecoration(
-                                        gradient: const SweepGradient(
+                                        gradient: SweepGradient(
                                           colors: [
-                                            Color(0xff1f2c25),
-                                            Color(0xffc9ff99)
+                                            const Color(0xff1f2c25)
+                                                .withOpacity(0.8),
+                                            const Color(0xffc9ff99)
+                                                .withOpacity(0.8)
                                           ],
-                                          stops: [0.2, 0.75],
+                                          stops: const [0.2, 0.75],
                                           center: Alignment.topRight,
                                         ),
                                         borderRadius:
@@ -342,7 +354,12 @@ class _HomePageState extends State<HomePage> {
                                           textColor: 0xffffffff,
                                           fontsize: 15),
                                     ),
-                                  ),
+                                  )
+                                      .animate()
+                                      .shimmer(
+                                          delay: 500.milliseconds,
+                                          duration: 500.milliseconds)
+                                      .fade(),
                                 ),
                               ],
                             ),
@@ -366,7 +383,6 @@ class _HomePageState extends State<HomePage> {
                                         height: 15,
                                         width:
                                             barWidth * screenScaling(context),
-                                        // width: calculatePercentBar(),
                                         decoration: BoxDecoration(
                                           gradient: SweepGradient(
                                             colors: [
@@ -379,7 +395,12 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                         ),
-                                      ),
+                                      )
+                                          .animate()
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                   ],
                                 ),
@@ -388,12 +409,17 @@ class _HomePageState extends State<HomePage> {
                                       '\$ ${calculateEazyBudget().toStringAsFixed(2)}',
                                   fontWeight: FontWeight.normal,
                                   textColor: 0xffffffff,
-                                  fontsize: 20,
+                                  fontsize: 25,
                                 ),
                               ],
                             ),
                           ],
-                        ).animate().fadeIn(delay: 0.5.seconds),
+                        )
+                            .animate()
+                            .shimmer(
+                                delay: 500.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
                       ),
                       Visibility(
                         visible: isVisibleGenerateEazyBudgetForm,
@@ -459,7 +485,12 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ],
-                              ),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             const SizedBox(height: 10),
                             Row(
@@ -498,12 +529,13 @@ class _HomePageState extends State<HomePage> {
                               visible: isVisibleGenerateEazyBudget2,
                               child: Container(
                                 decoration: BoxDecoration(
-                                    gradient: const SweepGradient(
+                                    gradient: SweepGradient(
                                       colors: [
-                                        Color(0xff1f2c25),
-                                        Color(0xffc9ff99)
+                                        const Color(0xff1f2c25)
+                                            .withOpacity(0.8),
+                                        const Color(0xffc9ff99).withOpacity(0.8)
                                       ],
-                                      stops: [0.2, 0.75],
+                                      stops: const [0.2, 0.75],
                                       center: Alignment.topRight,
                                     ),
                                     borderRadius: BorderRadius.circular(15)),
@@ -549,8 +581,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                                   .animate()
-                                  .fadeIn(duration: 700.milliseconds)
-                                  .shimmer(delay: 1.seconds),
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             Visibility(
                               visible: isVisibleCalculations,
@@ -583,8 +617,10 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   )
                                       .animate()
-                                      .fade(delay: 2.50.seconds)
-                                      .slideX(delay: 2.50.seconds),
+                                      .shimmer(
+                                          delay: 500.milliseconds,
+                                          duration: 500.milliseconds)
+                                      .fade(),
                                   const SizedBox(height: 10),
                                   Row(
                                     mainAxisAlignment:
@@ -613,8 +649,10 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   )
                                       .animate()
-                                      .fade(delay: 2.25.seconds)
-                                      .slideX(delay: 2.25.seconds),
+                                      .shimmer(
+                                          delay: 500.milliseconds,
+                                          duration: 500.milliseconds)
+                                      .fade(),
                                   const SizedBox(height: 10),
                                   Row(
                                     mainAxisAlignment:
@@ -634,8 +672,10 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   )
                                       .animate()
-                                      .fade(delay: 2.seconds)
-                                      .slideX(delay: 2.seconds),
+                                      .shimmer(
+                                          delay: 500.milliseconds,
+                                          duration: 500.milliseconds)
+                                      .fade(),
                                   const SizedBox(height: 10),
                                   Row(
                                     mainAxisAlignment:
@@ -664,19 +704,23 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   )
                                       .animate()
-                                      .fade(delay: 1.75.seconds)
-                                      .slideX(delay: 1.75.seconds),
+                                      .shimmer(
+                                          delay: 500.milliseconds,
+                                          duration: 500.milliseconds)
+                                      .fade(),
                                   const SizedBox(height: 10),
                                   Visibility(
                                     visible: isVisibleValueCorrection1,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          gradient: const SweepGradient(
+                                          gradient: SweepGradient(
                                             colors: [
-                                              Color(0xff1f2c25),
-                                              Color(0xffc9ff99)
+                                              const Color(0xff1f2c25)
+                                                  .withOpacity(0.8),
+                                              const Color(0xffc9ff99)
+                                                  .withOpacity(0.8)
                                             ],
-                                            stops: [0.2, 0.75],
+                                            stops: const [0.2, 0.75],
                                             center: Alignment.topRight,
                                           ),
                                           borderRadius:
@@ -726,18 +770,25 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    )
+                                        .animate()
+                                        .shimmer(
+                                            delay: 500.milliseconds,
+                                            duration: 500.milliseconds)
+                                        .fade(),
                                   ),
                                   Visibility(
                                     visible: isVisibleValueCorrection2,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          gradient: const SweepGradient(
+                                          gradient: SweepGradient(
                                             colors: [
-                                              Color(0xff1f2c25),
-                                              Color(0xffc9ff99)
+                                              const Color(0xff1f2c25)
+                                                  .withOpacity(0.8),
+                                              const Color(0xffc9ff99)
+                                                  .withOpacity(0.8)
                                             ],
-                                            stops: [0.2, 0.75],
+                                            stops: const [0.2, 0.75],
                                             center: Alignment.topRight,
                                           ),
                                           borderRadius:
@@ -787,7 +838,12 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    )
+                                        .animate()
+                                        .shimmer(
+                                            delay: 500.milliseconds,
+                                            duration: 500.milliseconds)
+                                        .fade(),
                                   ),
                                   const SizedBox(height: 10),
                                   Visibility(
@@ -863,7 +919,12 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    )
+                                        .animate()
+                                        .shimmer(
+                                            delay: 500.milliseconds,
+                                            duration: 500.milliseconds)
+                                        .fade(),
                                   ),
                                   Visibility(
                                     visible: continueButtonVisibility,
@@ -922,20 +983,29 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    )
+                                        .animate()
+                                        .shimmer(
+                                            delay: 500.milliseconds,
+                                            duration: 500.milliseconds)
+                                        .fade(),
                                   ),
                                 ],
                               )
                                   .animate()
-                                  .shimmer(delay: 3.seconds)
-                                  .slideY(
-                                      delay: 1.5.seconds,
-                                      duration: 1.25.seconds)
-                                  .fadeIn(delay: 1.5.seconds),
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             const SizedBox(height: 10)
                           ],
-                        ).animate().fadeIn(delay: 5.milliseconds),
+                        )
+                            .animate()
+                            .shimmer(
+                                delay: 500.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
                       ),
                       Visibility(
                         visible: isVisibleGenerateEazyBudgetButton,
@@ -984,8 +1054,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )
                               .animate()
-                              .fadeIn(duration: 700.milliseconds)
-                              .shimmer(delay: 1.seconds),
+                              .shimmer(
+                                  delay: 500.milliseconds,
+                                  duration: 500.milliseconds)
+                              .fade(),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -994,12 +1066,12 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                           child: Container(
                             decoration: BoxDecoration(
-                                gradient: const SweepGradient(
+                                gradient: SweepGradient(
                                   colors: [
-                                    Color(0xff1f2c25),
-                                    Color(0xffc9ff99)
+                                    const Color(0xff1f2c25).withOpacity(0.8),
+                                    const Color(0xffc9ff99).withOpacity(0.8)
                                   ],
-                                  stops: [0.2, 0.75],
+                                  stops: const [0.2, 0.75],
                                   center: Alignment.topRight,
                                 ),
                                 borderRadius: BorderRadius.circular(15)),
@@ -1013,6 +1085,7 @@ class _HomePageState extends State<HomePage> {
                                     isVisibleAddPaymentButton = false;
                                     isVisibleSven4 = false;
                                     isVisibleSven5 = true;
+                                    tutorialAddPaymentButton = true;
                                   },
                                 );
                               },
@@ -1034,8 +1107,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )
                               .animate()
-                              .shimmer(duration: 1.5.seconds)
-                              .fadeIn(duration: 1.seconds),
+                              .shimmer(
+                                  delay: 500.milliseconds,
+                                  duration: 500.milliseconds)
+                              .fade(),
                         ),
                       ),
                       Visibility(
@@ -1102,14 +1177,22 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                )
+                                    .animate()
+                                    .shimmer(
+                                        delay: 500.milliseconds,
+                                        duration: 500.milliseconds)
+                                    .fade(),
                               ),
                             ),
-                            const SizedBox(height: 10),
                             Visibility(
                               visible: viewDetailsVisiblity,
                               child: Column(
                                 children: [
+                                  const BigTextWidget(
+                                      text: 'Budget details:',
+                                      weight: FontWeight.bold,
+                                      fontsize: 20),
                                   const SizedBox(height: 10),
                                   sven(),
                                   const SizedBox(height: 10),
@@ -1271,7 +1354,12 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ],
-                              ),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             const SizedBox(height: 10),
                             Visibility(
@@ -1317,16 +1405,41 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                )
+                                    .animate()
+                                    .shimmer(
+                                        delay: 500.milliseconds,
+                                        duration: 500.milliseconds)
+                                    .fade(),
                               ),
                             ),
                           ],
-                        ),
+                        )
+                            .animate()
+                            .shimmer(
+                                delay: 500.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
                       ),
                       Visibility(
                         visible: svenReportsVisiblity,
                         child: Column(
                           children: [
+                            const SizedBox(height: 10),
+                            const Row(
+                              children: [
+                                BigTextWidget(
+                                    text: 'Budget reports:',
+                                    weight: FontWeight.bold,
+                                    fontsize: 20),
+                                SmallTextWidget(
+                                    text: 'Tap Sven to close details.',
+                                    fontWeight: FontWeight.bold,
+                                    textColor: 0xffffffff,
+                                    fontsize: 10)
+                              ],
+                            ),
+                            const SizedBox(height: 10),
                             Container(
                               decoration: BoxDecoration(
                                 gradient: SweepGradient(
@@ -1340,7 +1453,6 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               width: 430,
-                              height: 100,
                               child: ElevatedButton(
                                 onPressed: () {
                                   setState(() {
@@ -1357,53 +1469,38 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 5),
-                                  child: Stack(
+                                  child: Row(
                                     children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            height: 60,
-                                            width: 60,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: ClipOval(
-                                              child: Lottie.asset(
-                                                'assets/lottie/qBMpUNvnCu.json',
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                      Container(
+                                        height: 60,
+                                        width: 60,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: ClipOval(
+                                          child: Lottie.asset(
+                                            'assets/lottie/qBMpUNvnCu.json',
+                                            fit: BoxFit.cover,
                                           ),
-                                          const SizedBox(width: 10),
-                                          Expanded(
-                                            child: AnimatedTextKit(
-                                              animatedTexts: [
-                                                TyperAnimatedText(
-                                                  'Here are some tips to save more and prevent you from spending over your EazyBudget.',
-                                                  textStyle: const TextStyle(
-                                                    color: Color(0xffffffff),
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily: 'Poppins',
-                                                  ),
-                                                  speed: const Duration(
-                                                      milliseconds: 25),
-                                                ),
-                                              ],
-                                              totalRepeatCount: 1,
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                      const Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Text(
-                                          'Tap Sven to close reports',
-                                          style: TextStyle(
-                                            fontSize: 9,
-                                            fontFamily: 'Poppins',
-                                            color: Colors.white,
-                                          ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: AnimatedTextKit(
+                                          animatedTexts: [
+                                            TyperAnimatedText(
+                                              'Here are some tips to save more and prevent you from spending over your EazyBudget.',
+                                              textStyle: const TextStyle(
+                                                color: Color(0xffffffff),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: 'Poppins',
+                                              ),
+                                              speed: const Duration(
+                                                  milliseconds: 25),
+                                            ),
+                                          ],
+                                          totalRepeatCount: 1,
                                         ),
                                       ),
                                     ],
@@ -1496,7 +1593,12 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ],
-                        ),
+                        )
+                            .animate()
+                            .shimmer(
+                                delay: 500.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
                       ),
                       Visibility(
                         visible: paymentCardsListVisibility,
@@ -1518,12 +1620,14 @@ class _HomePageState extends State<HomePage> {
                                         width: 180 * screenScaling(context),
                                         height: 30,
                                         decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
+                                            gradient: SweepGradient(
                                               colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
+                                                const Color(0xff1f2c25)
+                                                    .withOpacity(0.8),
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8)
                                               ],
-                                              stops: [0.2, 0.75],
+                                              stops: const [0.2, 0.75],
                                               center: Alignment.topRight,
                                             ),
                                             borderRadius:
@@ -1552,7 +1656,12 @@ class _HomePageState extends State<HomePage> {
                                               textColor: 0xffffffff,
                                               fontsize: 15),
                                         ),
-                                      ),
+                                      )
+                                          .animate()
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                     Visibility(
                                       visible: cancelAddPaymentVisibility,
@@ -1560,12 +1669,14 @@ class _HomePageState extends State<HomePage> {
                                         width: 180 * screenScaling(context),
                                         height: 30,
                                         decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
+                                            gradient: SweepGradient(
                                               colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
+                                                const Color(0xff1f2c25)
+                                                    .withOpacity(0.8),
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8)
                                               ],
-                                              stops: [0.2, 0.75],
+                                              stops: const [0.2, 0.75],
                                               center: Alignment.topRight,
                                             ),
                                             borderRadius:
@@ -1596,7 +1707,12 @@ class _HomePageState extends State<HomePage> {
                                               textColor: 0xffffffff,
                                               fontsize: 15),
                                         ),
-                                      ),
+                                      )
+                                          .animate()
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                   ],
                                 ),
@@ -1796,10 +1912,9 @@ class _HomePageState extends State<HomePage> {
                                                             .spaceBetween,
                                                     children: [
                                                       const SmallTextWidget(
-                                                          text:
-                                                              'Tap card to remove',
+                                                          text: 'Tap to remove',
                                                           fontWeight:
-                                                              FontWeight.normal,
+                                                              FontWeight.bold,
                                                           textColor: 0xffffffff,
                                                           fontsize: 10),
                                                       Row(
@@ -1853,10 +1968,20 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   },
                                 ),
-                              ),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                           ],
-                        ),
+                        )
+                            .animate()
+                            .shimmer(
+                                delay: 500.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
                       ),
                       Visibility(
                         visible: isVisiblePaymentForm,
@@ -1918,7 +2043,12 @@ class _HomePageState extends State<HomePage> {
                                         ],
                                       ),
                                     ),
-                                  ),
+                                  )
+                                      .animate()
+                                      .shimmer(
+                                          delay: 500.milliseconds,
+                                          duration: 500.milliseconds)
+                                      .fade(),
                                 ),
                                 const SizedBox(height: 10),
                                 UserInput(
@@ -1963,8 +2093,10 @@ class _HomePageState extends State<HomePage> {
                               ],
                             )
                                 .animate()
-                                .fadeIn(delay: 100.milliseconds)
-                                .slideY(delay: 100.milliseconds),
+                                .shimmer(
+                                    delay: 500.milliseconds,
+                                    duration: 500.milliseconds)
+                                .fade(),
                             const SizedBox(height: 10),
                             Column(
                               children: [
@@ -1985,12 +2117,14 @@ class _HomePageState extends State<HomePage> {
                                             width: 150 * screenScaling(context),
                                             height: 30,
                                             decoration: BoxDecoration(
-                                                gradient: const SweepGradient(
+                                                gradient: SweepGradient(
                                                   colors: [
-                                                    Color(0xff1f2c25),
-                                                    Color(0xffc9ff99)
+                                                    const Color(0xff1f2c25)
+                                                        .withOpacity(0.8),
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8)
                                                   ],
-                                                  stops: [0.2, 0.75],
+                                                  stops: const [0.2, 0.75],
                                                   center: Alignment.topRight,
                                                 ),
                                                 borderRadius:
@@ -2019,8 +2153,12 @@ class _HomePageState extends State<HomePage> {
                                                   textColor: 0xffffffff,
                                                   fontsize: 15),
                                             ),
-                                          ).animate().fadeIn(
-                                              duration: 500.milliseconds),
+                                          )
+                                              .animate()
+                                              .shimmer(
+                                                  delay: 500.milliseconds,
+                                                  duration: 500.milliseconds)
+                                              .fade(),
                                         ),
                                         Visibility(
                                           visible: isVisibleConfirmDueDate,
@@ -2028,12 +2166,14 @@ class _HomePageState extends State<HomePage> {
                                             width: 150 * screenScaling(context),
                                             height: 30,
                                             decoration: BoxDecoration(
-                                                gradient: const SweepGradient(
+                                                gradient: SweepGradient(
                                                   colors: [
-                                                    Color(0xff1f2c25),
-                                                    Color(0xffc9ff99)
+                                                    const Color(0xff1f2c25)
+                                                        .withOpacity(0.8),
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8)
                                                   ],
-                                                  stops: [0.2, 0.75],
+                                                  stops: const [0.2, 0.75],
                                                   center: Alignment.topRight,
                                                 ),
                                                 borderRadius:
@@ -2066,18 +2206,27 @@ class _HomePageState extends State<HomePage> {
                                                   textColor: 0xffffffff,
                                                   fontsize: 15),
                                             ),
-                                          ).animate().fadeIn(
-                                              duration: 500.milliseconds),
+                                          )
+                                              .animate()
+                                              .shimmer(
+                                                  delay: 500.milliseconds,
+                                                  duration: 500.milliseconds)
+                                              .fade(),
                                         ),
                                       ],
                                     ),
                                     Visibility(
                                       visible: isVisibleDueDate,
                                       child: SmallTextWidget(
-                                          text: selectedDate.text,
-                                          fontWeight: FontWeight.bold,
-                                          textColor: 0xffc9ff99,
-                                          fontsize: 18),
+                                              text: selectedDate.text,
+                                              fontWeight: FontWeight.bold,
+                                              textColor: 0xffc9ff99,
+                                              fontsize: 18)
+                                          .animate()
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                   ],
                                 ),
@@ -2166,14 +2315,21 @@ class _HomePageState extends State<HomePage> {
                                           _focusedDay = focusedDay;
                                         });
                                       },
-                                    ),
+                                    )
+                                        .animate()
+                                        .shimmer(
+                                            delay: 500.milliseconds,
+                                            duration: 500.milliseconds)
+                                        .fade(),
                                   ),
                                 ),
                               ],
                             )
                                 .animate()
-                                .fadeIn(delay: 250.milliseconds)
-                                .slideY(delay: 250.milliseconds),
+                                .shimmer(
+                                    delay: 500.milliseconds,
+                                    duration: 500.milliseconds)
+                                .fade(),
                             Column(
                               children: [
                                 const SizedBox(height: 10),
@@ -2220,11 +2376,13 @@ class _HomePageState extends State<HomePage> {
                                             dayButtonColor21 =
                                                 const Color(0xff1f2c25);
                                             dayButtonColor22 =
-                                                const Color(0xffc9ff99);
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8);
                                             dayButtonColor11 =
                                                 const Color(0xff1f2c25);
                                             dayButtonColor12 =
-                                                const Color(0xffc9ff99);
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8);
                                             dayheight3 = 50;
                                             dayheight2 = 30;
                                             dayheight1 = 30;
@@ -2285,7 +2443,8 @@ class _HomePageState extends State<HomePage> {
                                             dayButtonColor31 =
                                                 const Color(0xff1f2c25);
                                             dayButtonColor32 =
-                                                const Color(0xffc9ff99);
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8);
                                             dayButtonColor21 =
                                                 const Color(0xff151515);
                                             dayButtonColor22 =
@@ -2293,7 +2452,8 @@ class _HomePageState extends State<HomePage> {
                                             dayButtonColor11 =
                                                 const Color(0xff1f2c25);
                                             dayButtonColor12 =
-                                                const Color(0xffc9ff99);
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8);
                                             dayheight3 = 30;
                                             dayheight2 = 50;
                                             dayheight1 = 30;
@@ -2354,11 +2514,13 @@ class _HomePageState extends State<HomePage> {
                                             dayButtonColor31 =
                                                 const Color(0xff1f2c25);
                                             dayButtonColor32 =
-                                                const Color(0xffc9ff99);
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8);
                                             dayButtonColor21 =
                                                 const Color(0xff1f2c25);
                                             dayButtonColor22 =
-                                                const Color(0xffc9ff99);
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8);
                                             dayButtonColor11 =
                                                 const Color(0xff151515);
                                             dayButtonColor12 =
@@ -2402,8 +2564,10 @@ class _HomePageState extends State<HomePage> {
                               ],
                             )
                                 .animate()
-                                .fadeIn(delay: 500.milliseconds)
-                                .slideY(delay: 500.milliseconds),
+                                .shimmer(
+                                    delay: 500.milliseconds,
+                                    duration: 500.milliseconds)
+                                .fade(),
                             Visibility(
                               visible: isVisible3,
                               child: Container(
@@ -2432,14 +2596,14 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        height: 85,
-                                        width: 55,
+                                        height: 60,
+                                        width: 60,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: const ClipOval(
-                                          child: RiveAnimation.asset(
-                                            'assets/rive/3287-6917-headless-bear.riv',
+                                        child: ClipOval(
+                                          child: Lottie.asset(
+                                            'assets/lottie/qBMpUNvnCu.json',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -2469,7 +2633,12 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                 ),
-                              ).animate().fadeIn().slideY(),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             Visibility(
                               visible: isVisible2,
@@ -2499,14 +2668,14 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        height: 85,
-                                        width: 55,
+                                        height: 60,
+                                        width: 60,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: const ClipOval(
-                                          child: RiveAnimation.asset(
-                                            'assets/rive/3287-6917-headless-bear.riv',
+                                        child: ClipOval(
+                                          child: Lottie.asset(
+                                            'assets/lottie/qBMpUNvnCu.json',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -2536,7 +2705,12 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                 ),
-                              ).animate().fadeIn().slideY(),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             Visibility(
                               visible: isVisible1,
@@ -2566,14 +2740,14 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        height: 85,
-                                        width: 55,
+                                        height: 60,
+                                        width: 60,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: const ClipOval(
-                                          child: RiveAnimation.asset(
-                                            'assets/rive/3287-6917-headless-bear.riv',
+                                        child: ClipOval(
+                                          child: Lottie.asset(
+                                            'assets/lottie/qBMpUNvnCu.json',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -2603,209 +2777,306 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                 ),
-                              ).animate().fadeIn().slideY(),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             const SizedBox(height: 10),
                             Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    gradient: const SweepGradient(
-                                      colors: [
-                                        Color(0xff1f2c25),
-                                        Color(0xffc9ff99)
-                                      ],
-                                      stops: [0.2, 0.75],
-                                      center: Alignment.topRight,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15)),
-                                width: 350 * screenScaling(context),
-                                height: 56,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (paymentTitle.text == '') {
-                                      setState(() {
-                                        errorMessageVisiblity2 = true;
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title. Please add a title.';
-                                      });
-                                    } else if (paymentTitle.text == '' &&
-                                        payment.text == '') {
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title and payment amount. Please add a title and amount.';
-                                      });
-                                    } else if (paymentTitle.text == '' &&
-                                        payment.text == '' &&
-                                        selectedDate.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title, payment amount, and payment due date. Please add a title, amount, and confirm due date.';
-                                      });
-                                    } else if (paymentTitle.text == '' &&
-                                        payment.text == '' &&
-                                        selectedDate.text == '' &&
-                                        pickedDay.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title, payment amount, payment due date, and reminder. Please add a title, amount, confirm due date, and set a reminder.';
-                                      });
-                                    } else if (payment.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment amount. Please add amount.';
-                                      });
-                                    } else if (selectedDate.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing due date. Please confirm due date.';
-                                      });
-                                    } else if (pickedDay.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing reminder. Please set a reminder.';
-                                      });
-                                    } else if (paymentTitle.text == '' &&
-                                        selectedDate.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title and due date. Please add a title and confirm due date.';
-                                      });
-                                    } else if (paymentTitle.text == '' &&
-                                        pickedDay.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title and reminder. Please add a title and set a reminder.';
-                                      });
-                                    } else if (paymentTitle.text == '' &&
-                                        payment.text == '' &&
-                                        pickedDay.text == '') {
-                                      errorMessageVisiblity2 = true;
-                                      setState(() {
-                                        errorColor = 0xffff0505;
-                                        errorMessage =
-                                            'Missing payment title, payment amount, and reminder. Please add a title, amount, and set a reminder.';
-                                      });
-                                    } else if (paymentTitle.text != '' &&
-                                        payment.text != '' &&
-                                        selectedDate.text != '' &&
-                                        pickedDay.text != '') {
-                                      setState(
-                                        () {
-                                          isVisiblePaymentForm = false;
-                                          isVisiblePercentageBar = true;
-                                          List<String> newCard = [
-                                            paymentTitle.text,
-                                            payment.text,
-                                            selectedDate.text,
-                                            pickedDay.text
-                                          ];
-                                          paymentCardList.add(newCard);
-                                          totalExpenditureVisiblity = true;
-                                          paymentCardsListVisibility = true;
-                                          transactionsListVisiblity = true;
-                                          cardListVisibility = true;
-                                          total +=
-                                              double.tryParse(payment.text) ??
-                                                  0.0;
-                                          totalNeeds +=
-                                              double.tryParse(payment.text) ??
-                                                  0.0;
-                                          calculatePercentBar(total);
-                                          if (calculatePercentBar(total) >=
-                                              270) {
-                                            progressBarColor = 0xffff0505;
-                                            barWidth = 270;
+                              child: Stack(
+                                children: [
+                                  Visibility(
+                                    visible: tutorialAddPaymentButton,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          gradient: SweepGradient(
+                                            colors: [
+                                              const Color(0xff1f2c25)
+                                                  .withOpacity(0.8),
+                                              const Color(0xffc9ff99)
+                                                  .withOpacity(0.8)
+                                            ],
+                                            stops: const [0.2, 0.75],
+                                            center: Alignment.topRight,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      width: 350 * screenScaling(context),
+                                      height: 56,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          if (paymentTitle.text == '' ||
+                                              payment.text == '' ||
+                                              selectedDate.text == '' ||
+                                              pickedDay.text == '') {
+                                            setState(() {
+                                              errorMessageVisiblity2 = true;
+                                              errorColor = 0xffff0505;
+                                              errorMessage =
+                                                  'Missing values. Please check title, amount, confirm date, and select reminder.';
+                                            });
                                           } else {
-                                            barWidth =
+                                            setState(
+                                              () {
+                                                isVisiblePaymentForm = false;
+                                                isVisiblePercentageBar = true;
+                                                List<String> newCard = [
+                                                  paymentTitle.text,
+                                                  payment.text,
+                                                  selectedDate.text,
+                                                  pickedDay.text
+                                                ];
+                                                paymentCardList.add(newCard);
+                                                totalExpenditureVisiblity =
+                                                    true;
+                                                paymentCardsListVisibility =
+                                                    true;
+                                                transactionsListVisiblity =
+                                                    true;
+                                                cardListVisibility = true;
+                                                total += double.tryParse(
+                                                        payment.text) ??
+                                                    0.0;
+                                                totalNeeds += double.tryParse(
+                                                        payment.text) ??
+                                                    0.0;
                                                 calculatePercentBar(total);
-                                            progressBarColor = 0xffC3A9FF;
+                                                if (calculatePercentBar(
+                                                        total) >=
+                                                    270) {
+                                                  progressBarColor = 0xffff0505;
+                                                  barWidth = 270;
+                                                } else {
+                                                  barWidth =
+                                                      calculatePercentBar(
+                                                          total);
+                                                  progressBarColor = 0xffC3A9FF;
+                                                }
+                                                paymentTitle.text = '';
+                                                payment.text = '';
+                                                selectedDate.text = '';
+                                                pickedDay.text = '';
+                                                dayButtonColor31 =
+                                                    const Color(0xff1f2c25);
+                                                dayButtonColor32 =
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8);
+                                                dayButtonColor21 =
+                                                    const Color(0xff1f2c25);
+                                                dayButtonColor22 =
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8);
+                                                dayButtonColor11 =
+                                                    const Color(0xff1f2c25);
+                                                dayButtonColor12 =
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8);
+                                                dayheight3 = 30;
+                                                dayheight2 = 30;
+                                                dayheight1 = 30;
+                                                bottomLeftRight3 = 15;
+                                                bottomLeftRight2 = 15;
+                                                bottomLeftRight1 = 15;
+                                                isVisible3 = false;
+                                                isVisible2 = false;
+                                                isVisible1 = false;
+                                                addTransactionButtonVisibility =
+                                                    true;
+                                                addPaymentVisiblity = true;
+                                                isVisibleCompanyLogo = true;
+                                                cardsListHeight += 165;
+                                                cancelAddPaymentVisibility =
+                                                    false;
+                                                reportsButtonVisiblity = true;
+                                                viewDetailsButtonVisiblity =
+                                                    true;
+                                                isVisibleSven5 = false;
+                                                isVisibleSven6 = true;
+                                                errorMessageVisiblity2 = false;
+                                                errorColor = 0xff1f2c25;
+                                                errorMessage =
+                                                    'Complete the form';
+                                                tutorialAddPaymentButton =
+                                                    false;
+                                                permanentAddPaymentButton =
+                                                    true;
+                                              },
+                                            );
                                           }
-                                          paymentTitle.text = '';
-                                          payment.text = '';
-                                          selectedDate.text = '';
-                                          pickedDay.text = '';
-                                          dayButtonColor31 =
-                                              const Color(0xff1f2c25);
-                                          dayButtonColor32 =
-                                              const Color(0xffc9ff99);
-                                          dayButtonColor21 =
-                                              const Color(0xff1f2c25);
-                                          dayButtonColor22 =
-                                              const Color(0xffc9ff99);
-                                          dayButtonColor11 =
-                                              const Color(0xff1f2c25);
-                                          dayButtonColor12 =
-                                              const Color(0xffc9ff99);
-                                          dayheight3 = 30;
-                                          dayheight2 = 30;
-                                          dayheight1 = 30;
-                                          bottomLeftRight3 = 15;
-                                          bottomLeftRight2 = 15;
-                                          bottomLeftRight1 = 15;
-                                          isVisible3 = false;
-                                          isVisible2 = false;
-                                          isVisible1 = false;
-                                          addTransactionButtonVisibility = true;
-                                          addPaymentVisiblity = true;
-                                          isVisibleCompanyLogo = true;
-                                          cardsListHeight += 165;
-                                          cancelAddPaymentVisibility = false;
-                                          reportsButtonVisiblity = true;
-                                          viewDetailsButtonVisiblity = true;
-                                          isVisibleSven5 = false;
-                                          isVisibleSven6 = true;
-                                          errorMessageVisiblity2 = false;
-                                          errorColor = 0xff1f2c25;
-                                          errorMessage = 'Complete the form';
                                         },
-                                      );
-                                    }
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    elevation: 5.0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 5.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                        child: const Center(
+                                          child: SmallTextWidget(
+                                            text: 'Add Payment',
+                                            fontWeight: FontWeight.w600,
+                                            textColor: 0xffffffff,
+                                            fontsize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                        .animate()
+                                        .shimmer(duration: 1.5.seconds)
+                                        .fadeIn(duration: 1.seconds),
                                   ),
-                                  child: const Center(
-                                    child: SmallTextWidget(
-                                      text: 'Add Payment',
-                                      fontWeight: FontWeight.w600,
-                                      textColor: 0xffffffff,
-                                      fontsize: 16,
-                                    ),
-                                  ),
-                                ),
-                              )
-                                  .animate()
-                                  .shimmer(duration: 1.5.seconds)
-                                  .fadeIn(duration: 1.seconds),
+                                  Visibility(
+                                    visible: permanentAddPaymentButton,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          gradient: SweepGradient(
+                                            colors: [
+                                              const Color(0xff1f2c25)
+                                                  .withOpacity(0.8),
+                                              const Color(0xffc9ff99)
+                                                  .withOpacity(0.8)
+                                            ],
+                                            stops: const [0.2, 0.75],
+                                            center: Alignment.topRight,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      width: 350 * screenScaling(context),
+                                      height: 56,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          if (paymentTitle.text == '' ||
+                                              payment.text == '' ||
+                                              selectedDate.text == '' ||
+                                              pickedDay.text == '') {
+                                            setState(() {
+                                              errorMessageVisiblity2 = true;
+                                              errorColor = 0xffff0505;
+                                              errorMessage =
+                                                  'Missing values. Please check title, amount, confirm date, and select reminder.';
+                                            });
+                                          } else {
+                                            setState(
+                                              () {
+                                                isVisiblePaymentForm = false;
+                                                isVisiblePercentageBar = true;
+                                                List<String> newCard = [
+                                                  paymentTitle.text,
+                                                  payment.text,
+                                                  selectedDate.text,
+                                                  pickedDay.text
+                                                ];
+                                                paymentCardList.add(newCard);
+                                                totalExpenditureVisiblity =
+                                                    true;
+                                                paymentCardsListVisibility =
+                                                    true;
+                                                transactionsListVisiblity =
+                                                    true;
+                                                cardListVisibility = true;
+                                                total += double.tryParse(
+                                                        payment.text) ??
+                                                    0.0;
+                                                totalNeeds += double.tryParse(
+                                                        payment.text) ??
+                                                    0.0;
+                                                calculatePercentBar(total);
+                                                if (calculatePercentBar(
+                                                        total) >=
+                                                    270) {
+                                                  progressBarColor = 0xffff0505;
+                                                  barWidth = 270;
+                                                } else {
+                                                  barWidth =
+                                                      calculatePercentBar(
+                                                          total);
+                                                  progressBarColor = 0xffC3A9FF;
+                                                }
+                                                paymentTitle.text = '';
+                                                payment.text = '';
+                                                selectedDate.text = '';
+                                                pickedDay.text = '';
+                                                dayButtonColor31 =
+                                                    const Color(0xff1f2c25);
+                                                dayButtonColor32 =
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8);
+                                                dayButtonColor21 =
+                                                    const Color(0xff1f2c25);
+                                                dayButtonColor22 =
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8);
+                                                dayButtonColor11 =
+                                                    const Color(0xff1f2c25);
+                                                dayButtonColor12 =
+                                                    const Color(0xffc9ff99)
+                                                        .withOpacity(0.8);
+                                                dayheight3 = 30;
+                                                dayheight2 = 30;
+                                                dayheight1 = 30;
+                                                bottomLeftRight3 = 15;
+                                                bottomLeftRight2 = 15;
+                                                bottomLeftRight1 = 15;
+                                                isVisible3 = false;
+                                                isVisible2 = false;
+                                                isVisible1 = false;
+                                                addTransactionButtonVisibility =
+                                                    true;
+                                                addPaymentVisiblity = true;
+                                                isVisibleCompanyLogo = true;
+                                                cardsListHeight += 165;
+                                                cancelAddPaymentVisibility =
+                                                    false;
+                                                reportsButtonVisiblity = true;
+                                                viewDetailsButtonVisiblity =
+                                                    true;
+                                                isVisibleSven5 = false;
+                                                isVisibleSven6 = true;
+                                                errorMessageVisiblity2 = false;
+                                                errorColor = 0xff1f2c25;
+                                                errorMessage =
+                                                    'Complete the form';
+                                              },
+                                            );
+                                          }
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 5.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                        child: const Center(
+                                          child: SmallTextWidget(
+                                            text: 'Add Payment',
+                                            fontWeight: FontWeight.w600,
+                                            textColor: 0xffffffff,
+                                            fontsize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                        .animate()
+                                        .shimmer(duration: 1.5.seconds)
+                                        .fadeIn(duration: 1.seconds),
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
+                      const SizedBox(height: 10),
                       Visibility(
                         visible: transactionsListVisiblity,
                         child: Column(
                           children: [
-                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -2822,12 +3093,14 @@ class _HomePageState extends State<HomePage> {
                                         width: 180 * screenScaling(context),
                                         height: 30,
                                         decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
+                                            gradient: SweepGradient(
                                               colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
+                                                const Color(0xff1f2c25)
+                                                    .withOpacity(0.8),
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8)
                                               ],
-                                              stops: [0.2, 0.75],
+                                              stops: const [0.2, 0.75],
                                               center: Alignment.topRight,
                                             ),
                                             borderRadius:
@@ -2859,7 +3132,12 @@ class _HomePageState extends State<HomePage> {
                                               textColor: 0xffffffff,
                                               fontsize: 15),
                                         ),
-                                      ),
+                                      )
+                                          .animate()
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                     Visibility(
                                       visible: addTransactionButtonVisibility,
@@ -2867,12 +3145,14 @@ class _HomePageState extends State<HomePage> {
                                         width: 180 * screenScaling(context),
                                         height: 30,
                                         decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
+                                            gradient: SweepGradient(
                                               colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
+                                                const Color(0xff1f2c25)
+                                                    .withOpacity(0.8),
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8)
                                               ],
-                                              stops: [0.2, 0.75],
+                                              stops: const [0.2, 0.75],
                                               center: Alignment.topRight,
                                             ),
                                             borderRadius:
@@ -2903,7 +3183,12 @@ class _HomePageState extends State<HomePage> {
                                               textColor: 0xffffffff,
                                               fontsize: 15),
                                         ),
-                                      ),
+                                      )
+                                          .animate()
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                   ],
                                 )
@@ -3047,12 +3332,14 @@ class _HomePageState extends State<HomePage> {
                                     Center(
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            gradient: const SweepGradient(
+                                            gradient: SweepGradient(
                                               colors: [
-                                                Color(0xff1f2c25),
-                                                Color(0xffc9ff99)
+                                                const Color(0xff1f2c25)
+                                                    .withOpacity(0.8),
+                                                const Color(0xffc9ff99)
+                                                    .withOpacity(0.8)
                                               ],
-                                              stops: [0.2, 0.75],
+                                              stops: const [0.2, 0.75],
                                               center: Alignment.topRight,
                                             ),
                                             borderRadius:
@@ -3148,12 +3435,19 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       )
                                           .animate()
-                                          .shimmer(duration: 1.5.seconds)
-                                          .fadeIn(duration: 1.seconds),
+                                          .shimmer(
+                                              delay: 500.milliseconds,
+                                              duration: 500.milliseconds)
+                                          .fade(),
                                     ),
                                   ],
                                 ),
-                              ),
+                              )
+                                  .animate()
+                                  .shimmer(
+                                      delay: 500.milliseconds,
+                                      duration: 500.milliseconds)
+                                  .fade(),
                             ),
                             const SizedBox(height: 10),
                             SizedBox(
@@ -3231,7 +3525,7 @@ class _HomePageState extends State<HomePage> {
                                                     const SmallTextWidget(
                                                         text: 'Tap to remove',
                                                         fontWeight:
-                                                            FontWeight.normal,
+                                                            FontWeight.bold,
                                                         textColor: 0xffffffff,
                                                         fontsize: 10),
                                                     SmallTextWidget(
@@ -3243,7 +3537,6 @@ class _HomePageState extends State<HomePage> {
                                                         fontsize: 18)
                                                   ],
                                                 ),
-                                                const SizedBox(height: 5),
                                               ],
                                             )
                                           ],
@@ -3255,7 +3548,12 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ],
-                        ),
+                        )
+                            .animate()
+                            .shimmer(
+                                delay: 500.milliseconds,
+                                duration: 500.milliseconds)
+                            .fade(),
                       ),
                       const SizedBox(height: 50),
                     ],

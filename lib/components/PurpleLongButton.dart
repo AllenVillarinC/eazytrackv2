@@ -22,7 +22,7 @@ class PurpleLongButton extends StatelessWidget {
             center: Alignment.topRight,
           ),
           borderRadius: BorderRadius.circular(15)),
-      width: 430 * screenScaling(context),
+      width: 350 * screenScaling(context),
       height: 56,
       child: ElevatedButton(
         onPressed: () {

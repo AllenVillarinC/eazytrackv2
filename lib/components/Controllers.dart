@@ -91,6 +91,8 @@ bool isVisibleSven6 = false;
 bool userButtonVisiblity = false;
 bool errorMessage3 = false;
 bool errorMessageVisiblity2 = false;
+bool tutorialAddPaymentButton = false;
+bool permanentAddPaymentButton = false;
 
 Color dayButtonColor31 = const Color(0xff1f2c25);
 Color dayButtonColor32 = const Color(0xffc9ff99);

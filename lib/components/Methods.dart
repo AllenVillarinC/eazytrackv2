@@ -1,10 +1,7 @@
-import 'package:eazytrackv2/pages/user_reports_page.dart';
-import 'package:eazytrackv2/pages/view_details_page.dart';
+
 import 'package:flutter/material.dart';
 import '1_ScreenScale.dart';
-import 'GreenLongButton.dart';
 import 'Controllers.dart';
-import 'T_BigText.dart';
 import 'T_SmallText.dart';
 import 'UI_SmallUserInput.dart';
 import 'UI_TextFormUserInput.dart';
@@ -124,7 +121,7 @@ Column userInformationForm(BuildContext context) {
       SizedBox(
         width: 430 * screenScaling(context),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               width: 160 * screenScaling(context),
@@ -180,7 +177,7 @@ Column userInformationForm(BuildContext context) {
       SizedBox(
         width: 430 * screenScaling(context),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               width: 160 * screenScaling(context),
@@ -307,49 +304,3 @@ Column systemGenerateEazyBudget(BuildContext context) {
   );
 }
 
-Column userEazyBudgetReport(BuildContext context) {
-  return Column(
-    children: [
-      const Align(
-        alignment: Alignment.centerLeft,
-        child: BigTextWidget(
-          text: 'Here is your planned EazyBudget!',
-          weight: FontWeight.w800,
-          fontsize: 25,
-        ),
-      ),
-      const SizedBox(height: 15),
-      TextFormUserInput(
-        label: 'Total planned budget',
-        hiddenLabel: '\$ 0.00',
-        controllerName: totalPlannedBudget,
-        regExp: r'[0-9.]+',
-      ),
-      TextFormUserInput(
-        label: 'Personal Savings',
-        hiddenLabel: '\$ 0.00',
-        controllerName: personalSavings,
-        regExp: r'[0-9.]+',
-      ),
-      TextFormUserInput(
-        label: 'Total expenditures',
-        hiddenLabel: '\$ 0.00',
-        controllerName: totalExpenditures,
-        regExp: r'[0-9.]+',
-      ),
-      TextFormUserInput(
-        label: 'Net balance',
-        hiddenLabel: '\$ 0.00',
-        controllerName: netBalance,
-        regExp: r'[0-9.]+',
-      ),
-      const SizedBox(height: 15),
-      Image.asset('assets/images/moneybag.png'),
-      const GreenLongButton(
-          text: 'View details', sendUserTo: ViewDetailsPage()),
-      const SizedBox(height: 15),
-      const GreenLongButton(text: 'Reports', sendUserTo: UserReportsPage()),
-      const SizedBox(height: 15),
-    ],
-  );
-}

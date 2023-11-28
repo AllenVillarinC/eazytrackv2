@@ -22,11 +22,14 @@ class GreenLongButton extends StatelessWidget {
             center: Alignment.topRight,
           ),
           borderRadius: BorderRadius.circular(15)),
-      width: 430 * screenScaling(context),
+      width: 350 * screenScaling(context),
       height: 56,
       child: ElevatedButton(
         onPressed: () {
-          // add here
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => sendUserTo),
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
