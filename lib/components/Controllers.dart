@@ -89,6 +89,8 @@ bool viewDetailsVisiblity = false;
 bool viewDetailsButtonVisiblity = false;
 bool isVisibleSven6 = false;
 bool userButtonVisiblity = false;
+bool errorMessage3 = false;
+bool errorMessageVisiblity2 = false;
 
 Color dayButtonColor31 = const Color(0xff1f2c25);
 Color dayButtonColor32 = const Color(0xffc9ff99);
@@ -121,6 +123,11 @@ String message3 = 'Gotcha, I will remind you 3 days before the due date.';
 String message2 = 'Noted, I will remind you 2 days before the due date.';
 String message1 = 'Roger that, I will remind you a day before the due date.';
 
+double barWidth = calculatePercentBar(total);
+
 String errorMessage = 'Complete the form';
+String errorMessage2 = 'Complete the form';
 
 int errorColor = 0xff1f2c25;
+int errorColor2 = 0xff1f2c25;
+int progressBarColor = 0xffC3A9FF;

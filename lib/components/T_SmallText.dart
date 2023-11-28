@@ -18,7 +18,7 @@ class SmallTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.left,
       style: TextStyle(
         fontFamily: 'Poppins',
         fontWeight: fontWeight,

@@ -8,6 +8,7 @@ import 'package:eazytrackv2/components/T_BigText.dart';
 import 'package:eazytrackv2/components/T_SmallText.dart';
 import 'package:eazytrackv2/components/UI_SmallUserInput.dart';
 import 'package:eazytrackv2/components/UI_UserInput.dart';
+import 'package:eazytrackv2/components/barGraph.dart';
 import 'package:eazytrackv2/components/piechart.dart';
 import 'package:eazytrackv2/components/sven.dart';
 import 'package:eazytrackv2/pages/P_EditProfile.dart';
@@ -243,6 +244,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 10),
                       Visibility(
                         visible: isVisibleSven2,
                         child: svenTutorial2()
@@ -352,7 +354,7 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Container(
                                       height: 15,
-                                      width: 270,
+                                      width: 270 * screenScaling(context),
                                       decoration: BoxDecoration(
                                         color: const Color(0xff1F2C25),
                                         borderRadius: BorderRadius.circular(20),
@@ -362,16 +364,16 @@ class _HomePageState extends State<HomePage> {
                                       visible: isVisiblePercentageBar,
                                       child: Container(
                                         height: 15,
-                                        width: calculatePercentBar(total) *
-                                            screenScaling(context),
+                                        width:
+                                            barWidth * screenScaling(context),
                                         // width: calculatePercentBar(),
                                         decoration: BoxDecoration(
-                                          gradient: const SweepGradient(
+                                          gradient: SweepGradient(
                                             colors: [
-                                              Color(0xff1f2c25),
-                                              Color(0xffC3A9FF)
+                                              const Color(0xff1f2c25),
+                                              Color(progressBarColor)
                                             ],
-                                            stops: [0.2, 0.75],
+                                            stops: const [0.2, 0.75],
                                             center: Alignment.topRight,
                                           ),
                                           borderRadius:
@@ -397,6 +399,68 @@ class _HomePageState extends State<HomePage> {
                         visible: isVisibleGenerateEazyBudgetForm,
                         child: Column(
                           children: [
+                            Visibility(
+                              visible: errorMessage3,
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 10),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      gradient: SweepGradient(
+                                        colors: [
+                                          const Color(0xff151515)
+                                              .withOpacity(0.5),
+                                          const Color(0xffff0505)
+                                              .withOpacity(0.5)
+                                        ],
+                                        stops: const [0.25, 0.75],
+                                        center: Alignment.bottomRight,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        elevation: 5.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            height: 75,
+                                            width: 80,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: ClipOval(
+                                              child: Lottie.asset(
+                                                'assets/lottie/qBMpUNvnCu.json',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          const Expanded(
+                                            child: Text(
+                                              'Missing income input. Please add your income.',
+                                              style: TextStyle(
+                                                  color: Color(0xffffffff),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'Poppins'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -447,18 +511,25 @@ class _HomePageState extends State<HomePage> {
                                 height: 56,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    setState(
-                                      () {
-                                        isVisibleCalculations = true;
-                                        isVisibleGenerateEazyBudget2 = false;
-                                        isVisibleValueCorrection1 = true;
-                                        isVisibleSven2 = false;
-                                        isVisibleSven3 = true;
-                                        calculateMonthlyExpenses();
-                                        calculateMiscellaneous();
-                                        calculateSavings();
-                                      },
-                                    );
+                                    if (rent.text == '') {
+                                      setState(() {
+                                        errorMessage3 = true;
+                                      });
+                                    } else {
+                                      setState(
+                                        () {
+                                          isVisibleCalculations = true;
+                                          isVisibleGenerateEazyBudget2 = false;
+                                          isVisibleValueCorrection1 = true;
+                                          isVisibleSven2 = false;
+                                          isVisibleSven3 = true;
+                                          calculateMonthlyExpenses();
+                                          calculateMiscellaneous();
+                                          calculateSavings();
+                                          errorMessage3 = false;
+                                        },
+                                      );
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.transparent,
@@ -614,18 +685,29 @@ class _HomePageState extends State<HomePage> {
                                       height: 56,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          setState(
-                                            () {
-                                              calculateMonthlyExpenses();
-                                              calculateMiscellaneous();
-                                              calculateSavings();
-                                              isVisibleSven3 = false;
-                                              isVisibleSven3Correction1 = true;
-                                              isVisibleSven3Correction2 = false;
-                                              isVisibleValueCorrection1 = false;
-                                              isVisibleValueCorrection2 = true;
-                                            },
-                                          );
+                                          if (rent.text == '') {
+                                            setState(() {
+                                              errorMessage3 = true;
+                                            });
+                                          } else {
+                                            setState(
+                                              () {
+                                                isVisibleSven3 = false;
+                                                isVisibleSven3Correction1 =
+                                                    true;
+                                                isVisibleSven3Correction2 =
+                                                    false;
+                                                isVisibleValueCorrection1 =
+                                                    false;
+                                                isVisibleValueCorrection2 =
+                                                    true;
+                                                errorMessage3 = false;
+                                                calculateMonthlyExpenses();
+                                                calculateMiscellaneous();
+                                                calculateSavings();
+                                              },
+                                            );
+                                          }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.transparent,
@@ -664,18 +746,29 @@ class _HomePageState extends State<HomePage> {
                                       height: 56,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          setState(
-                                            () {
-                                              calculateMonthlyExpenses();
-                                              calculateMiscellaneous();
-                                              calculateSavings();
-                                              isVisibleSven3 = false;
-                                              isVisibleSven3Correction1 = false;
-                                              isVisibleSven3Correction2 = true;
-                                              isVisibleValueCorrection1 = true;
-                                              isVisibleValueCorrection2 = false;
-                                            },
-                                          );
+                                          if (rent.text == '') {
+                                            setState(() {
+                                              errorMessage3 = true;
+                                            });
+                                          } else {
+                                            setState(
+                                              () {
+                                                isVisibleSven3 = false;
+                                                isVisibleSven3Correction1 =
+                                                    false;
+                                                isVisibleSven3Correction2 =
+                                                    true;
+                                                isVisibleValueCorrection1 =
+                                                    true;
+                                                isVisibleValueCorrection2 =
+                                                    false;
+                                                errorMessage3 = false;
+                                                calculateMonthlyExpenses();
+                                                calculateMiscellaneous();
+                                                calculateSavings();
+                                              },
+                                            );
+                                          }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.transparent,
@@ -715,22 +808,43 @@ class _HomePageState extends State<HomePage> {
                                       height: 56,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          setState(
-                                            () {
-                                              isVisibleCalculations = false;
-                                              isVisibleGenerateEazyBudgetForm =
-                                                  false;
-                                              isVisibleFirstMessage = true;
-                                              isVisibleEazyBudgetProgressBar =
-                                                  true;
-                                              isVisibleSven3Correction1 = false;
-                                              isVisibleSven3Correction2 = false;
-                                              isVisibleSven3 = false;
-                                              isVisibleSven4 = true;
-                                              generateNewEazyBudgetVisiblity =
-                                                  true;
-                                            },
-                                          );
+                                          if (rent.text == '') {
+                                            setState(() {
+                                              errorMessage3 = true;
+                                            });
+                                          } else {
+                                            setState(
+                                              () {
+                                                isVisibleSven3 = false;
+                                                isVisibleSven3Correction1 =
+                                                    true;
+                                                isVisibleSven3Correction2 =
+                                                    false;
+                                                isVisibleValueCorrection1 =
+                                                    false;
+                                                isVisibleValueCorrection2 =
+                                                    true;
+                                                errorMessage3 = false;
+                                                calculateMonthlyExpenses();
+                                                calculateMiscellaneous();
+                                                calculateSavings();
+                                                isVisibleCalculations = false;
+                                                isVisibleGenerateEazyBudgetForm =
+                                                    false;
+                                                isVisibleFirstMessage = true;
+                                                isVisibleEazyBudgetProgressBar =
+                                                    true;
+                                                isVisibleSven3Correction1 =
+                                                    false;
+                                                isVisibleSven3Correction2 =
+                                                    false;
+                                                isVisibleSven3 = false;
+                                                isVisibleSven4 = true;
+                                                generateNewEazyBudgetVisiblity =
+                                                    true;
+                                              },
+                                            );
+                                          }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.transparent,
@@ -946,43 +1060,46 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: const SweepGradient(
-                                    colors: [
-                                      Color(0xff151515),
-                                      Color(0xff1f2c25)
-                                    ],
-                                    stops: [0.25, 0.75],
-                                    center: Alignment.bottomRight,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                width: 350 * screenScaling(context),
-                                height: 56,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        viewDetailsVisiblity = true;
-                                        viewDetailsButtonVisiblity = false;
-                                      },
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
-                                    elevation: 5.0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
+                            Visibility(
+                              visible: viewDetailsButtonVisiblity,
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: const SweepGradient(
+                                      colors: [
+                                        Color(0xff151515),
+                                        Color(0xff1f2c25)
+                                      ],
+                                      stops: [0.25, 0.75],
+                                      center: Alignment.bottomRight,
                                     ),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
-                                  child: const Center(
-                                    child: SmallTextWidget(
-                                      text: 'View details',
-                                      fontWeight: FontWeight.w600,
-                                      textColor: 0xffffffff,
-                                      fontsize: 16,
+                                  width: 350 * screenScaling(context),
+                                  height: 56,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          viewDetailsVisiblity = true;
+                                          viewDetailsButtonVisiblity = false;
+                                        },
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.transparent,
+                                      elevation: 5.0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: SmallTextWidget(
+                                        text: 'View details',
+                                        fontWeight: FontWeight.w600,
+                                        textColor: 0xffffffff,
+                                        fontsize: 16,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1038,7 +1155,16 @@ class _HomePageState extends State<HomePage> {
                                             const Align(
                                               alignment: Alignment.centerLeft,
                                               child: BigTextWidget(
-                                                  text: 'Eazy PieChart',
+                                                  text: 'Eazy bar chart',
+                                                  weight: FontWeight.bold,
+                                                  fontsize: 25),
+                                            ),
+                                            BarChartValues(),
+                                            const SizedBox(height: 10),
+                                            const Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: BigTextWidget(
+                                                  text: 'Eazy Pie Chart',
                                                   weight: FontWeight.bold,
                                                   fontsize: 25),
                                             ),
@@ -1053,14 +1179,14 @@ class _HomePageState extends State<HomePage> {
                                                   Row(
                                                     children: [
                                                       const SmallTextWidget(
-                                                          text: 'Expenses',
+                                                          text: 'Expenses: ',
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           textColor: 0xffffffff,
                                                           fontsize: 12),
                                                       Container(
-                                                        height: 30,
-                                                        width: 30,
+                                                        height: 20,
+                                                        width: 20,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: ColorTween(
@@ -1071,7 +1197,7 @@ class _HomePageState extends State<HomePage> {
                                                           ).lerp(0.75),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(15),
+                                                                  .circular(5),
                                                         ),
                                                       ),
                                                     ],
@@ -1086,8 +1212,8 @@ class _HomePageState extends State<HomePage> {
                                                           textColor: 0xffffffff,
                                                           fontsize: 12),
                                                       Container(
-                                                        height: 30,
-                                                        width: 30,
+                                                        height: 20,
+                                                        width: 20,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: ColorTween(
@@ -1098,7 +1224,7 @@ class _HomePageState extends State<HomePage> {
                                                           ).lerp(0.75),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(15),
+                                                                  .circular(5),
                                                         ),
                                                       ),
                                                     ],
@@ -1112,8 +1238,8 @@ class _HomePageState extends State<HomePage> {
                                                           textColor: 0xffffffff,
                                                           fontsize: 12),
                                                       Container(
-                                                        height: 30,
-                                                        width: 30,
+                                                        height: 20,
+                                                        width: 20,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: ColorTween(
@@ -1124,7 +1250,7 @@ class _HomePageState extends State<HomePage> {
                                                           ).lerp(0.75),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(15),
+                                                                  .circular(5),
                                                         ),
                                                       ),
                                                     ],
@@ -1132,13 +1258,13 @@ class _HomePageState extends State<HomePage> {
                                                 ],
                                               ),
                                             ),
-                                            const SizedBox(height: 10),
+                                            const SizedBox(height: 15),
                                             const SmallTextWidget(
                                                 text: 'Tap to close details.',
-                                                fontWeight: FontWeight.normal,
+                                                fontWeight: FontWeight.bold,
                                                 textColor: 0xffffffff,
                                                 fontsize: 10),
-                                            const SizedBox(height: 10),
+                                            const SizedBox(height: 12),
                                           ],
                                         ),
                                       ),
@@ -1213,14 +1339,14 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 borderRadius: BorderRadius.circular(15),
                               ),
+                              width: 430,
+                              height: 100,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  setState(
-                                    () {
-                                      svenReportsVisiblity = false;
-                                      reportsButtonVisiblity = true;
-                                    },
-                                  );
+                                  setState(() {
+                                    svenReportsVisiblity = false;
+                                    reportsButtonVisiblity = true;
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
@@ -1229,41 +1355,59 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                 ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 85,
-                                      width: 55,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const ClipOval(
-                                        child: RiveAnimation.asset(
-                                          'assets/rive/3287-6917-headless-bear.riv',
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: AnimatedTextKit(
-                                        animatedTexts: [
-                                          TyperAnimatedText(
-                                            'Based on the data I have gathered. Here are some tips to save more and prevent you from spending over your EazyBudget.',
-                                            textStyle: const TextStyle(
-                                              color: Color(0xffffffff),
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Poppins',
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                  child: Stack(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            height: 60,
+                                            width: 60,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
                                             ),
-                                            speed: const Duration(
-                                                milliseconds: 25),
+                                            child: ClipOval(
+                                              child: Lottie.asset(
+                                                'assets/lottie/qBMpUNvnCu.json',
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: AnimatedTextKit(
+                                              animatedTexts: [
+                                                TyperAnimatedText(
+                                                  'Here are some tips to save more and prevent you from spending over your EazyBudget.',
+                                                  textStyle: const TextStyle(
+                                                    color: Color(0xffffffff),
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontFamily: 'Poppins',
+                                                  ),
+                                                  speed: const Duration(
+                                                      milliseconds: 25),
+                                                ),
+                                              ],
+                                              totalRepeatCount: 1,
+                                            ),
                                           ),
                                         ],
-                                        totalRepeatCount: 1,
                                       ),
-                                    ),
-                                  ],
+                                      const Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Text(
+                                          'Tap Sven to close reports',
+                                          style: TextStyle(
+                                            fontSize: 9,
+                                            fontFamily: 'Poppins',
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -1503,6 +1647,13 @@ class _HomePageState extends State<HomePage> {
                                                 if (totalNeeds < 0) {
                                                   totalNeeds = 0;
                                                 }
+                                                viewDetailsVisiblity = false;
+                                                viewDetailsButtonVisiblity =
+                                                    true;
+                                                barWidth =
+                                                    calculatePercentBar(total);
+                                                progressBarColor = 0xffC3A9FF;
+                                                createListLength(total);
                                               });
                                             },
                                             style: ElevatedButton.styleFrom(
@@ -1713,64 +1864,59 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Column(
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    gradient: SweepGradient(
-                                      colors: [
-                                        const Color(0xff151515)
-                                            .withOpacity(0.5),
-                                        Color(errorColor).withOpacity(0.5)
-                                      ],
-                                      stops: const [0.25, 0.75],
-                                      center: Alignment.bottomRight,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.transparent,
-                                      elevation: 5.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
+                                Visibility(
+                                  visible: errorMessageVisiblity2,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      gradient: SweepGradient(
+                                        colors: [
+                                          const Color(0xff151515)
+                                              .withOpacity(0.5),
+                                          Color(errorColor).withOpacity(0.5)
+                                        ],
+                                        stops: const [0.25, 0.75],
+                                        center: Alignment.bottomRight,
                                       ),
+                                      borderRadius: BorderRadius.circular(15),
                                     ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 75,
-                                          width: 80,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: ClipOval(
-                                            child: Lottie.asset(
-                                              'assets/lottie/qBMpUNvnCu.json',
-                                              fit: BoxFit.cover,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        elevation: 5.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            height: 60,
+                                            width: 60,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: ClipOval(
+                                              child: Lottie.asset(
+                                                'assets/lottie/qBMpUNvnCu.json',
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Expanded(
-                                          child: AnimatedTextKit(
-                                            animatedTexts: [
-                                              TyperAnimatedText(
-                                                errorMessage,
-                                                textStyle: const TextStyle(
-                                                    color: Color(0xffffffff),
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily: 'Poppins'),
-                                                speed: const Duration(
-                                                    milliseconds: 25),
-                                              ),
-                                            ],
-                                            totalRepeatCount: 1,
-                                            pause: const Duration(
-                                                milliseconds: 1000),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: Text(
+                                              errorMessage,
+                                              style: const TextStyle(
+                                                  color: Color(0xffffffff),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'Poppins'),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1855,6 +2001,7 @@ class _HomePageState extends State<HomePage> {
                                                   isVisibleTableCalendar = true;
                                                   isVisibleSelectDate = false;
                                                   isVisibleDueDate = false;
+                                                  selectedDate.text = '';
                                                 });
                                               },
                                               style: ElevatedButton.styleFrom(
@@ -1894,6 +2041,8 @@ class _HomePageState extends State<HomePage> {
                                             child: ElevatedButton(
                                               onPressed: () {
                                                 setState(() {
+                                                  selectedDate.text =
+                                                      '${_selectedDay.year}-${_selectedDay.month}-${_selectedDay.day}';
                                                   isVisibleTableCalendar =
                                                       false;
                                                   isVisibleSelectDate = true;
@@ -2004,8 +2153,6 @@ class _HomePageState extends State<HomePage> {
                                           _selectedDay = selectedDay;
                                           _focusedDay = selectedDay;
                                           isVisibleConfirmDueDate = true;
-                                          selectedDate.text =
-                                              '${_selectedDay.year}-${_selectedDay.month}-${_selectedDay.day}';
                                         });
                                       },
                                       calendarFormat: _calendarFormat,
@@ -2088,8 +2235,6 @@ class _HomePageState extends State<HomePage> {
                                             isVisible2 = false;
                                             isVisible1 = false;
                                             pickedDay.text = '3 days';
-                                            isVisibleAddPaymentButtonSubmission =
-                                                true;
                                           });
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -2159,8 +2304,6 @@ class _HomePageState extends State<HomePage> {
                                             isVisible2 = true;
                                             isVisible1 = false;
                                             pickedDay.text = '2 days';
-                                            isVisibleAddPaymentButtonSubmission =
-                                                true;
                                           });
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -2230,8 +2373,6 @@ class _HomePageState extends State<HomePage> {
                                             isVisible2 = false;
                                             isVisible1 = true;
                                             pickedDay.text = '1 day';
-                                            isVisibleAddPaymentButtonSubmission =
-                                                true;
                                           });
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -2465,174 +2606,197 @@ class _HomePageState extends State<HomePage> {
                               ).animate().fadeIn().slideY(),
                             ),
                             const SizedBox(height: 10),
-                            Visibility(
-                              visible: isVisibleAddPaymentButtonSubmission,
-                              child: Center(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      gradient: const SweepGradient(
-                                        colors: [
-                                          Color(0xff1f2c25),
-                                          Color(0xffc9ff99)
-                                        ],
-                                        stops: [0.2, 0.75],
-                                        center: Alignment.topRight,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15)),
-                                  width: 350 * screenScaling(context),
-                                  height: 56,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      if (paymentTitle.text == '') {
-                                        setState(() {
-                                          errorColor = 0xffff0505;
-                                          errorMessage =
-                                              'Missing payment title. Please add a title.';
-                                        });
-                                      } else if (paymentTitle.text == '' &&
-                                          payment.text == '') {
-                                        setState(() {
-                                          errorColor = 0xffff0505;
-                                          errorMessage =
-                                              'Missing payment title and payment amount. Please add a title and amount.';
-                                        });
-                                      } else if (paymentTitle.text == '' &&
-                                          payment.text == '' &&
-                                          selectedDate.text == '') {
+                            Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    gradient: const SweepGradient(
+                                      colors: [
+                                        Color(0xff1f2c25),
+                                        Color(0xffc9ff99)
+                                      ],
+                                      stops: [0.2, 0.75],
+                                      center: Alignment.topRight,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15)),
+                                width: 350 * screenScaling(context),
+                                height: 56,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (paymentTitle.text == '') {
+                                      setState(() {
+                                        errorMessageVisiblity2 = true;
+                                        errorColor = 0xffff0505;
+                                        errorMessage =
+                                            'Missing payment title. Please add a title.';
+                                      });
+                                    } else if (paymentTitle.text == '' &&
+                                        payment.text == '') {
+                                      setState(() {
+                                        errorColor = 0xffff0505;
+                                        errorMessage =
+                                            'Missing payment title and payment amount. Please add a title and amount.';
+                                      });
+                                    } else if (paymentTitle.text == '' &&
+                                        payment.text == '' &&
+                                        selectedDate.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
                                         errorMessage =
                                             'Missing payment title, payment amount, and payment due date. Please add a title, amount, and confirm due date.';
-                                      } else if (paymentTitle.text == '' &&
-                                          payment.text == '' &&
-                                          selectedDate.text == '' &&
-                                          pickedDay.text == '') {
+                                      });
+                                    } else if (paymentTitle.text == '' &&
+                                        payment.text == '' &&
+                                        selectedDate.text == '' &&
+                                        pickedDay.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
                                         errorMessage =
                                             'Missing payment title, payment amount, payment due date, and reminder. Please add a title, amount, confirm due date, and set a reminder.';
-                                      } else if (payment.text == '') {
+                                      });
+                                    } else if (payment.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
-                                        setState(() {
-                                          errorMessage =
-                                              'Missing payment amount. Please add amount.';
-                                        });
-                                      } else if (selectedDate.text == '') {
+                                        errorMessage =
+                                            'Missing payment amount. Please add amount.';
+                                      });
+                                    } else if (selectedDate.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
-                                        setState(() {
-                                          errorMessage =
-                                              'Missing due date. Please confirm due date.';
-                                        });
-                                      } else if (pickedDay.text == '') {
+                                        errorMessage =
+                                            'Missing due date. Please confirm due date.';
+                                      });
+                                    } else if (pickedDay.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
-                                        setState(() {
-                                          errorMessage =
-                                              'Missing reminder. Please set a reminder.';
-                                        });
-                                      } else if (paymentTitle.text == '' &&
-                                          selectedDate.text == '') {
+                                        errorMessage =
+                                            'Missing reminder. Please set a reminder.';
+                                      });
+                                    } else if (paymentTitle.text == '' &&
+                                        selectedDate.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
-                                        setState(() {
-                                          errorMessage =
-                                              'Missing payment title and due date. Please add a title and confirm due date.';
-                                        });
-                                      } else if (paymentTitle.text == '' &&
-                                          pickedDay.text == '') {
+                                        errorMessage =
+                                            'Missing payment title and due date. Please add a title and confirm due date.';
+                                      });
+                                    } else if (paymentTitle.text == '' &&
+                                        pickedDay.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
-                                        setState(() {
-                                          errorMessage =
-                                              'Missing payment title and reminder. Please add a title and set a reminder.';
-                                        });
-                                      } else if (paymentTitle.text == '' &&
-                                          payment.text == '' &&
-                                          pickedDay.text == '') {
+                                        errorMessage =
+                                            'Missing payment title and reminder. Please add a title and set a reminder.';
+                                      });
+                                    } else if (paymentTitle.text == '' &&
+                                        payment.text == '' &&
+                                        pickedDay.text == '') {
+                                      errorMessageVisiblity2 = true;
+                                      setState(() {
                                         errorColor = 0xffff0505;
-                                        setState(() {
-                                          errorMessage =
-                                              'Missing payment title, payment amount, and reminder. Please add a title, amount and set a reminder.';
-                                        });
-                                      } else {
-                                        setState(
-                                          () {
-                                            isVisiblePaymentForm = false;
-                                            isVisiblePercentageBar = true;
-                                            List<String> newCard = [
-                                              paymentTitle.text,
-                                              payment.text,
-                                              selectedDate.text,
-                                              pickedDay.text
-                                            ];
-                                            paymentCardList.add(newCard);
-                                            totalExpenditureVisiblity = true;
-                                            paymentCardsListVisibility = true;
-                                            transactionsListVisiblity = true;
-                                            cardListVisibility = true;
-                                            total +=
-                                                double.tryParse(payment.text) ??
-                                                    0.0;
-                                            totalNeeds +=
-                                                double.tryParse(payment.text) ??
-                                                    0.0;
-                                            calculatePercentBar(total);
-                                            paymentTitle.text = '';
-                                            payment.text = '';
-                                            selectedDate.text = '';
-                                            pickedDay.text = '';
-                                            dayButtonColor31 =
-                                                const Color(0xff1f2c25);
-                                            dayButtonColor32 =
-                                                const Color(0xffc9ff99);
-                                            dayButtonColor21 =
-                                                const Color(0xff1f2c25);
-                                            dayButtonColor22 =
-                                                const Color(0xffc9ff99);
-                                            dayButtonColor11 =
-                                                const Color(0xff1f2c25);
-                                            dayButtonColor12 =
-                                                const Color(0xffc9ff99);
-                                            dayheight3 = 30;
-                                            dayheight2 = 30;
-                                            dayheight1 = 30;
-                                            bottomLeftRight3 = 15;
-                                            bottomLeftRight2 = 15;
-                                            bottomLeftRight1 = 15;
-                                            isVisible3 = false;
-                                            isVisible2 = false;
-                                            isVisible1 = false;
-                                            addTransactionButtonVisibility =
-                                                true;
-                                            addPaymentVisiblity = true;
-                                            isVisibleAddPaymentButtonSubmission =
-                                                false;
-                                            isVisibleCompanyLogo = true;
-                                            cardsListHeight += 165;
-                                            cancelAddPaymentVisibility = false;
-                                            reportsButtonVisiblity = true;
-                                            viewDetailsButtonVisiblity = true;
-                                            isVisibleSven6 = true;
-                                          },
-                                        );
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.transparent,
-                                      elevation: 5.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                    ),
-                                    child: const Center(
-                                      child: SmallTextWidget(
-                                        text: 'Add Payment',
-                                        fontWeight: FontWeight.w600,
-                                        textColor: 0xffffffff,
-                                        fontsize: 16,
-                                      ),
+                                        errorMessage =
+                                            'Missing payment title, payment amount, and reminder. Please add a title, amount, and set a reminder.';
+                                      });
+                                    } else if (paymentTitle.text != '' &&
+                                        payment.text != '' &&
+                                        selectedDate.text != '' &&
+                                        pickedDay.text != '') {
+                                      setState(
+                                        () {
+                                          isVisiblePaymentForm = false;
+                                          isVisiblePercentageBar = true;
+                                          List<String> newCard = [
+                                            paymentTitle.text,
+                                            payment.text,
+                                            selectedDate.text,
+                                            pickedDay.text
+                                          ];
+                                          paymentCardList.add(newCard);
+                                          totalExpenditureVisiblity = true;
+                                          paymentCardsListVisibility = true;
+                                          transactionsListVisiblity = true;
+                                          cardListVisibility = true;
+                                          total +=
+                                              double.tryParse(payment.text) ??
+                                                  0.0;
+                                          totalNeeds +=
+                                              double.tryParse(payment.text) ??
+                                                  0.0;
+                                          calculatePercentBar(total);
+                                          if (calculatePercentBar(total) >=
+                                              270) {
+                                            progressBarColor = 0xffff0505;
+                                            barWidth = 270;
+                                          } else {
+                                            barWidth =
+                                                calculatePercentBar(total);
+                                            progressBarColor = 0xffC3A9FF;
+                                          }
+                                          paymentTitle.text = '';
+                                          payment.text = '';
+                                          selectedDate.text = '';
+                                          pickedDay.text = '';
+                                          dayButtonColor31 =
+                                              const Color(0xff1f2c25);
+                                          dayButtonColor32 =
+                                              const Color(0xffc9ff99);
+                                          dayButtonColor21 =
+                                              const Color(0xff1f2c25);
+                                          dayButtonColor22 =
+                                              const Color(0xffc9ff99);
+                                          dayButtonColor11 =
+                                              const Color(0xff1f2c25);
+                                          dayButtonColor12 =
+                                              const Color(0xffc9ff99);
+                                          dayheight3 = 30;
+                                          dayheight2 = 30;
+                                          dayheight1 = 30;
+                                          bottomLeftRight3 = 15;
+                                          bottomLeftRight2 = 15;
+                                          bottomLeftRight1 = 15;
+                                          isVisible3 = false;
+                                          isVisible2 = false;
+                                          isVisible1 = false;
+                                          addTransactionButtonVisibility = true;
+                                          addPaymentVisiblity = true;
+                                          isVisibleCompanyLogo = true;
+                                          cardsListHeight += 165;
+                                          cancelAddPaymentVisibility = false;
+                                          reportsButtonVisiblity = true;
+                                          viewDetailsButtonVisiblity = true;
+                                          isVisibleSven5 = false;
+                                          isVisibleSven6 = true;
+                                          errorMessageVisiblity2 = false;
+                                          errorColor = 0xff1f2c25;
+                                          errorMessage = 'Complete the form';
+                                        },
+                                      );
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    elevation: 5.0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
-                                )
-                                    .animate()
-                                    .shimmer(duration: 1.5.seconds)
-                                    .fadeIn(duration: 1.seconds),
-                              ),
+                                  child: const Center(
+                                    child: SmallTextWidget(
+                                      text: 'Add Payment',
+                                      fontWeight: FontWeight.w600,
+                                      textColor: 0xffffffff,
+                                      fontsize: 16,
+                                    ),
+                                  ),
+                                ),
+                              )
+                                  .animate()
+                                  .shimmer(duration: 1.5.seconds)
+                                  .fadeIn(duration: 1.seconds),
                             ),
                           ],
                         ),
@@ -2752,60 +2916,132 @@ class _HomePageState extends State<HomePage> {
                                 width: 430 * screenScaling(context),
                                 child: Column(
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: 160 * screenScaling(context),
-                                          child: Column(
-                                            children: [
-                                              const Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: SmallTextWidget(
-                                                  text: 'Transaction name',
-                                                  fontWeight: FontWeight.normal,
-                                                  textColor: 0xffffffff,
-                                                  fontsize: 15,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 5),
-                                              SmallUserInput(
-                                                hintLabel: 'Name',
-                                                textFieldSize: 180 *
-                                                    screenScaling(context),
-                                                totalCharacters: 12,
-                                                regExp: r'[a-zA-Z0-9 ]',
-                                                controllerName: transactionName,
-                                              )
-                                            ],
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        gradient: SweepGradient(
+                                          colors: [
+                                            const Color(0xff151515)
+                                                .withOpacity(0.5),
+                                            Color(errorColor2).withOpacity(0.5)
+                                          ],
+                                          stops: const [0.25, 0.75],
+                                          center: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          elevation: 5.0,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 160 * screenScaling(context),
-                                          child: Column(
-                                            children: [
-                                              const Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: SmallTextWidget(
-                                                  text: 'Amount',
-                                                  fontWeight: FontWeight.normal,
-                                                  textColor: 0xffffffff,
-                                                  fontsize: 15,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              height: 60,
+                                              width: 60,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: ClipOval(
+                                                child: Lottie.asset(
+                                                  'assets/lottie/qBMpUNvnCu.json',
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              const SizedBox(height: 5),
-                                              SmallUserInput(
-                                                  hintLabel: '9,999.99',
-                                                  textFieldSize: 150,
-                                                  totalCharacters: 10,
-                                                  regExp: r'[0-9.]+',
+                                            ),
+                                            const SizedBox(width: 10),
+                                            Expanded(
+                                              child: Text(
+                                                errorMessage2,
+                                                style: const TextStyle(
+                                                    color: Color(0xffffffff),
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontFamily: 'Poppins'),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    SizedBox(
+                                      width: 430 * screenScaling(context),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          SizedBox(
+                                            child: Column(
+                                              children: [
+                                                const Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: SmallTextWidget(
+                                                    text: 'Transaction name',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 15,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                SmallUserInput(
+                                                  hintLabel: 'Name',
+                                                  textFieldSize: 200 *
+                                                      screenScaling(context),
+                                                  totalCharacters: 12,
+                                                  regExp: r'[a-zA-Z0-9 ]',
                                                   controllerName:
-                                                      transactionAmount),
-                                            ],
+                                                      transactionName,
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            child: Column(
+                                              children: [
+                                                const Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: SmallTextWidget(
+                                                    text: 'Amount',
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    textColor: 0xffffffff,
+                                                    fontsize: 15,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Row(
+                                                  children: [
+                                                    const Icon(
+                                                      Icons
+                                                          .attach_money_rounded,
+                                                      color: Color(0xffffffff),
+                                                    ),
+                                                    const SizedBox(width: 5),
+                                                    SmallUserInput(
+                                                        hintLabel: '9,999.99',
+                                                        textFieldSize: 200 *
+                                                            screenScaling(
+                                                                context),
+                                                        totalCharacters: 10,
+                                                        regExp: r'[0-9.]+',
+                                                        controllerName:
+                                                            transactionAmount),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     const SizedBox(height: 10),
                                     Center(
@@ -2825,34 +3061,73 @@ class _HomePageState extends State<HomePage> {
                                         height: 56,
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            setState(
-                                              () {
-                                                List<String> newTransaction = [
-                                                  transactionName.text,
-                                                  transactionAmount.text
-                                                ];
-                                                transactionList
-                                                    .add(newTransaction);
-                                                addTransactionFormvisibility =
-                                                    false;
-                                                cancelAddTransactionButtonVisibility =
-                                                    false;
-                                                addTransactionButtonVisibility =
-                                                    true;
-                                                total += double.tryParse(
-                                                        transactionAmount
-                                                            .text) ??
-                                                    0.0;
-                                                totalWants += double.tryParse(
-                                                        transactionAmount
-                                                            .text) ??
-                                                    0.0;
-                                                calculatePercentBar(total);
-                                                transactionListHeight += 48;
-                                                transactionName.text = '';
-                                                transactionAmount.text = '';
-                                              },
-                                            );
+                                            if (transactionName.text == '') {
+                                              setState(() {
+                                                errorColor2 = 0xffff0505;
+                                                errorMessage2 =
+                                                    'Missing transaction name. Please add a name.';
+                                              });
+                                            }
+                                            if (transactionAmount.text == '') {
+                                              setState(() {
+                                                errorColor = 0xffff0505;
+                                                errorMessage =
+                                                    'Missing transaction amount. Please add amount.';
+                                              });
+                                            }
+                                            if (transactionName.text == '' &&
+                                                transactionAmount.text == '') {
+                                              setState(() {
+                                                errorColor = 0xffff0505;
+                                                errorMessage =
+                                                    'Missing transaction name and amount. Please add a name and amount.';
+                                              });
+                                            }
+                                            if (transactionName.text != '' &&
+                                                transactionAmount.text != '') {
+                                              setState(
+                                                () {
+                                                  List<String> newTransaction =
+                                                      [
+                                                    transactionName.text,
+                                                    transactionAmount.text
+                                                  ];
+                                                  transactionList
+                                                      .add(newTransaction);
+                                                  addTransactionFormvisibility =
+                                                      false;
+                                                  cancelAddTransactionButtonVisibility =
+                                                      false;
+                                                  addTransactionButtonVisibility =
+                                                      true;
+                                                  total += double.tryParse(
+                                                          transactionAmount
+                                                              .text) ??
+                                                      0.0;
+                                                  totalWants += double.tryParse(
+                                                          transactionAmount
+                                                              .text) ??
+                                                      0.0;
+                                                  calculatePercentBar(total);
+                                                  if (calculatePercentBar(
+                                                          total) >=
+                                                      270) {
+                                                    progressBarColor =
+                                                        0xffff0505;
+                                                    barWidth = 270;
+                                                  } else {
+                                                    barWidth =
+                                                        calculatePercentBar(
+                                                            total);
+                                                    progressBarColor =
+                                                        0xffC3A9FF;
+                                                  }
+                                                  transactionListHeight += 48;
+                                                  transactionName.text = '';
+                                                  transactionAmount.text = '';
+                                                },
+                                              );
+                                            }
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.transparent,
@@ -2920,6 +3195,11 @@ class _HomePageState extends State<HomePage> {
                                           if (totalWants < 0) {
                                             totalWants = 0;
                                           }
+                                          viewDetailsVisiblity = false;
+                                          viewDetailsButtonVisiblity = true;
+                                          barWidth = calculatePercentBar(total);
+                                          progressBarColor = 0xffC3A9FF;
+                                          createListLength(total);
                                         });
                                       },
                                       style: ElevatedButton.styleFrom(
