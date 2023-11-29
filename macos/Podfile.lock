@@ -1,21 +1,98 @@
 PODS:
+  - Firebase/Auth (10.18.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 10.18.0)
+  - Firebase/CoreOnly (10.18.0):
+    - FirebaseCore (= 10.18.0)
+  - firebase_auth (4.15.0):
+    - Firebase/Auth (~> 10.18.0)
+    - Firebase/CoreOnly (~> 10.18.0)
+    - firebase_core
+    - FlutterMacOS
+  - firebase_core (2.24.0):
+    - Firebase/CoreOnly (~> 10.18.0)
+    - FlutterMacOS
+  - FirebaseAppCheckInterop (10.18.0)
+  - FirebaseAuth (10.18.0):
+    - FirebaseAppCheckInterop (~> 10.17)
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+    - RecaptchaInterop (~> 100.0)
+  - FirebaseCore (10.18.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.12)
+    - GoogleUtilities/Logger (~> 7.12)
+  - FirebaseCoreInternal (10.18.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - FlutterMacOS (1.0.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.12.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.12.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.12.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.12.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.12.0)"
+  - GoogleUtilities/Reachability (7.12.0):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (3.2.0)
+  - PromisesObjC (2.3.1)
   - rive_common (0.0.1):
+    - FlutterMacOS
+  - smart_auth (0.0.1):
     - FlutterMacOS
 
 DEPENDENCIES:
+  - firebase_auth (from `Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos`)
+  - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - rive_common (from `Flutter/ephemeral/.symlinks/plugins/rive_common/macos`)
+  - smart_auth (from `Flutter/ephemeral/.symlinks/plugins/smart_auth/macos`)
+
+SPEC REPOS:
+  trunk:
+    - Firebase
+    - FirebaseAppCheckInterop
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseCoreInternal
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - PromisesObjC
 
 EXTERNAL SOURCES:
+  firebase_auth:
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos
+  firebase_core:
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   rive_common:
     :path: Flutter/ephemeral/.symlinks/plugins/rive_common/macos
+  smart_auth:
+    :path: Flutter/ephemeral/.symlinks/plugins/smart_auth/macos
 
 SPEC CHECKSUMS:
+  Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
+  firebase_auth: a403926db1dd7734c02f354e03b5d8b70b7dcc7d
+  firebase_core: 8852b730fc6843e99c390e97fde4318d58218fa0
+  FirebaseAppCheckInterop: 3cd914842ba46f4304050874cd284de82f154ffd
+  FirebaseAuth: 12314b438fa76048540c8fb86d6cfc9e08595176
+  FirebaseCore: 2322423314d92f946219c8791674d2f3345b598f
+  FirebaseCoreInternal: 8eb002e564b533bdcf1ba011f33f2b5c10e2ed4a
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
+  GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
+  PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   rive_common: 0f0aadf670f0c6a7872dfe3e6186f112a5319108
+  smart_auth: b38e3ab4bfe089eacb1e233aca1a2340f96c28e9
 
 PODFILE CHECKSUM: 236401fc2c932af29a9fcf0e97baeeb2d750d367
 

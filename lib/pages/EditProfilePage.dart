@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
 import 'package:eazytrackv2/pages/OpeningPage.dart';
 import 'package:flutter/material.dart';

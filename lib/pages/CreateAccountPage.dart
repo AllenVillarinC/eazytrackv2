@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/AccountConfirmation.dart';
-import 'package:eazytrackv2/pages/AccountSetupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../components/CompanyLogo.dart';

@@ -7,6 +7,7 @@ import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/SmallTextWidget.dart';
 import 'package:eazytrackv2/pages/AccountSetupPage.dart';
+import 'package:eazytrackv2/pages/SecurityQuestions.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
@@ -42,7 +43,6 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff151515),
       body: SafeArea(
         child: Stack(
           children: [
@@ -145,22 +145,22 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                       ),
                       const SizedBox(height: 20),
                       GreenLongButton(
-                          text: 'Confirm', sendUserTo: AccountSetupPage()),
+                          text: 'Confirm', sendUserTo: SecurityQuestions()),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           BigTextWidget(
                               text: 'Not receiving your codes?',
-                              weight: FontWeight.bold,
-                              fontsize: screenScalingToInt(context, 30)),
-                          const SizedBox(width: 5),
+                              weight: FontWeight.normal,
+                              fontsize: screenScalingToInt(context, 25)),
                           TextButton(
                             onPressed: () {},
                             child: SmallTextWidget(
                                 text: 'Resend',
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.normal,
                                 textColor: 0xffc9ff99,
-                                fontsize: screenScalingToInt(context, 30)),
+                                fontsize: screenScalingToInt(context, 25)),
                           )
                         ],
                       ),
