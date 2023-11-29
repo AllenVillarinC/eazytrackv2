@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import '1_ScreenScale.dart';
+import 'ScreenScale.dart';
 import 'Controllers.dart';
-import 'T_SmallText.dart';
-import 'UI_SmallUserInput.dart';
-import 'UI_TextFormUserInput.dart';
-import 'UI_UserInput.dart';
+import 'SmallTextWidget.dart';
+import 'SmallUserInputWidget.dart';
+import 'BigUserInputWidget.dart';
 
-double calculateTotalExpenses() {
-  double rentExpense = double.tryParse(rent.text) ?? 0.0;
-  double waterExpense = double.tryParse(water.text) ?? 0.0;
-  double electricityExpense = double.tryParse(electricity.text) ?? 0.0;
-  double otherExpense = double.tryParse(other.text) ?? 0.0;
-  return rentExpense + waterExpense + electricityExpense + otherExpense;
-}
+
 
 String calculateMonthlyExpenses() {
   double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
@@ -233,78 +226,6 @@ Column userInformationForm(BuildContext context) {
         ),
       ),
       const SizedBox(height: 15)
-    ],
-  );
-}
-
-Column systemGenerateEazyBudget(BuildContext context) {
-  return Column(
-    children: [
-      TextFormUserInput(
-        label: 'Rent',
-        hiddenLabel: '\$ 0.00',
-        controllerName: rent,
-        regExp: r'[0-9.]+',
-      ),
-      TextFormUserInput(
-        label: 'Water',
-        hiddenLabel: '\$ 0.00',
-        controllerName: water,
-        regExp: r'[0-9.]+',
-      ),
-      TextFormUserInput(
-        label: 'Electricity',
-        hiddenLabel: '\$ 0.00',
-        controllerName: electricity,
-        regExp: r'[0-9.]+',
-      ),
-      TextFormUserInput(
-        label: 'Other',
-        hiddenLabel: '\$ 0.00',
-        controllerName: other,
-        regExp: r'[0-9.]+',
-      ),
-      Container(
-        height: 1,
-        width: 250,
-        decoration: const BoxDecoration(color: Colors.white),
-      ),
-      const SizedBox(height: 15),
-      Align(
-        alignment: Alignment.center,
-        child: SmallTextWidget(
-          text:
-              'Total expenses: \$ ${calculateTotalExpenses().toStringAsFixed(2)}',
-          fontWeight: FontWeight.bold,
-          textColor: 0xffffffff,
-          fontsize: 13,
-        ),
-      ),
-      const SizedBox(height: 15),
-      const SmallTextWidget(
-        text: 'Press \'Next\' to generate your EazyBudget',
-        fontWeight: FontWeight.bold,
-        textColor: 0xffffffff,
-        fontsize: 16,
-      ),
-      const SizedBox(height: 15),
-      Row(
-        children: [
-          const SmallTextWidget(
-              text: 'Monthly income:    \$',
-              fontWeight: FontWeight.normal,
-              textColor: 0xffffffff,
-              fontsize: 20),
-          const SizedBox(width: 5),
-          SmallUserInput(
-              hintLabel: 'Monthly income',
-              textFieldSize: 180,
-              totalCharacters: 7,
-              regExp: r'[0-9.]+',
-              controllerName: rent)
-        ],
-      ),
-      const SizedBox(height: 15),
     ],
   );
 }

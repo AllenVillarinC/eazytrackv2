@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "930982766280",
+    "project_id": "eazytrack-8d265",
+    "storage_bucket": "eazytrack-8d265.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930982766280:android:ad78f31ba064a6180867fd",
+        "android_client_info": {
+          "package_name": "com.example.eazytrackv2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBruCOooFD3pIrizNB4_AlaOAfaks3kKV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

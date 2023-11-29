@@ -1,5 +1,4 @@
 import 'package:eazytrackv2/pages/OpeningPage.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,8 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
-      home: OpeningPage(),
+      home: const OpeningPage(),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:eazytrackv2/components/1_ScreenScale.dart';
+import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 
 import 'package:fl_chart/fl_chart.dart';

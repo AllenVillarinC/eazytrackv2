@@ -1,16 +1,16 @@
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:eazytrackv2/components/0_Company.dart';
-import 'package:eazytrackv2/components/1_ScreenScale.dart';
+import 'package:eazytrackv2/components/CompanyLogo.dart';
+import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/Methods.dart';
-import 'package:eazytrackv2/components/T_BigText.dart';
-import 'package:eazytrackv2/components/T_SmallText.dart';
-import 'package:eazytrackv2/components/UI_SmallUserInput.dart';
-import 'package:eazytrackv2/components/UI_UserInput.dart';
-import 'package:eazytrackv2/components/barGraph.dart';
-import 'package:eazytrackv2/components/piechart.dart';
-import 'package:eazytrackv2/components/sven.dart';
+import 'package:eazytrackv2/components/BigTextWidget.dart';
+import 'package:eazytrackv2/components/SmallTextWidget.dart';
+import 'package:eazytrackv2/components/SmallUserInputWidget.dart';
+import 'package:eazytrackv2/components/BigUserInputWidget.dart';
+import 'package:eazytrackv2/components/BarChart.dart';
+import 'package:eazytrackv2/components/PieChart.dart';
+import 'package:eazytrackv2/components/Sven.dart';
 import 'package:eazytrackv2/pages/EditProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -72,7 +72,6 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height,
                 child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(height: 20),
@@ -143,8 +142,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditProfilePage()),
+                                      builder: (context) => EditProfilePage()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
@@ -230,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                               alignment: Alignment.centerRight,
                               child: Container(
                                 width: 180 * screenScaling(context),
-                                height: 30,
+                                height: 35 * screenScaling(context),
                                 decoration: BoxDecoration(
                                     gradient: SweepGradient(
                                       colors: [
@@ -332,7 +330,7 @@ class _HomePageState extends State<HomePage> {
                                   visible: generateNewEazyBudgetVisiblity,
                                   child: Container(
                                     width: 270 * screenScaling(context),
-                                    height: 30,
+                                    height: 35 * screenScaling(context),
                                     decoration: BoxDecoration(
                                         gradient: SweepGradient(
                                           colors: [
@@ -564,7 +562,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     borderRadius: BorderRadius.circular(15)),
                                 width: 350 * screenScaling(context),
-                                height: 56,
+                                height: 60 * screenScaling(context),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     if (rent.text == '') {
@@ -588,6 +586,7 @@ class _HomePageState extends State<HomePage> {
                                           wants = double.tryParse(
                                                   calculateMiscellaneous()) ??
                                               0.0;
+                                          calculatePercentBar(total);
                                           errorMessage3 = false;
                                         },
                                       );
@@ -756,7 +755,7 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       width: 350 * screenScaling(context),
-                                      height: 56,
+                                      height: 60 * screenScaling(context),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           if (rent.text == '') {
@@ -779,13 +778,13 @@ class _HomePageState extends State<HomePage> {
                                                 calculateMonthlyExpenses();
                                                 calculateMiscellaneous();
                                                 calculateSavings();
-
                                                 needs = double.tryParse(
                                                         calculateMonthlyExpenses()) ??
                                                     0.0;
                                                 wants = double.tryParse(
                                                         calculateMiscellaneous()) ??
                                                     0.0;
+                                                calculatePercentBar(total);
                                               },
                                             );
                                           }
@@ -831,7 +830,7 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       width: 350 * screenScaling(context),
-                                      height: 56,
+                                      height: 60 * screenScaling(context),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           if (rent.text == '') {
@@ -860,6 +859,7 @@ class _HomePageState extends State<HomePage> {
                                                 wants = double.tryParse(
                                                         calculateMiscellaneous()) ??
                                                     0.0;
+                                                calculatePercentBar(total);
                                               },
                                             );
                                           }
@@ -904,7 +904,7 @@ class _HomePageState extends State<HomePage> {
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       width: 350 * screenScaling(context),
-                                      height: 56,
+                                      height: 60 * screenScaling(context),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           if (rent.text == '') {
@@ -984,7 +984,7 @@ class _HomePageState extends State<HomePage> {
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       width: 350 * screenScaling(context),
-                                      height: 56,
+                                      height: 60 * screenScaling(context),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           setState(
@@ -1065,7 +1065,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 borderRadius: BorderRadius.circular(15)),
                             width: 350 * screenScaling(context),
-                            height: 56,
+                            height: 60 * screenScaling(context),
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(
@@ -1119,7 +1119,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 borderRadius: BorderRadius.circular(15)),
                             width: 350 * screenScaling(context),
-                            height: 56,
+                            height: 60 * screenScaling(context),
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(
@@ -1194,7 +1194,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   width: 350 * screenScaling(context),
-                                  height: 56,
+                                  height: 60 * screenScaling(context),
                                   child: ElevatedButton(
                                     onPressed: () {
                                       setState(
@@ -1308,7 +1308,7 @@ class _HomePageState extends State<HomePage> {
                                                       begin: const Color(
                                                           0xff151515),
                                                       end: const Color(
-                                                          0xff8dffe4),
+                                                          0xffc9ff99),
                                                     ).lerp(0.75),
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -1512,7 +1512,7 @@ class _HomePageState extends State<HomePage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   width: 350 * screenScaling(context),
-                                  height: 56,
+                                  height: 60 * screenScaling(context),
                                   child: ElevatedButton(
                                     onPressed: () {
                                       setState(
@@ -1750,7 +1750,7 @@ class _HomePageState extends State<HomePage> {
                                       visible: addPaymentVisiblity,
                                       child: Container(
                                         width: 180 * screenScaling(context),
-                                        height: 30,
+                                        height: 35 * screenScaling(context),
                                         decoration: BoxDecoration(
                                             gradient: SweepGradient(
                                               colors: [
@@ -1799,7 +1799,7 @@ class _HomePageState extends State<HomePage> {
                                       visible: cancelAddPaymentVisibility,
                                       child: Container(
                                         width: 180 * screenScaling(context),
-                                        height: 30,
+                                        height: 35 * screenScaling(context),
                                         decoration: BoxDecoration(
                                             gradient: SweepGradient(
                                               colors: [
@@ -2246,7 +2246,7 @@ class _HomePageState extends State<HomePage> {
                                           visible: isVisibleSelectDate,
                                           child: Container(
                                             width: 150 * screenScaling(context),
-                                            height: 30,
+                                            height: 35 * screenScaling(context),
                                             decoration: BoxDecoration(
                                                 gradient: SweepGradient(
                                                   colors: [
@@ -2936,7 +2936,7 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       width: 350 * screenScaling(context),
-                                      height: 56,
+                                      height: 60 * screenScaling(context),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           if (paymentTitle.text == '' ||
@@ -3077,7 +3077,7 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       width: 350 * screenScaling(context),
-                                      height: 56,
+                                      height: 60 * screenScaling(context),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           if (paymentTitle.text == '' ||
@@ -3207,6 +3207,7 @@ class _HomePageState extends State<HomePage> {
                         visible: transactionsListVisiblity,
                         child: Column(
                           children: [
+                            SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -3221,7 +3222,7 @@ class _HomePageState extends State<HomePage> {
                                           cancelAddTransactionButtonVisibility,
                                       child: Container(
                                         width: 180 * screenScaling(context),
-                                        height: 30,
+                                        height: 35 * screenScaling(context),
                                         decoration: BoxDecoration(
                                             gradient: SweepGradient(
                                               colors: [
@@ -3273,7 +3274,7 @@ class _HomePageState extends State<HomePage> {
                                       visible: addTransactionButtonVisibility,
                                       child: Container(
                                         width: 180 * screenScaling(context),
-                                        height: 30,
+                                        height: 35 * screenScaling(context),
                                         decoration: BoxDecoration(
                                             gradient: SweepGradient(
                                               colors: [
@@ -3466,7 +3467,7 @@ class _HomePageState extends State<HomePage> {
                                             borderRadius:
                                                 BorderRadius.circular(15)),
                                         width: 350 * screenScaling(context),
-                                        height: 56,
+                                        height: 60 * screenScaling(context),
                                         child: ElevatedButton(
                                           onPressed: () {
                                             if (transactionName.text == '') {

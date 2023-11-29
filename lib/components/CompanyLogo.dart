@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '1_ScreenScale.dart';
+import 'ScreenScale.dart';
 
 class CompanyName extends StatelessWidget {
   const CompanyName({super.key});
@@ -12,7 +12,7 @@ class CompanyName extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w800,
-          fontSize: 40 * screenScaling(context),
+          fontSize: 50 * screenScaling(context),
           color: const Color(0xffC0FF99),
         ),
       ),
@@ -21,7 +21,7 @@ class CompanyName extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w800,
-          fontSize: 40 * screenScaling(context),
+          fontSize: 50 * screenScaling(context),
           color: const Color(0xffC3A9FF),
         ),
       ),
@@ -30,7 +30,7 @@ class CompanyName extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w800,
-          fontSize: 40 * screenScaling(context),
+          fontSize: 50 * screenScaling(context),
           color: const Color(0xffffffff),
         ),
       ),

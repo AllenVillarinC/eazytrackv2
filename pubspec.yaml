@@ -41,8 +41,10 @@ dependencies:
   flutter_animate: ^4.3.0
   table_calendar: ^3.0.9
   fl_chart: ^0.65.0
-  flutter_pw_validator: ^1.6.0
   flutter_launcher_icons: ^0.13.1
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.15.0
+  
 
 dev_dependencies:
   flutter_test:

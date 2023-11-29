@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '1_ScreenScale.dart';
+import 'ScreenScale.dart';
 
 class BigTextWidget extends StatelessWidget {
   final String text;

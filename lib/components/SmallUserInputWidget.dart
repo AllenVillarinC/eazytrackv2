@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '1_ScreenScale.dart';
+import 'ScreenScale.dart';
 
 
 class SmallUserInput extends StatelessWidget {
@@ -23,6 +23,7 @@ class SmallUserInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: textFieldSize * screenScaling(context),
+      height: 35,
       child: SizedBox(height: 40,
         child: TextField(
           controller: controllerName,

@@ -1,17 +1,18 @@
 import 'dart:ui';
-
 import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../components/0_Company.dart';
-import '../components/1_ScreenScale.dart';
+import '../components/CompanyLogo.dart';
+import '../components/ScreenScale.dart';
 import '../components/Controllers.dart';
-import '../components/T_BigText.dart';
-import '../components/T_SmallText.dart';
-import '../components/UI_UserInput.dart';
-import '../components/UI_UserInputPassword.dart';
+import '../components/BigTextWidget.dart';
+import '../components/SmallTextWidget.dart';
+import '../components/BigUserInputWidget.dart';
+import '../components/UserPasswordInputWidget.dart';
 import 'CreateAccountPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:eazytrackv2/auth.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -21,6 +22,59 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
+  String? errorMessageAuthA = '';
+  bool isLogin = true;
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+        email: emailaddress.text,
+        password: password.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessageAuthA = e.message;
+      });
+    }
+  }
+
+  Widget errorMessageSignIn() {
+    return Text(errorMessageAuthA == '' ? '' : 'Humm ? $errorMessageAuthA');
+  }
+
+  Widget _signInButton(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const SweepGradient(
+          colors: [Color(0xff1f2c25), Color(0xffc9ff99)],
+          stops: [0.2, 0.75],
+          center: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      width: 350 * screenScaling(context),
+      height: 60 * screenScaling(context),
+      child: ElevatedButton(
+        onPressed: signInWithEmailAndPassword,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        child: Center(
+          child: SmallTextWidget(
+            text: 'Sign in',
+            fontWeight: FontWeight.w600,
+            textColor: 0xffffffff,
+            fontsize: screenScalingToInt(context, 20),
+          ),
+        ),
+      ),
+    );
+  }
+
   bool isActive = false;
   @override
   Widget build(BuildContext context) {
@@ -119,8 +173,9 @@ class _SigninPageState extends State<SigninPage> {
                         ],
                       ),
                     ),
-                    const GreenLongButton(
-                        text: 'Sign in', sendUserTo: HomePage()),
+                    _signInButton(context),
+                    const SizedBox(height: 5),
+                    errorMessageSignIn(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

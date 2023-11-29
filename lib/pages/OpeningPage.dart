@@ -1,12 +1,12 @@
 import 'dart:ui';
 
-import 'package:eazytrackv2/components/1_ScreenScale.dart';
+import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/PurpleLongButton.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../components/0_Company.dart';
+import '../components/CompanyLogo.dart';
 import '../components/GreenLongButton.dart';
-import '../components/T_SmallText.dart';
+import '../components/SmallTextWidget.dart';
 import 'CreateAccountPage.dart';
 import 'SignInPage.dart';
 
@@ -44,11 +44,11 @@ class _OpeningPageState extends State<OpeningPage> {
                     children: [
                       Lottie.asset('assets/lottie/animation_lnypvfyy.json'),
                       const CompanyName(),
-                      const SmallTextWidget(
+                      SmallTextWidget(
                           text: 'Track expenses Eazy!',
                           fontWeight: FontWeight.normal,
                           textColor: 0xffffffff,
-                          fontsize: 20),
+                          fontsize: screenScalingToInt(context, 25)),
                       const SizedBox(height: 25),
                       const GreenLongButton(
                           text: 'Sign in', sendUserTo: SigninPage()),

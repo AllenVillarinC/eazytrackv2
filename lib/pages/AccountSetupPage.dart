@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:eazytrackv2/components/0_Company.dart';
-import 'package:eazytrackv2/components/1_ScreenScale.dart';
+import 'package:eazytrackv2/components/CompanyLogo.dart';
+import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
-import 'package:eazytrackv2/components/T_BigText.dart';
+import 'package:eazytrackv2/components/BigTextWidget.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -44,12 +44,12 @@ class _AccountSetupPageState extends State<AccountSetupPage> {
                       const SizedBox(height: 20),
                       const CompanyName(),
                       const SizedBox(height: 10),
-                      const Align(
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: BigTextWidget(
                           text: 'Let\'s get to know you.',
                           weight: FontWeight.w800,
-                          fontsize: 25,
+                          fontsize: screenScalingToInt(context, 50),
                         ),
                       ),
                       const SizedBox(height: 10),

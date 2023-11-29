@@ -1,16 +1,17 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../components/0_Company.dart';
-import '../components/1_ScreenScale.dart';
-import '../components/GreenLongButton.dart';
+import '../components/CompanyLogo.dart';
+import '../components/ScreenScale.dart';
 import '../components/Controllers.dart';
-import '../components/T_BigText.dart';
-import '../components/T_SmallText.dart';
-import '../components/UI_UserInput.dart';
-import '../components/UI_UserInputPassword.dart';
+import '../components/BigTextWidget.dart';
+import '../components/SmallTextWidget.dart';
+import '../components/BigUserInputWidget.dart';
+import '../components/UserPasswordInputWidget.dart';
 import 'AccountSetupPage.dart';
 import 'SignInPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:eazytrackv2/auth.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -20,6 +21,61 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
+  String? errorMessageAuthB = '';
+  bool isLogin = true;
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+        email: emailaddress.text,
+        password: password.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessageAuthB = e.message;
+      });
+    }
+  }
+
+  Widget _signUpButton(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const SweepGradient(
+          colors: [Color(0xff1f2c25), Color(0xffc9ff99)],
+          stops: [0.2, 0.75],
+          center: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      width: 350 * screenScaling(context),
+      height: 60 * screenScaling(context),
+      child: ElevatedButton(
+        onPressed: () {
+          createUserWithEmailAndPassword();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AccountSetupPage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        child: Center(
+          child: SmallTextWidget(
+            text: 'Create account',
+            fontWeight: FontWeight.w600,
+            textColor: 0xffffffff,
+            fontsize: screenScalingToInt(context, 20),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,12 +102,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     const SizedBox(height: 20),
                     const CompanyName(),
                     const SizedBox(height: 15),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: BigTextWidget(
                         text: 'Let\'s get you started.',
                         weight: FontWeight.w800,
-                        fontsize: 25,
+                        fontsize: screenScalingToInt(context, 50),
                       ),
                     ),
                     const SizedBox(height: 15),
@@ -71,10 +127,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       hintLabel: 'Re-enter Password',
                       controllerName: confirmpassword,
                     ),
-                    const GreenLongButton(
-                      text: 'Create account',
-                      sendUserTo: AccountSetupPage(),
-                    ),
+                    SizedBox(height: 15),
+                    _signUpButton(context),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

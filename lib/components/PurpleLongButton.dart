@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '1_ScreenScale.dart';
-import 'T_SmallText.dart';
+import 'ScreenScale.dart';
+import 'SmallTextWidget.dart';
 
 class PurpleLongButton extends StatelessWidget {
   final String text;
@@ -23,7 +23,7 @@ class PurpleLongButton extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(15)),
       width: 350 * screenScaling(context),
-      height: 56,
+      height: 60 * screenScaling(context),
       child: ElevatedButton(
         onPressed: () {
           Navigator.push(
@@ -43,7 +43,7 @@ class PurpleLongButton extends StatelessWidget {
             text: text,
             fontWeight: FontWeight.w600,
             textColor: 0xffffffff,
-            fontsize: 20,
+            fontsize: screenScalingToInt(context, 20),
           ),
         ),
       ),

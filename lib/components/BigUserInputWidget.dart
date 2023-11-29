@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import '1_ScreenScale.dart';
-import 'T_SmallText.dart';
+import 'ScreenScale.dart';
+import 'SmallTextWidget.dart';
 
-class UserInputPassword extends StatefulWidget {
+class UserInput extends StatefulWidget {
   final String label;
-  final String hintLabel;
+  final String hiddenLabel;
   final TextEditingController controllerName;
-  const UserInputPassword(
+  final String regExp;
+  const UserInput(
       {super.key,
       required this.label,
-      required this.hintLabel,
-      required this.controllerName});
+      required this.hiddenLabel,
+      required this.controllerName,
+      required this.regExp});
 
   @override
-  State<UserInputPassword> createState() => _UserInputPasswordState();
+  State<UserInput> createState() => _UserInputState();
 }
 
-class _UserInputPasswordState extends State<UserInputPassword> {
-  bool _obscureText = true;
-
+class _UserInputState extends State<UserInput> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,9 +39,11 @@ class _UserInputPasswordState extends State<UserInputPassword> {
           const SizedBox(height: 5),
           TextField(
             controller: widget.controllerName,
-            obscureText: _obscureText,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(widget.regExp))
+            ],
             decoration: InputDecoration(
-              hintText: widget.hintLabel,
+              hintText: widget.hiddenLabel,
               hintStyle: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 15 * screenScaling(context),
@@ -57,17 +60,6 @@ class _UserInputPasswordState extends State<UserInputPassword> {
                 borderSide:
                     const BorderSide(color: Color(0xffffffff), width: 2.0),
                 borderRadius: BorderRadius.circular(10),
-              ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: const Color(0xff000000).withOpacity(0.6),
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
               ),
             ),
           ),

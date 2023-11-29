@@ -1,24 +1,60 @@
 import 'dart:ui';
-
-import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
-import 'package:eazytrackv2/pages/OpeningPage.dart';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
-
-import '../components/0_Company.dart';
-import '../components/1_ScreenScale.dart';
+import '../components/CompanyLogo.dart';
+import '../components/ScreenScale.dart';
 import '../components/Controllers.dart';
 import '../components/Methods.dart';
-import '../components/T_BigText.dart';
-import '../components/T_SmallText.dart';
-import '../components/UI_UserInput.dart';
-import '../components/UI_UserInputPassword.dart';
+import '../components/BigTextWidget.dart';
+import '../components/SmallTextWidget.dart';
+import '../components/BigUserInputWidget.dart';
+import '../components/UserPasswordInputWidget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:eazytrackv2/auth.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  final User? user = Auth().currentUser;
+
+  Future<void> signOut() async {
+    await Auth().signOut();
+  }
+
+  Widget _signOutButton(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const SweepGradient(
+          colors: [Color(0xff1f2c25), Color(0xffc9ff99)],
+          stops: [0.2, 0.75],
+          center: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      width: 350 * screenScaling(context),
+      height: 60 * screenScaling(context),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        child: Center(
+          child: SmallTextWidget(
+            text: 'Sign out',
+            fontWeight: FontWeight.w600,
+            textColor: 0xffffffff,
+            fontsize: screenScalingToInt(context, 20),
+          ),
+        ),
+      ),
+    );
+  }
+
+  EditProfilePage({super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -127,56 +163,60 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         topRight: Radius.circular(10),
                                       ),
                                     ),
-                                    width: 430,
-                                    height: 800 * screenScaling(context),
+                                    height: MediaQuery.of(context).size.height,
+                                    width: MediaQuery.of(context).size.width,
                                     child: SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          const SizedBox(height: 15),
-                                          const BigTextWidget(
-                                            text: 'Profile details',
-                                            weight: FontWeight.bold,
-                                            fontsize: 25,
-                                          ),
-                                          const SizedBox(height: 15),
-                                          userInformationForm(context),
-                                          SizedBox(
-                                            width: 350 * screenScaling(context),
-                                            height: 56,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const EditProfilePage()),
-                                                );
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    const Color(0xffC0ff99),
-                                                elevation: 2,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  side: const BorderSide(
-                                                    color: Color(0xff000000),
-                                                    width: 0.5,
+                                      child: SafeArea(
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(height: 50),
+                                            const BigTextWidget(
+                                              text: 'Profile details',
+                                              weight: FontWeight.bold,
+                                              fontsize: 25,
+                                            ),
+                                            const SizedBox(height: 15),
+                                            userInformationForm(context),
+                                            SizedBox(
+                                              width:
+                                                  350 * screenScaling(context),
+                                              height: 56,
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            EditProfilePage()),
+                                                  );
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      const Color(0xffC0ff99),
+                                                  elevation: 2,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    side: const BorderSide(
+                                                      color: Color(0xff000000),
+                                                      width: 0.5,
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: const Center(
+                                                  child: SmallTextWidget(
+                                                    text: 'Save changes',
+                                                    fontWeight: FontWeight.bold,
+                                                    textColor: 0xff000000,
+                                                    fontsize: 16,
                                                   ),
                                                 ),
                                               ),
-                                              child: const Center(
-                                                child: SmallTextWidget(
-                                                  text: 'Save changes',
-                                                  fontWeight: FontWeight.bold,
-                                                  textColor: 0xff000000,
-                                                  fontsize: 16,
-                                                ),
-                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(height: 20),
-                                        ],
+                                            const SizedBox(height: 20),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   );
@@ -261,94 +301,109 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           GestureDetector(
                             onTap: () {
                               showModalBottomSheet(
-                                isScrollControlled:
-                                    true, // Added this property to ensure scrolling
+                                isScrollControlled: true,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return Container(
-                                    decoration: const BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                      ),
-                                    ),
-                                    height: 600 * screenScaling(context),
-                                    width: 430,
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          const SizedBox(height: 15),
-                                          const BigTextWidget(
-                                            text: 'Privacy and safety',
-                                            weight: FontWeight.bold,
-                                            fontsize: 25,
+                                  return ListView(
+                                    keyboardDismissBehavior:
+                                        ScrollViewKeyboardDismissBehavior
+                                            .onDrag,
+                                    children: [
+                                      SingleChildScrollView(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                            ),
                                           ),
-                                          const SizedBox(height: 15),
-                                          UserInput(
-                                            label: 'Email address',
-                                            hiddenLabel: 'Your email',
-                                            controllerName: emailaddress,
-                                            regExp: r'[a-z-0-9\@._]+',
-                                          ),
-                                          UserInputPassword(
-                                            label: 'Password',
-                                            hintLabel: 'Password',
-                                            controllerName: password,
-                                          ),
-                                          UserInputPassword(
-                                            label: 'Re-enter Password',
-                                            hintLabel: 'Re-enter Password',
-                                            controllerName: confirmpassword,
-                                          ),
-                                          SizedBox(
-                                            width: 350 * screenScaling(context),
-                                            height: 56,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const EditProfilePage()),
-                                                );
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    const Color(0xffC0ff99),
-                                                elevation: 2,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  side: const BorderSide(
-                                                    color: Color(0xff000000),
-                                                    width: 0.5,
-                                                  ),
-                                                ),
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: Column(
+                                            children: [
+                                              const SizedBox(height: 50),
+                                              const BigTextWidget(
+                                                text: 'Privacy and safety',
+                                                weight: FontWeight.bold,
+                                                fontsize: 25,
                                               ),
-                                              child: const Center(
-                                                  child: SmallTextWidget(
+                                              const SizedBox(height: 15),
+                                              UserInput(
+                                                label: 'Email address',
+                                                hiddenLabel: 'Your email',
+                                                controllerName: emailaddress,
+                                                regExp: r'[a-z-0-9\@._]+',
+                                              ),
+                                              UserInputPassword(
+                                                label: 'Password',
+                                                hintLabel: 'Password',
+                                                controllerName: password,
+                                              ),
+                                              UserInputPassword(
+                                                label: 'Re-enter Password',
+                                                hintLabel: 'Re-enter Password',
+                                                controllerName: confirmpassword,
+                                              ),
+                                              SizedBox(
+                                                width: 350 *
+                                                    screenScaling(context),
+                                                height: 56,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            EditProfilePage(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        const Color(0xffC0ff99),
+                                                    elevation: 2,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                      side: const BorderSide(
+                                                        color:
+                                                            Color(0xff000000),
+                                                        width: 0.5,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  child: const Center(
+                                                    child: SmallTextWidget(
                                                       text: 'Save changes',
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       textColor: 0xff000000,
-                                                      fontsize: 16)),
-                                            ),
+                                                      fontsize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
+                                            ],
                                           ),
-                                          const SizedBox(height: 20),
-                                        ],
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   );
                                 },
                               );
                             },
                             child: const SmallTextWidget(
-                                text: 'Edit Security',
-                                fontWeight: FontWeight.bold,
-                                textColor: 0xffC0FF99,
-                                fontsize: 18),
-                          ),
+                              text: 'Edit Security',
+                              fontWeight: FontWeight.bold,
+                              textColor: 0xffC0FF99,
+                              fontsize: 18,
+                            ),
+                          )
                         ],
                       ),
                       const SizedBox(height: 15),
@@ -509,9 +564,37 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         color: Colors.white,
                       ),
                       const SizedBox(height: 15),
-                      const GreenLongButton(
-                          text: 'Log out', sendUserTo: OpeningPage()),
-                      const SizedBox(height: 20)
+                      Container(
+                        decoration: BoxDecoration(
+                            gradient: const SweepGradient(
+                              colors: [Color(0xff1f2c25), Color(0xffc9ff99)],
+                              stops: [0.2, 0.75],
+                              center: Alignment.topRight,
+                            ),
+                            borderRadius: BorderRadius.circular(15)),
+                        width: 350 * screenScaling(context),
+                        height: 60 * screenScaling(context),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          child: Center(
+                            child: SmallTextWidget(
+                              text: 'Sign out',
+                              fontWeight: FontWeight.w600,
+                              textColor: 0xffffffff,
+                              fontsize: screenScalingToInt(context, 20),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      widget._signOutButton(context),
                     ],
                   ),
                 ),
