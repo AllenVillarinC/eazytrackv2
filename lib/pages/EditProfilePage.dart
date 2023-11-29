@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
+import 'package:eazytrackv2/pages/OpeningPage.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
@@ -11,49 +13,8 @@ import '../components/BigTextWidget.dart';
 import '../components/SmallTextWidget.dart';
 import '../components/BigUserInputWidget.dart';
 import '../components/UserPasswordInputWidget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:eazytrackv2/auth.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final User? user = Auth().currentUser;
-
-  Future<void> signOut() async {
-    await Auth().signOut();
-  }
-
-  Widget _signOutButton(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const SweepGradient(
-          colors: [Color(0xff1f2c25), Color(0xffc9ff99)],
-          stops: [0.2, 0.75],
-          center: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(15),
-      ),
-      width: 350 * screenScaling(context),
-      height: 60 * screenScaling(context),
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          elevation: 5.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
-        child: Center(
-          child: SmallTextWidget(
-            text: 'Sign out',
-            fontWeight: FontWeight.w600,
-            textColor: 0xffffffff,
-            fontsize: screenScalingToInt(context, 20),
-          ),
-        ),
-      ),
-    );
-  }
-
   EditProfilePage({super.key});
 
   @override
@@ -594,7 +555,41 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      widget._signOutButton(context),
+                      Container(
+                        decoration: BoxDecoration(
+                            gradient: const SweepGradient(
+                              colors: [Color(0xff151515), Color(0xff1f2c25)],
+                              stops: [0.25, 0.75],
+                              center: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(15)),
+                        width: 350 * screenScaling(context),
+                        height: 60 * screenScaling(context),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OpeningPage()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          child: Center(
+                            child: SmallTextWidget(
+                              text: 'Sig out',
+                              fontWeight: FontWeight.w600,
+                              textColor: 0xffffffff,
+                              fontsize: screenScalingToInt(context, 20),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
