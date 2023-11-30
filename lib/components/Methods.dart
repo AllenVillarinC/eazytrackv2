@@ -1,5 +1,3 @@
-import 'package:eazytrackv2/components/BigTextWidget.dart';
-import 'package:eazytrackv2/components/CompanyLogo.dart';
 import 'package:eazytrackv2/components/UserPasswordInputWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,11 +1,8 @@
 import 'dart:ui';
-
 import 'package:eazytrackv2/components/BigTextWidget.dart';
 import 'package:eazytrackv2/components/CompanyLogo.dart';
 import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/SmallTextWidget.dart';
-import 'package:eazytrackv2/pages/EmailValidation.dart';
-import 'package:eazytrackv2/pages/PhoneValidation.dart';
 import 'package:eazytrackv2/pages/SignInEmailValidation.dart';
 import 'package:eazytrackv2/pages/SignInPhoneValidation.dart';
 import 'package:flutter/material.dart';

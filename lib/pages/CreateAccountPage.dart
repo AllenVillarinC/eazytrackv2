@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/pages/AccountConfirmation.dart';
-import 'package:eazytrackv2/pages/AccountSetupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_pw_validator/Resource/Strings.dart';

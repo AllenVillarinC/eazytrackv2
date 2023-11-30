@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
-import 'package:eazytrackv2/pages/HomePage.dart';
+import 'package:eazytrackv2/pages/ForgetPasswordPage.dart';
 import 'package:eazytrackv2/pages/SignInSendCodeTo.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -108,7 +108,11 @@ class _SigninPageState extends State<SigninPage> {
                               alignment: Alignment.centerRight,
                               child: TextButton(
                                 onPressed: () {
-                                  // open dart file for password retrieval
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ForgetPasswordPage()),
+                                  );
                                 },
                                 child: const SmallTextWidget(
                                     text: 'Forgot password?',

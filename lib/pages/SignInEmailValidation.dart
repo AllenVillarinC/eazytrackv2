@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:eazytrackv2/components/CompanyLogo.dart';
 import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/SmallTextWidget.dart';
-import 'package:eazytrackv2/pages/EditProfilePage.dart';
 import 'package:eazytrackv2/pages/SignInSecurityQuestions.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
