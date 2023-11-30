@@ -6,17 +6,19 @@ import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/SmallTextWidget.dart';
 import 'package:eazytrackv2/pages/EmailValidation.dart';
 import 'package:eazytrackv2/pages/PhoneValidation.dart';
+import 'package:eazytrackv2/pages/SignInEmailValidation.dart';
+import 'package:eazytrackv2/pages/SignInPhoneValidation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class SendCodeTo extends StatefulWidget {
-  const SendCodeTo({super.key});
+class SignInSendCodeTo extends StatefulWidget {
+  const SignInSendCodeTo({super.key});
 
   @override
-  State<SendCodeTo> createState() => _SendCodeToState();
+  State<SignInSendCodeTo> createState() => _SignInSendCodeToState();
 }
 
-class _SendCodeToState extends State<SendCodeTo> {
+class _SignInSendCodeToState extends State<SignInSendCodeTo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +79,8 @@ class _SendCodeToState extends State<SendCodeTo> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => EmailValidationPage()),
+                                builder: (context) =>
+                                    SignInEmailValidationPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -137,7 +140,8 @@ class _SendCodeToState extends State<SendCodeTo> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => PhoneValidationPage()),
+                                builder: (context) =>
+                                    SignInPhoneValidationPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

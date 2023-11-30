@@ -53,9 +53,41 @@ class _OpeningPageState extends State<OpeningPage> {
                       const GreenLongButton(
                           text: 'Sign in', sendUserTo: SigninPage()),
                       const SizedBox(height: 10),
-                      const PurpleLongButton(
-                          text: 'Create account',
-                          sendUserTo: CreateAccountPage()),
+                      Container(
+                        decoration: BoxDecoration(
+                            gradient: const SweepGradient(
+                              colors: [Color(0xff151515), Color(0xff1f2c25)],
+                              stops: [0.25, 0.75],
+                              center: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(15)),
+                        width: 350 * screenScaling(context),
+                        height: 60 * screenScaling(context),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateAccountPage()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            elevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          child: Center(
+                            child: SmallTextWidget(
+                              text: 'Create account',
+                              fontWeight: FontWeight.w600,
+                              textColor: 0xffffffff,
+                              fontsize: screenScalingToInt(context, 20),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),

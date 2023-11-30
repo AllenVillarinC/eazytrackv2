@@ -32,7 +32,7 @@ class _UserInputPasswordState extends State<UserInputPassword> {
               text: widget.label,
               fontWeight: FontWeight.normal,
               textColor: 0xffffffff,
-              fontsize: 16,
+              fontsize: screenScalingToInt(context, 30),
             ),
           ),
           const SizedBox(height: 5),

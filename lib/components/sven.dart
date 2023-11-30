@@ -1,9 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/Methods.dart';
+import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rive/rive.dart';
 
 List<String> tutorialMessage = [
   'Nice to finally meet you, ${fname.text}. My name is Sven. EazyTrack\'s virtual assistant.',
@@ -65,7 +65,7 @@ List<List<String>> tips = [
   ]
 ];
 
-Container svenTutorial1(void Function() function) {
+Container svenTutorial1(void Function() function, BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -78,7 +78,7 @@ Container svenTutorial1(void Function() function) {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -110,18 +110,18 @@ Container svenTutorial1(void Function() function) {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[0],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[1],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -138,7 +138,7 @@ Container svenTutorial1(void Function() function) {
   );
 }
 
-Container svenTutorial2() {
+Container svenTutorial2(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -151,7 +151,7 @@ Container svenTutorial2() {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -183,18 +183,18 @@ Container svenTutorial2() {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[2],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[3],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -210,7 +210,7 @@ Container svenTutorial2() {
   );
 }
 
-Container svenTutorial3() {
+Container svenTutorial3(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -223,7 +223,7 @@ Container svenTutorial3() {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -255,27 +255,27 @@ Container svenTutorial3() {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[4],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   'By the end of each month, you should only spend a total of ${calculateEazyBudget()} and you should save around \$ ${calculateSavings()}.',
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[5],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -291,7 +291,7 @@ Container svenTutorial3() {
   );
 }
 
-Container svenTutorial3NewBudgetValues1() {
+Container svenTutorial3NewBudgetValues1(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -304,7 +304,7 @@ Container svenTutorial3NewBudgetValues1() {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -336,18 +336,18 @@ Container svenTutorial3NewBudgetValues1() {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[6],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   'By the end of each month, you should only spend a total of ${calculateEazyBudget()} and you should save around \$ ${calculateSavings()}.',
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -363,7 +363,7 @@ Container svenTutorial3NewBudgetValues1() {
   );
 }
 
-Container svenTutorial3NewBudgetValues2() {
+Container svenTutorial3NewBudgetValues2(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -376,7 +376,7 @@ Container svenTutorial3NewBudgetValues2() {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -408,18 +408,18 @@ Container svenTutorial3NewBudgetValues2() {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[6],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   'By the end of each month, you should only spend a total of ${calculateEazyBudget()} and you should save around \$ ${calculateSavings()}.',
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -435,7 +435,7 @@ Container svenTutorial3NewBudgetValues2() {
   );
 }
 
-Container svenTutorial4(void Function() function) {
+Container svenTutorial4(void Function() function, BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -448,7 +448,7 @@ Container svenTutorial4(void Function() function) {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -480,27 +480,27 @@ Container svenTutorial4(void Function() function) {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[7],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[8],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[9],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -517,7 +517,7 @@ Container svenTutorial4(void Function() function) {
   );
 }
 
-Container svenTutorial5() {
+Container svenTutorial5(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -530,7 +530,7 @@ Container svenTutorial5() {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -562,18 +562,18 @@ Container svenTutorial5() {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[10],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[11],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -589,7 +589,7 @@ Container svenTutorial5() {
   );
 }
 
-Container svenTutorial6(void Function() function) {
+Container svenTutorial6(void Function() function, BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -602,7 +602,7 @@ Container svenTutorial6(void Function() function) {
       ),
       borderRadius: BorderRadius.circular(15),
     ),
-    width: 370,
+    width: 430 * screenScaling(context),
     height: 100,
     child: ElevatedButton(
       onPressed: () {},
@@ -634,18 +634,18 @@ Container svenTutorial6(void Function() function) {
               animatedTexts: [
                 TyperAnimatedText(
                   tutorialMessage[12],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
                 ),
                 TyperAnimatedText(
                   tutorialMessage[13],
-                  textStyle: const TextStyle(
+                  textStyle: TextStyle(
                       color: Color(0xffffffff),
-                      fontSize: 13,
+                      fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
                   speed: const Duration(milliseconds: 20),
@@ -662,7 +662,7 @@ Container svenTutorial6(void Function() function) {
   );
 }
 
-Container sven() {
+Container sven(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
       gradient: SweepGradient(
@@ -696,9 +696,9 @@ Container sven() {
             animatedTexts: [
               TyperAnimatedText(
                 'Here are your details.',
-                textStyle: const TextStyle(
+                textStyle: TextStyle(
                     color: Color(0xffffffff),
-                    fontSize: 13,
+                    fontSize: 15 * screenScaling(context),
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Poppins'),
                 speed: const Duration(milliseconds: 20),

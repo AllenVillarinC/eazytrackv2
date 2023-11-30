@@ -1,12 +1,10 @@
 import 'dart:ui';
-
 import 'package:eazytrackv2/components/BigTextWidget.dart';
 import 'package:eazytrackv2/components/CompanyLogo.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/SmallTextWidget.dart';
-import 'package:eazytrackv2/pages/AccountSetupPage.dart';
 import 'package:eazytrackv2/pages/SecurityQuestions.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

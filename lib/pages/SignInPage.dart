@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:eazytrackv2/components/GreenLongButton.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
+import 'package:eazytrackv2/pages/SignInSendCodeTo.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../components/CompanyLogo.dart';
@@ -86,8 +87,8 @@ class _SigninPageState extends State<SigninPage> {
                                       activeColor: const Color(0xffC0FF99),
                                       value: isActive,
                                       shape: const RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(10)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
                                       ),
                                       onChanged: (bool? value) {
                                         setState(() {
@@ -120,7 +121,8 @@ class _SigninPageState extends State<SigninPage> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      GreenLongButton(text: 'Sign in', sendUserTo: HomePage()),
+                      GreenLongButton(
+                          text: 'Sign in', sendUserTo: SignInSendCodeTo()),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

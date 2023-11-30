@@ -66,7 +66,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           label: 'Phone number',
                           hiddenLabel: 'Your number',
                           controllerName: phonenumber,
-                          regExp: 'r[0-9]'),
+                          regExp: r'[0-9]'),
                       UserInputPassword(
                         label: 'Password',
                         hintLabel: 'Password',

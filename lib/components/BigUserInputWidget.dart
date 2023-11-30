@@ -33,7 +33,7 @@ class _UserInputState extends State<UserInput> {
               text: widget.label,
               fontWeight: FontWeight.normal,
               textColor: 0xffffffff,
-              fontsize: 16,
+              fontsize: screenScalingToInt(context, 30),
             ),
           ),
           const SizedBox(height: 5),
@@ -45,7 +45,7 @@ class _UserInputState extends State<UserInput> {
             decoration: InputDecoration(
               hintText: widget.hiddenLabel,
               hintStyle: TextStyle(
-                fontFamily: 'Inter',
+                fontFamily: 'Poppins',
                 fontSize: 15 * screenScaling(context),
                 color: const Color(0xff000000).withOpacity(0.7),
               ),

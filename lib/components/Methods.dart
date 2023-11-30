@@ -1,11 +1,13 @@
+import 'package:eazytrackv2/components/BigTextWidget.dart';
+import 'package:eazytrackv2/components/CompanyLogo.dart';
+import 'package:eazytrackv2/components/UserPasswordInputWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'ScreenScale.dart';
 import 'Controllers.dart';
 import 'SmallTextWidget.dart';
 import 'SmallUserInputWidget.dart';
 import 'BigUserInputWidget.dart';
-
-
 
 String calculateMonthlyExpenses() {
   double monthlyExpenses = double.tryParse(rent.text) ?? 0.0;
@@ -148,7 +150,7 @@ Column userInformationForm(BuildContext context) {
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: SmallTextWidget(
-                      text: 'Province',
+                      text: 'Province code',
                       fontWeight: FontWeight.normal,
                       textColor: 0xffffffff,
                       fontsize: 18,
@@ -158,9 +160,9 @@ Column userInformationForm(BuildContext context) {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: SmallUserInput(
-                        hintLabel: 'Province',
+                        hintLabel: 'Code',
                         textFieldSize: 180 * screenScaling(context),
-                        totalCharacters: 20,
+                        totalCharacters: 2,
                         regExp: r'[a-zA-Z]',
                         controllerName: province),
                   ),
@@ -226,6 +228,69 @@ Column userInformationForm(BuildContext context) {
         ),
       ),
       const SizedBox(height: 15)
+    ],
+  );
+}
+
+Column userSecurity(BuildContext context) {
+  return Column(
+    children: [
+      UserInput(
+        label: 'Email address',
+        hiddenLabel: 'Your email',
+        controllerName: emailaddress,
+        regExp: r'[a-z-0-9\@._]+',
+      ),
+      SizedBox(
+        width: 430 * screenScaling(context),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SmallTextWidget(
+                text: 'Phone number',
+                fontWeight: FontWeight.normal,
+                textColor: 0xffffffff,
+                fontsize: screenScalingToInt(context, 30),
+              ),
+            ),
+            const SizedBox(height: 5),
+            TextField(
+              keyboardType: TextInputType.number,
+              controller: phonenumber,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+              ],
+              decoration: InputDecoration(
+                hintText: 'Phone number',
+                hintStyle: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 15 * screenScaling(context),
+                  color: const Color(0xff000000).withOpacity(0.7),
+                ),
+                filled: true,
+                fillColor: const Color(0xffffffff),
+                focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      const BorderSide(color: Color(0xff0081B3), width: 2.0),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      const BorderSide(color: Color(0xffffffff), width: 2.0),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+          ],
+        ),
+      ),
+      UserInputPassword(
+        label: 'Password',
+        hintLabel: 'Password',
+        controllerName: password,
+      )
     ],
   );
 }

@@ -130,24 +130,13 @@ class BarChartValues extends StatelessWidget {
                   borderData: FlBorderData(show: false),
                   gridData: const FlGridData(show: false),
                   barGroups: [
-                    generateGroupData(0, 20, 30, 50),
-                    generateGroupData(1, 45, 15, 40),
-                    generateGroupData(2, 60, 10, 30),
-                    generateGroupData(3, 45, 20, 35),
-                    generateGroupData(4, 65, 5, 30),
-                    generateGroupData(5, 50, 10, 40),
-                    generateGroupData(6, 50, 15, 35),
-                    generateGroupData(7, 29, 25, 46),
-                    generateGroupData(8, 46, 26, 28),
-                    generateGroupData(9, 46, 20, 34),
                     generateGroupData(
-                        10,
+                        digitMonth,
                         100 -
                             ((((totalNeeds / needs) * 100) * 0.5) +
                                 (((totalWants / wants) * 100) * 0.3)),
                         ((totalWants / wants) * 100) * 0.3,
                         ((totalNeeds / needs) * 100) * 0.5),
-                    generateGroupData(11, 100, 0, 0),
                   ],
                   maxY: 100,
                   extraLinesData: ExtraLinesData(horizontalLines: [

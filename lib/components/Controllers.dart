@@ -22,9 +22,18 @@ TextEditingController pickedDay = TextEditingController();
 TextEditingController selectedDate = TextEditingController();
 TextEditingController transactionName = TextEditingController();
 TextEditingController transactionAmount = TextEditingController();
+TextEditingController getMonth = TextEditingController();
+TextEditingController checkAnswer = TextEditingController();
+TextEditingController checkAnswer2 = TextEditingController();
 
 List<List<String>> paymentCardList = [];
 List<List<String>> transactionList = [];
+
+List<String> questions = [
+  'What is the name of your favorite teacher?',
+  'What was your favorite food as a child?',
+  'What is the best movie of all time?'
+];
 
 bool isVisibleGenerateEazyBudgetButton = false;
 bool isVisibleAddPaymentButton = false;
@@ -77,6 +86,10 @@ bool errorMessage3 = false;
 bool errorMessageVisiblity2 = false;
 bool tutorialAddPaymentButton = false;
 bool permanentAddPaymentButton = false;
+bool privacyAndVisiblityInfo = true;
+bool userSecurityForm = false;
+bool createdQuestion = false;
+bool premadeQuestion = false;
 
 Color dayButtonColor31 = const Color(0xff1f2c25);
 Color dayButtonColor32 = const Color(0xffc9ff99);
@@ -94,9 +107,6 @@ double bottomLeftRight2 = 15;
 double bottomLeftRight1 = 15;
 
 int listLength = 0;
-
-double cardsListHeight = 0; // 165
-double transactionListHeight = 0; // 48
 
 double total = 0;
 double totalNeeds = 0;
@@ -117,3 +127,26 @@ String errorMessage2 = 'Complete the form';
 int errorColor = 0xff1f2c25;
 int errorColor2 = 0xff1f2c25;
 int progressBarColor = 0xffC3A9FF;
+
+int selectedMonthForBarChart = 0;
+
+int digitMonth = 0;
+
+TextEditingController firstAnswer = TextEditingController();
+TextEditingController secondAnswer = TextEditingController();
+TextEditingController thirdAnswer = TextEditingController();
+
+TextEditingController firstQuestion = TextEditingController();
+TextEditingController secondQuestion = TextEditingController();
+TextEditingController thirdQuestion = TextEditingController();
+TextEditingController firstAnswer2 = TextEditingController();
+TextEditingController secondAnswer2 = TextEditingController();
+TextEditingController thirdAnswer2 = TextEditingController();
+
+bool isVisibleAnswerQuestionsButton = true;
+bool isVisibleCreateQuestionsButton = true;
+bool isVisibleCancelButton1 = false;
+bool isVisibleCancelButton2 = false;
+bool isVisibleQuestions = false;
+bool isVisibleCreatedQuestions = false;
+bool isVisibleDivider = true;
