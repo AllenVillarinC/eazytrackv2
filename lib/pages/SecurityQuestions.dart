@@ -5,6 +5,7 @@ import 'package:eazytrackv2/components/CompanyLogo.dart';
 import 'package:eazytrackv2/components/Controllers.dart';
 import 'package:eazytrackv2/components/ScreenScale.dart';
 import 'package:eazytrackv2/components/SmallTextWidget.dart';
+import 'package:eazytrackv2/pages/AccountSetupPage.dart';
 import 'package:eazytrackv2/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -189,7 +190,8 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomePage()),
+                                        builder: (context) =>
+                                            AccountSetupPage()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -641,7 +643,8 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomePage()),
+                                        builder: (context) =>
+                                            AccountSetupPage()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
