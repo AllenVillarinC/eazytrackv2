@@ -143,7 +143,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                         TyperAnimatedText(
                                           'Passwords do not match.',
                                           textStyle: TextStyle(
-                                              color: Color(0xffffffff),
+                                              color: const Color(0xffffffff),
                                               fontSize:
                                                   15 * screenScaling(context),
                                               fontWeight: FontWeight.w600,
@@ -201,7 +201,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                         TyperAnimatedText(
                                           'Textfields are empty. Please enter your passwords.',
                                           textStyle: TextStyle(
-                                              color: Color(0xffffffff),
+                                              color: const Color(0xffffffff),
                                               fontSize:
                                                   15 * screenScaling(context),
                                               fontWeight: FontWeight.w600,
@@ -259,7 +259,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                         TyperAnimatedText(
                                           'Missing requirements',
                                           textStyle: TextStyle(
-                                              color: Color(0xffffffff),
+                                              color: const Color(0xffffffff),
                                               fontSize:
                                                   15 * screenScaling(context),
                                               fontWeight: FontWeight.w600,
@@ -350,7 +350,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        AccountConfirmationPage()),
+                                        const AccountConfirmationPage()),
                               );
                             }
                           },

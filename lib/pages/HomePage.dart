@@ -28,7 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
-  DateTime _month = DateTime.now();
+  final DateTime _month = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
 
   void activateButton1() {
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => EditProfilePage()),
+                                      builder: (context) => const EditProfilePage()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
@@ -2245,12 +2245,12 @@ class _HomePageState extends State<HomePage> {
                                                                 .italic,
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffc9ff99),
                                                             decoration:
                                                                 TextDecoration
                                                                     .underline,
-                                                            decorationColor: Color(
+                                                            decorationColor: const Color(
                                                                 0xffc9ff99), // Set the underline color
                                                           ),
                                                         ),
@@ -2298,12 +2298,12 @@ class _HomePageState extends State<HomePage> {
                                                                 .italic,
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffc9ff99),
                                                             decoration:
                                                                 TextDecoration
                                                                     .underline,
-                                                            decorationColor: Color(
+                                                            decorationColor: const Color(
                                                                 0xffc9ff99), // Set the underline color
                                                           ),
                                                         ),
@@ -3547,7 +3547,7 @@ class _HomePageState extends State<HomePage> {
                         visible: transactionsListVisiblity,
                         child: Column(
                           children: [
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

@@ -66,7 +66,7 @@ class _OpeningPageState extends State<OpeningPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CreateAccountPage()),
+                                  builder: (context) => const CreateAccountPage()),
                             );
                           },
                           style: ElevatedButton.styleFrom(

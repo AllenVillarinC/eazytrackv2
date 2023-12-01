@@ -41,7 +41,7 @@ class _SendCodeToState extends State<SendCodeTo> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    CompanyName(),
+                    const CompanyName(),
                     const SizedBox(height: 10),
                     BigTextWidget(
                         text: 'Account security',
@@ -77,7 +77,7 @@ class _SendCodeToState extends State<SendCodeTo> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => EmailValidationPage()),
+                                builder: (context) => const EmailValidationPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -137,7 +137,7 @@ class _SendCodeToState extends State<SendCodeTo> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => PhoneValidationPage()),
+                                builder: (context) => const PhoneValidationPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

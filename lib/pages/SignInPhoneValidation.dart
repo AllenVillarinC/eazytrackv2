@@ -47,7 +47,7 @@ class _SignInPhoneValidationPageState extends State<SignInPhoneValidationPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    CompanyName(),
+                    const CompanyName(),
                     const SizedBox(height: 20),
                     SmallTextWidget(
                         text: 'Enter codes to confirm authentication',
@@ -55,7 +55,7 @@ class _SignInPhoneValidationPageState extends State<SignInPhoneValidationPage> {
                         textColor: 0xffffffff,
                         fontsize: screenScalingToInt(context, 30)),
                     const SizedBox(height: 20),
-                    Container(
+                    SizedBox(
                       width: 350 * screenScaling(context),
                       child: Column(
                         children: [
@@ -89,7 +89,7 @@ class _SignInPhoneValidationPageState extends State<SignInPhoneValidationPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          SignInSecurityQuestionsPage()),
+                                          const SignInSecurityQuestionsPage()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(

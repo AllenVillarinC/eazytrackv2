@@ -111,7 +111,7 @@ Container svenTutorial1(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[0],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -120,7 +120,7 @@ Container svenTutorial1(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[1],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -184,7 +184,7 @@ Container svenTutorial2(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[2],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -193,7 +193,7 @@ Container svenTutorial2(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[3],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -256,7 +256,7 @@ Container svenTutorial3(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[4],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -265,7 +265,7 @@ Container svenTutorial3(BuildContext context) {
                 TyperAnimatedText(
                   'By the end of each month, you should only spend a total of ${calculateEazyBudget()} and you should save around \$ ${calculateSavings()}.',
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -274,7 +274,7 @@ Container svenTutorial3(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[5],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -337,7 +337,7 @@ Container svenTutorial3NewBudgetValues1(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[6],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -346,7 +346,7 @@ Container svenTutorial3NewBudgetValues1(BuildContext context) {
                 TyperAnimatedText(
                   'By the end of each month, you should only spend a total of ${calculateEazyBudget()} and you should save around \$ ${calculateSavings()}.',
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -409,7 +409,7 @@ Container svenTutorial3NewBudgetValues2(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[6],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -418,7 +418,7 @@ Container svenTutorial3NewBudgetValues2(BuildContext context) {
                 TyperAnimatedText(
                   'By the end of each month, you should only spend a total of ${calculateEazyBudget()} and you should save around \$ ${calculateSavings()}.',
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -481,7 +481,7 @@ Container svenTutorial4(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[7],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -490,7 +490,7 @@ Container svenTutorial4(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[8],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -499,7 +499,7 @@ Container svenTutorial4(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[9],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -563,7 +563,7 @@ Container svenTutorial5(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[10],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -572,7 +572,7 @@ Container svenTutorial5(BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[11],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -635,7 +635,7 @@ Container svenTutorial6(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[12],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -644,7 +644,7 @@ Container svenTutorial6(void Function() function, BuildContext context) {
                 TyperAnimatedText(
                   tutorialMessage[13],
                   textStyle: TextStyle(
-                      color: Color(0xffffffff),
+                      color: const Color(0xffffffff),
                       fontSize: 15 * screenScaling(context),
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins'),
@@ -697,7 +697,7 @@ Container sven(BuildContext context) {
               TyperAnimatedText(
                 'Here are your details.',
                 textStyle: TextStyle(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     fontSize: 15 * screenScaling(context),
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Poppins'),

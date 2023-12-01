@@ -43,7 +43,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    CompanyName(),
+                    const CompanyName(),
                     const SizedBox(height: 10),
                     BigTextWidget(
                         text: 'Account recovery',
@@ -82,7 +82,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ChangePasswordPage()),
+                                builder: (context) => const ChangePasswordPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(

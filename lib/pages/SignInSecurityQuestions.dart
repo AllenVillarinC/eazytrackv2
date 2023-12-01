@@ -79,7 +79,7 @@ class _SignInSecurityQuestionsPageState
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomePage()),
+                                        builder: (context) => const HomePage()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -111,7 +111,7 @@ class _SignInSecurityQuestionsPageState
                                 hiddenLabel: 'Answer',
                                 controllerName: checkAnswer2,
                                 regExp: r'[a-zA-Z0-9 ]'),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Container(
                               decoration: BoxDecoration(
                                   gradient: const SweepGradient(
@@ -130,7 +130,7 @@ class _SignInSecurityQuestionsPageState
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HomePage()),
+                                        builder: (context) => const HomePage()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(

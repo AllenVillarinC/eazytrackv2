@@ -22,12 +22,12 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
-    textStyle: TextStyle(
+    textStyle: const TextStyle(
         fontSize: 20,
         color: Color.fromRGBO(30, 60, 87, 1),
         fontWeight: FontWeight.w600),
     decoration: BoxDecoration(
-      border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+      border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
       borderRadius: BorderRadius.circular(20),
     ),
   );
@@ -62,7 +62,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      CompanyName(),
+                      const CompanyName(),
                       const SizedBox(height: 20),
                       BigTextWidget(
                           text: 'Account Confirmation',
@@ -82,7 +82,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           textColor: 0xffffffff,
                           fontsize: screenScalingToInt(context, 30)),
                       const SizedBox(height: 20),
-                      Container(
+                      SizedBox(
                         width: 350 * screenScaling(context),
                         child: Column(
                           children: [
@@ -124,7 +124,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      Container(
+                      SizedBox(
                         width: 350 * screenScaling(context),
                         child: Column(
                           children: [
@@ -142,7 +142,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      GreenLongButton(
+                      const GreenLongButton(
                           text: 'Confirm', sendUserTo: SecurityQuestions()),
                       const SizedBox(height: 10),
                       Row(

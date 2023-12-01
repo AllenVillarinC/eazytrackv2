@@ -46,7 +46,7 @@ class _PhoneValidationPageState extends State<PhoneValidationPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    CompanyName(),
+                    const CompanyName(),
                     const SizedBox(height: 20),
                     SmallTextWidget(
                         text: 'Enter codes to confirm authentication',
@@ -54,7 +54,7 @@ class _PhoneValidationPageState extends State<PhoneValidationPage> {
                         textColor: 0xffffffff,
                         fontsize: screenScalingToInt(context, 30)),
                     const SizedBox(height: 20),
-                    Container(
+                    SizedBox(
                       width: 350 * screenScaling(context),
                       child: Column(
                         children: [
@@ -91,7 +91,7 @@ class _PhoneValidationPageState extends State<PhoneValidationPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => EditProfilePage()),
+                                      builder: (context) => const EditProfilePage()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(

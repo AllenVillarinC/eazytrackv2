@@ -72,7 +72,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      CompanyName(),
+                      const CompanyName(),
                       const SizedBox(height: 10),
                       BigTextWidget(
                           text: 'Change password',
@@ -134,7 +134,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                         TyperAnimatedText(
                                           'Passwords do not match.',
                                           textStyle: TextStyle(
-                                              color: Color(0xffffffff),
+                                              color: const Color(0xffffffff),
                                               fontSize:
                                                   15 * screenScaling(context),
                                               fontWeight: FontWeight.w600,
@@ -191,7 +191,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                         TyperAnimatedText(
                                           'Textfields are empty. Please enter your passwords.',
                                           textStyle: TextStyle(
-                                              color: Color(0xffffffff),
+                                              color: const Color(0xffffffff),
                                               fontSize:
                                                   15 * screenScaling(context),
                                               fontWeight: FontWeight.w600,
@@ -248,7 +248,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                         TyperAnimatedText(
                                           'Missing requirements',
                                           textStyle: TextStyle(
-                                              color: Color(0xffffffff),
+                                              color: const Color(0xffffffff),
                                               fontSize:
                                                   15 * screenScaling(context),
                                               fontWeight: FontWeight.w600,
@@ -336,7 +336,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SigninPage()),
+                                    builder: (context) => const SigninPage()),
                               );
                               setState(() {
                                 password.clear();

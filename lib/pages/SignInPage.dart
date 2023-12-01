@@ -111,7 +111,7 @@ class _SigninPageState extends State<SigninPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ForgetPasswordPage()),
+                                        builder: (context) => const ForgetPasswordPage()),
                                   );
                                 },
                                 child: const SmallTextWidget(
@@ -125,7 +125,7 @@ class _SigninPageState extends State<SigninPage> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      GreenLongButton(
+                      const GreenLongButton(
                           text: 'Sign in', sendUserTo: SignInSendCodeTo()),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

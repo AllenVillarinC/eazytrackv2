@@ -12,7 +12,7 @@ import 'package:lottie/lottie.dart';
 import 'package:rive/rive.dart';
 
 class EditProfilePage extends StatefulWidget {
-  EditProfilePage({super.key});
+  const EditProfilePage({super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -199,7 +199,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: Column(
                               children: [
                                 userInformationForm(context),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Container(
                                   decoration: BoxDecoration(
                                       gradient: const SweepGradient(
@@ -307,7 +307,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    SendCodeTo()),
+                                                    const SendCodeTo()),
                                           );
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -380,16 +380,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   ],
                                 ),
                                 const SizedBox(height: 15),
-                                Row(
+                                const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const SmallTextWidget(
+                                    SmallTextWidget(
                                         text: '2-factor authentication:',
                                         fontWeight: FontWeight.bold,
                                         textColor: 0xffffffff,
                                         fontsize: 16),
-                                    const SmallTextWidget(
+                                    SmallTextWidget(
                                         text: 'Active',
                                         fontWeight: FontWeight.bold,
                                         textColor: 0xffc9ff99,
@@ -404,7 +404,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: Column(
                               children: [
                                 userSecurity(context),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Container(
                                   decoration: BoxDecoration(
                                       gradient: const SweepGradient(
@@ -448,7 +448,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           )
                         ],
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Container(
                         height: 1,
                         width: 200,
@@ -553,7 +553,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => OpeningPage()),
+                                  builder: (context) => const OpeningPage()),
                             );
                           },
                           style: ElevatedButton.styleFrom(

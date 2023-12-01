@@ -42,7 +42,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      CompanyName(),
+                      const CompanyName(),
                       const SizedBox(height: 10),
                       BigTextWidget(
                           text: 'Security Questions',
@@ -190,7 +190,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            AccountSetupPage()),
+                                            const AccountSetupPage()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -360,7 +360,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                         const SizedBox(height: 5),
                                         TextField(
                                           controller: firstQuestion,
-                                          style: TextStyle(color: Colors.white),
+                                          style: const TextStyle(color: Colors.white),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'[a-zA-Z0-9? ]'))
@@ -378,13 +378,13 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                             fillColor:
                                                 Colors.black.withOpacity(0.5),
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.transparent),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Color(0xffc9ff99),
                                               ),
                                               borderRadius:
@@ -402,7 +402,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                       children: [
                                         TextField(
                                           controller: firstAnswer2,
-                                          style: TextStyle(color: Colors.black),
+                                          style: const TextStyle(color: Colors.black),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'[a-zA-Z0-9 ]'))
@@ -419,13 +419,13 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                             filled: true,
                                             fillColor: Colors.white,
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.transparent),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Color(0xffc9ff99),
                                               ),
                                               borderRadius:
@@ -450,7 +450,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                         const SizedBox(height: 5),
                                         TextField(
                                           controller: secondQuestion,
-                                          style: TextStyle(color: Colors.white),
+                                          style: const TextStyle(color: Colors.white),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'[a-zA-Z0-9? ]'))
@@ -468,13 +468,13 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                             fillColor:
                                                 Colors.black.withOpacity(0.5),
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.transparent),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Color(0xffc9ff99),
                                               ),
                                               borderRadius:
@@ -492,7 +492,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                       children: [
                                         TextField(
                                           controller: secondAnswer2,
-                                          style: TextStyle(color: Colors.black),
+                                          style: const TextStyle(color: Colors.black),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'[a-zA-Z0-9 ]'))
@@ -509,13 +509,13 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                             filled: true,
                                             fillColor: Colors.white,
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.transparent),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Color(0xffc9ff99),
                                               ),
                                               borderRadius:
@@ -540,7 +540,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                         const SizedBox(height: 5),
                                         TextField(
                                           controller: thirdQuestion,
-                                          style: TextStyle(color: Colors.white),
+                                          style: const TextStyle(color: Colors.white),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'[a-zA-Z0-9? ]'))
@@ -558,13 +558,13 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                             fillColor:
                                                 Colors.black.withOpacity(0.5),
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.transparent),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Color(0xffc9ff99),
                                               ),
                                               borderRadius:
@@ -582,7 +582,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                       children: [
                                         TextField(
                                           controller: thirdAnswer2,
-                                          style: TextStyle(color: Colors.black),
+                                          style: const TextStyle(color: Colors.black),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'[a-zA-Z0-9 ]'))
@@ -599,13 +599,13 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                             filled: true,
                                             fillColor: Colors.white,
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                   color: Colors.transparent),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
                                             focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Color(0xffc9ff99),
                                               ),
                                               borderRadius:
@@ -643,7 +643,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            AccountSetupPage()),
+                                            const AccountSetupPage()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -663,7 +663,7 @@ class _SecurityQuestionsState extends State<SecurityQuestions> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                           ],
                         ),
                       ),
